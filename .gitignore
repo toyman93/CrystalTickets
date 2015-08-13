@@ -22,3 +22,6 @@ sysinfo.txt
 
 # Unity Project Version differences
 ProjectVersion.txt
+
+# Temporary merge files?
+*.meta~*
