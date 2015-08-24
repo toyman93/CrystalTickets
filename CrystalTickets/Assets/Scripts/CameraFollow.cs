@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class CameraFollow : MonoBehaviour {
+
 	public Transform target;
 	public float damping = 0.3f;
 	public float lookAheadFactor = 1.5f;
@@ -12,6 +13,7 @@ public class CameraFollow : MonoBehaviour {
 	Vector3 lastTargetPosition;
 	Vector3 currentVelocity;
 	Vector3 lookAheadPos;
+
 	// Use this for initialization
 	void Start () {
 		lastTargetPosition = target.position;
