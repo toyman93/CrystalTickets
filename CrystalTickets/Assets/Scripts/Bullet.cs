@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour {
     public int speed = 1000;
 
     void Start () {
+        
     }
 
     void Update () {
@@ -34,8 +35,8 @@ public class Bullet : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    void OnCollisionExit(Collision collision) {
-        if (collision.transform.CompareTag("Enemy")) // Not used yet
+    void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.transform.CompareTag("Enemy"))
             Destroy(gameObject); // Destroys the bullet, not the enemy.
     }
 }
