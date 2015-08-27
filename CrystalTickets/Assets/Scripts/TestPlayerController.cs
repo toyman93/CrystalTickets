@@ -50,7 +50,7 @@ public class TestPlayerController : MonoBehaviour {
 
             bool isMovingDown = rigidBody.velocity.y < 0;
 
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            if (Input.GetButtonDown("Jump")) {
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
                 // Updates the animations to show jumping
                 animator.SetBool("Jump", true);
@@ -78,12 +78,12 @@ public class TestPlayerController : MonoBehaviour {
         float secondsSinceLastFired = Time.time - timeLastFired;
 
         // Shooting - doesn't work if you just set 'Shoot' to the value of Input.GetKeyDown(KeyCode.Q) (hence second condition)
-        if (Input.GetKey(KeyCode.Q) && secondsSinceLastFired > firingIntervalInSeconds) {
+        if (Input.GetButton("Fire") && secondsSinceLastFired > firingIntervalInSeconds) {
             timeLastFired = Time.time;
             animator.SetBool("Shoot", true);
             FireBullet(gun.transform.position);
         }
-        if (Input.GetKeyUp(KeyCode.Q))
+        if (Input.GetButtonUp("Fire"))
             animator.SetBool("Shoot", false);
     }
 
