@@ -21,11 +21,17 @@ public class TestPlayerController : MonoBehaviour {
     public float jumpForce = 700f;
     private Rigidbody2D rigidBody;
 
+    // Shooting stuff. gun = position of the gun; where bullets will start from.
+    public GameObject bulletPrefab, gun;
+    public float firingIntervalInSeconds = 0.1f; // How often can we fire a bullet
+    private float timeLastFired;
+
     // Use this for initialization
     void Start() {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         isFacingRight = true;
+        timeLastFired = -firingIntervalInSeconds;
     }
 
     void FixedUpdate() {
@@ -68,17 +74,30 @@ public class TestPlayerController : MonoBehaviour {
         if (changedDirection)
             Flip();
 
+        // Only shoot a bullet if a sane amount of time has passed
+        float secondsSinceLastFired = Time.time - timeLastFired;
+
         // Shooting - doesn't work if you just set 'Shoot' to the value of Input.GetKeyDown(KeyCode.Q) (hence second condition)
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q) && secondsSinceLastFired > firingIntervalInSeconds) {
+            timeLastFired = Time.time;
             animator.SetBool("Shoot", true);
+            FireBullet(gun.transform.position);
+        }
         if (Input.GetKeyUp(KeyCode.Q))
             animator.SetBool("Shoot", false);
     }
 
-    void Flip() {
+    private void Flip() {
         isFacingRight = !isFacingRight;
         Vector3 flippedScale = transform.localScale;
         flippedScale.x *= -1;
         transform.localScale = flippedScale;
+    }
+
+    // This should probably be elsewhere. Enemies can reuse this too.
+    private void FireBullet(Vector3 position) {
+        // Bullet script in prefab should take care of actually moving the bullet once it's instantiated...
+        GameObject bullet = (GameObject) Instantiate(bulletPrefab, position, Quaternion.identity);
+        bullet.GetComponent<Bullet>().Fire(isFacingRight); // ... but we need to tell it which way to move
     }
 }
