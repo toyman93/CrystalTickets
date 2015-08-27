@@ -14,10 +14,12 @@ public class TestPlayerController : MonoBehaviour {
 //	public LayerMask whatIsGround;
 //	public float jumpForce = 700f;
 
-	float moveSpeed = 0.1f;
+	float moveSpeed = 1.0f;
 	private Rigidbody2D rigidBody;
-	bool grounded;
-	float GroundDistance;
+	float movex = 0.0f;
+	float movey = 0.0f;
+
+	float distGround = 0.0f;
 	// Use this for initialization
 	void Start () {
 		// Create player on start
@@ -26,30 +28,27 @@ public class TestPlayerController : MonoBehaviour {
 		// Retrieve attached rigidbody object and store
 		rigidBody = GetComponent<Rigidbody2D> ();
 
+		// Distance from ground from ray casting
+		distGround = GetComponent<Collider>().bounds.extents.y;
 	}
-	void OnCollisionStay(Collision collisionInfo){
-		grounded = true;
-		print ("hello");
-	}
+
 	// FixedUpdate is called every 0.2seconds regardless of frame processing time
 	void FixedUpdate () {
-
+		print ("h" + Time.deltaTime);
+		movex = Input.GetAxis ("Horizontal");
+		movey = Input.GetAxis ("Vertical");
+		
+		rigidBody.velocity = new Vector2 (movex * moveSpeed, rigidBody.velocity.y);
+		
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			rigidBody.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
+		}
 	}
 
 	// Update is called once every frame
 	void Update(){
-
-		if (Input.GetKey (KeyCode.RightArrow)) {
-			rigidBody.velocity = new Vector2 (2.0f, 0.0f);
-		}
-		if (Input.GetKey (KeyCode.LeftArrow)) {
-			rigidBody.velocity = new Vector2 (-2.0f, 0.0f);
-		}
-		if (grounded && Input.GetKey(KeyCode.Space)){
-			print ("Space pressed");
-			rigidBody.AddForce(Vector3.up * 100);
-		}
-		print (grounded);
+		print (Time.deltaTime);
 	}
 
 }
