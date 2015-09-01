@@ -3,7 +3,7 @@ using System.Collections;
 
 // Replace this; it was just for testing the platforms.
 // See https://www.youtube.com/watch?v=Xnyb2f6Qqzg
-public class TestPlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 
     private Animator animator;
     private bool isFacingRight;
@@ -26,12 +26,14 @@ public class TestPlayerController : MonoBehaviour {
     public float firingIntervalInSeconds = 0.1f; // How often can we fire a bullet
     private float timeLastFired;
 
-    // Use this for initialization
+    void Awake() {
+        isFacingRight = true;
+        timeLastFired = -firingIntervalInSeconds;
+    }
+
     void Start() {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        isFacingRight = true;
-        timeLastFired = -firingIntervalInSeconds;
     }
 
     void FixedUpdate() {
@@ -42,13 +44,14 @@ public class TestPlayerController : MonoBehaviour {
                                                  //move our Players rigidbody
         rigidBody.velocity = new Vector3(move * maxSpeed, rigidBody.velocity.y);
     }
+    int i = 0;
 
     void Update() {
 
         //if we are on the ground and the space bar was pressed, change our ground state and add an upward force
         if (grounded) {
-
-            bool isMovingDown = rigidBody.velocity.y < 0;
+            // TODO Doesn't work with stairs
+            bool isMovingDown = rigidBody.velocity.y <= 0; // Try with < 0 instead - seems less responsive
 
             if (Input.GetButtonDown("Jump")) {
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));

@@ -1,13 +1,19 @@
 fileFormatVersion: 2
-guid: 5b4b6f63222d8d34eb125d45f0c2df20
-timeCreated: 1440389832
+guid: a9cad1809c5e9764ba68d1da8d8b5544
+timeCreated: 1441096134
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: ShootSpriteSheet_0
-    21300002: ShootSpriteSheet_1
-    21300004: ShootSpriteSheet_2
-    21300006: ShootSpriteSheet_3
+    21300000: JumpShootSpriteSheet_0
+    21300002: JumpShootSpriteSheet_1
+    21300004: JumpShootSpriteSheet_2
+    21300006: JumpShootSpriteSheet_3
+    21300008: JumpShootSpriteSheet_4
+    21300010: JumpShoot_0
+    21300012: JumpShoot_1
+    21300014: JumpShoot_2
+    21300016: JumpShoot_3
+    21300018: JumpShoot_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -53,44 +59,54 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: ShootSpriteSheet_0
+    - name: JumpShoot_0
       rect:
         serializedVersion: 2
-        x: 108
-        y: 36
-        width: 332
-        height: 468
-      alignment: 0
+        x: 100
+        y: 51
+        width: 369
+        height: 448
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ShootSpriteSheet_1
+    - name: JumpShoot_1
       rect:
         serializedVersion: 2
-        x: 665
-        y: 36
-        width: 330
-        height: 467
-      alignment: 0
+        x: 654
+        y: 57
+        width: 360
+        height: 442
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ShootSpriteSheet_2
+    - name: JumpShoot_2
       rect:
         serializedVersion: 2
-        x: 1251
-        y: 35
-        width: 329
-        height: 469
-      alignment: 0
+        x: 1211
+        y: 56
+        width: 368
+        height: 443
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ShootSpriteSheet_3
+    - name: JumpShoot_3
       rect:
         serializedVersion: 2
-        x: 1825
-        y: 35
-        width: 336
-        height: 469
-      alignment: 0
+        x: 1785
+        y: 55
+        width: 361
+        height: 444
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: JumpShoot_4
+      rect:
+        serializedVersion: 2
+        x: 2361
+        y: 53
+        width: 367
+        height: 446
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
