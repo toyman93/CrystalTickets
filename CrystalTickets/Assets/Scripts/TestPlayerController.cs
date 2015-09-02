@@ -18,7 +18,7 @@ public class TestPlayerController : MonoBehaviour {
     // Should be set to Ground layer - put anything that you want to treat as ground on this layer
     public LayerMask whatIsGround;
 
-    public float jumpForce = 700f;
+    public float jumpForce = -10.0f;
     private Rigidbody2D rigidBody;
 
     // Shooting stuff. gun = position of the gun; where bullets will start from.
@@ -45,7 +45,7 @@ public class TestPlayerController : MonoBehaviour {
 
     void Update() {
 
-        //if we are on the ground and the space bar was pressed, change our ground state and add an upward force
+		//if we are on the ground and the space bar was pressed, change our ground state and add an upward force
         if (grounded) {
 
             bool isMovingDown = rigidBody.velocity.y < 0;
@@ -100,4 +100,5 @@ public class TestPlayerController : MonoBehaviour {
         GameObject bullet = (GameObject) Instantiate(bulletPrefab, position, Quaternion.identity);
         bullet.GetComponent<Bullet>().Fire(isFacingRight); // ... but we need to tell it which way to move
     }
+
 }
