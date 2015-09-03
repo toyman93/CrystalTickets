@@ -95,8 +95,11 @@ public class EnemyPatrol : MonoBehaviour {
         savedConstraints = rigidBody.constraints;
 
         // Stop right there, criminal scum!
-        rigidBody.velocity = Vector3.zero;
-        rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
+        Vector2 newVelocity = rigidBody.velocity;
+        newVelocity.x = 0;
+        rigidBody.velocity = newVelocity;
+        // We need to mask the old constraints with the frozen X axis (want to keep rotation turned off)
+        rigidBody.constraints = rigidBody.constraints | RigidbodyConstraints2D.FreezePositionX;
         isFrozen = true;
     }
 
