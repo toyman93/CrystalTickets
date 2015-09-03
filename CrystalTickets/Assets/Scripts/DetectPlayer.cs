@@ -45,8 +45,8 @@ public class DetectPlayer : MonoBehaviour {
 
             // Play alert animation the first time the player is detected
             if (!playerDetected) {
-                CFX_SpawnSystem.GetNextObject(alertAnimation); // More efficient than Instantiate() - pools objects.
-                alertAnimation.transform.position = transform.position;
+                GameObject alert = CFX_SpawnSystem.GetNextObject(alertAnimation); // More efficient than Instantiate() - pools objects.
+                alert.transform.position = transform.position;
             }
 
             playerDetected = true;
