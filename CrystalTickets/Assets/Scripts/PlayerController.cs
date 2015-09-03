@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour {
                                                  //move our Players rigidbody
         rigidBody.velocity = new Vector3(move * maxSpeed, rigidBody.velocity.y);
     }
-    int i = 0;
 
     void Update() {
 
