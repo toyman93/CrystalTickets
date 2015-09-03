@@ -26,13 +26,18 @@ public class TestPlayerController : MonoBehaviour {
     public float firingIntervalInSeconds = 0.1f; // How often can we fire a bullet
     private float timeLastFired;
 
+	PlayerStatsUI statsUI;
+
     // Use this for initialization
     void Start() {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         isFacingRight = true;
         timeLastFired = -firingIntervalInSeconds;
+		statsUI = GetComponent<PlayerStatsUI>();
     }
+
+
 
     void FixedUpdate() {
         //set our grounded bool
@@ -100,4 +105,10 @@ public class TestPlayerController : MonoBehaviour {
         GameObject bullet = (GameObject) Instantiate(bulletPrefab, position, Quaternion.identity);
         bullet.GetComponent<Bullet>().Fire(isFacingRight); // ... but we need to tell it which way to move
     }
+
+	public void LoseHealth() {
+			statsUI.setHp (statsUI.getHp() - 1);
+			//cooldownPeriod = 1f;
+
+	}
 }
