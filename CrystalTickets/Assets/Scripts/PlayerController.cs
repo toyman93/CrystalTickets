@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-// Replace this; it was just for testing the platforms.
-// See https://www.youtube.com/watch?v=Xnyb2f6Qqzg
 public class PlayerController : MonoBehaviour {
 
     private Animator animator;
