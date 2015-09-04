@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour {
     private RigidbodyConstraints2D savedConstraints;
     private Vector2 savedVelocity;
 
-    public bool isFacingRight { get; private set; } // Syntactic sugar...
+    public bool isFacingRight { get; private set; }
 
     void Awake () {
         isFacingRight = true;

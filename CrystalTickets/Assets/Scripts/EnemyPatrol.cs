@@ -7,11 +7,10 @@ public class EnemyPatrol : MonoBehaviour {
     public bool startFacingRight = true; // Which way the enemy should face to begin with
     public int unitsToMove = 5; // How far the enemy can move, in whatever direction it faces at the start
 
-    public Movement movement { get; private set; }
-
     private float rightWall; // Enemy walks to and from here.
     private float leftWall; // 'Units To Move' units away from other wall
 
+    private Movement movement;
     private Vector2 distanceToWalk;
     private bool atPlatformEdge;
     private float directionMultiplier {

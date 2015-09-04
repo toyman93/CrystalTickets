@@ -11,14 +11,14 @@ public class DetectPlayer : MonoBehaviour {
     public GameObject alertAnimation;
 
     private bool playerDetected;
-    private EnemyPatrol patrol;
+    private Movement movement;
 
     void Awake () {
         playerDetected = false;
     }
 
     void Start () {
-        patrol = GetComponent<EnemyPatrol>();
+        movement = GetComponent<Movement>();
     }
 
     // Displays detection range as gizmo (circle)
@@ -37,10 +37,10 @@ public class DetectPlayer : MonoBehaviour {
             lineOfSight.Normalize();
 
             // Stop and turn towards the 
-            patrol.movement.Freeze();
-            bool isFacingRight = patrol.movement.isFacingRight;
+            movement.Freeze();
+            bool isFacingRight = movement.isFacingRight;
             if (lineOfSight.x < 0 && isFacingRight || lineOfSight.x > 0 && !isFacingRight)
-                patrol.movement.Flip();
+                movement.Flip();
 
             // Play alert animation the first time the player is detected
             if (!playerDetected) {
@@ -53,7 +53,7 @@ public class DetectPlayer : MonoBehaviour {
         } else if (playerDetected) {
             // Player was in range but has moved out of range
             playerDetected = false;
-            patrol.movement.Unfreeze();
+            movement.Unfreeze();
         }
     }
 }
