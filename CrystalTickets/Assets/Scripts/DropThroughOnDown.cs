@@ -5,9 +5,13 @@ public class DropThroughOnDown : MonoBehaviour {
 
 	private bool playerOnObject;
 
+    void Awake () {
+        playerOnObject = true; // Platform should initially be 'solid'
+    }
+
 	void Update () {
 		if (playerOnObject)
-            (gameObject.GetComponent(typeof(Collider2D)) as Collider2D).isTrigger = Input.GetAxis("Vertical") < 0;
+            GetComponent<Collider2D>().isTrigger = Input.GetAxis("Vertical") < 0;
 	}
 
 	void OnTriggerEnter2D (Collider2D collider) {
