@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class DetectPlayer : MonoBehaviour {
 
@@ -38,10 +37,10 @@ public class DetectPlayer : MonoBehaviour {
             lineOfSight.Normalize();
 
             // Stop and turn towards the 
-            patrol.Freeze();
-            bool isFacingRight = patrol.IsFacingRight();
+            patrol.movement.Freeze();
+            bool isFacingRight = patrol.movement.isFacingRight;
             if (lineOfSight.x < 0 && isFacingRight || lineOfSight.x > 0 && !isFacingRight)
-                patrol.Flip();
+                patrol.movement.Flip();
 
             // Play alert animation the first time the player is detected
             if (!playerDetected) {
@@ -54,7 +53,7 @@ public class DetectPlayer : MonoBehaviour {
         } else if (playerDetected) {
             // Player was in range but has moved out of range
             playerDetected = false;
-            patrol.Unfreeze();
+            patrol.movement.Unfreeze();
         }
     }
 }

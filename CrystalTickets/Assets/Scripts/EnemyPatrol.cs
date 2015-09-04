@@ -6,35 +6,25 @@ public class EnemyPatrol : MonoBehaviour {
 
     public bool startFacingRight = true; // Which way the enemy should face to begin with
     public int unitsToMove = 5; // How far the enemy can move, in whatever direction it faces at the start
-    public float speed = 4;
+
+    public Movement movement { get; private set; }
 
     private float rightWall; // Enemy walks to and from here.
     private float leftWall; // 'Units To Move' units away from other wall
 
     private Vector2 distanceToWalk;
-    private bool isFacingRight; // Syntactic sugar...
-    private float directionMultiplier {
-        get { return isFacingRight ? 1.0f : -1.0f; } // => syntax not compiling?
-    }
     private bool atPlatformEdge;
-
-    // Note: take this stuff out to a movement class
-    private bool isFrozen;
-    private Rigidbody2D rigidBody;
-    private RigidbodyConstraints2D savedConstraints;
-    private Vector2 savedVelocity;
-
-    // Note: Exposes this to DetectPlayer. Perhaps create a movement class / data structure?
-    public bool IsFacingRight () {
-        return isFacingRight;
+    private float directionMultiplier {
+        get { return movement.isFacingRight ? 1.0f : -1.0f; }
     }
 
     void Awake () {
-        isFacingRight = true;
         atPlatformEdge = false;
     }
 
 	void Start () {
+        movement = GetComponent<Movement>();
+
         float startPosition = transform.position.x;
         float endPosition = startFacingRight ? startPosition + unitsToMove : startPosition - unitsToMove;
 
@@ -43,18 +33,18 @@ public class EnemyPatrol : MonoBehaviour {
         leftWall = Math.Min(startPosition, endPosition);
 
         if (!startFacingRight)
-            Flip(); // Get the sprite facing the correct way initially
-
-        rigidBody = GetComponent<Rigidbody2D>();
+            movement.Flip(); // Get the sprite facing the correct way initially
     }
 	
 	void Update () {
-        distanceToWalk.x = directionMultiplier * speed * Time.deltaTime;
+        distanceToWalk.x = directionMultiplier * movement.speed * Time.deltaTime;
 
-        if (ShouldTurnAround())
-            Flip();
+        if (ShouldTurnAround()) {
+            movement.Flip();
+            atPlatformEdge = false;
+        }
 
-        if (!isFrozen)
+        if (!movement.isFrozen)
             transform.Translate(distanceToWalk);
 	}
 
@@ -70,44 +60,11 @@ public class EnemyPatrol : MonoBehaviour {
         float position = transform.position.x;
 
         // True if enemy is outside / on the edge of its patrol area
-        bool reachedBoundary = isFacingRight && position >= rightWall || !isFacingRight && position <= leftWall;
+        bool reachedBoundary = movement.isFacingRight && position >= rightWall || !movement.isFacingRight && position <= leftWall;
 
         if (reachedBoundary || atPlatformEdge)
             facingWrongWay = true;
 
         return facingWrongWay;
-    }
-
-    // Note: duplicated from PlayerController...
-    public void Flip () {
-        isFacingRight = !isFacingRight;
-        Vector3 flippedScale = transform.localScale;
-        flippedScale.x *= -1;
-        transform.localScale = flippedScale;
-
-        atPlatformEdge = false; // ...except for this line
-    }
-
-    // Note: refactor out to a movement script with Flip()?
-    public void Freeze () {
-        // Save current movement, so that it can be restored
-        savedVelocity = rigidBody.velocity;
-        savedConstraints = rigidBody.constraints;
-
-        // Stop right there, criminal scum!
-        Vector2 newVelocity = rigidBody.velocity;
-        newVelocity.x = 0;
-        rigidBody.velocity = newVelocity;
-        // We need to mask the old constraints with the frozen X axis (want to keep rotation turned off)
-        rigidBody.constraints = rigidBody.constraints | RigidbodyConstraints2D.FreezePositionX;
-        isFrozen = true;
-    }
-
-    public void Unfreeze () {
-        // Restore old movement
-        rigidBody.velocity = savedVelocity;
-        rigidBody.constraints = savedConstraints;
-
-        isFrozen = false;
     }
 }
