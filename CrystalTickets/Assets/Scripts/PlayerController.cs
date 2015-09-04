@@ -4,10 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
     private Animator animator;
-    private bool isFacingRight;
 
-    //This will be our maximum speed as we will always be multiplying by 1
-    public float maxSpeed;
     //to check ground and to have a jumpforce we can change in the editor
     bool grounded = false;
     public Transform groundCheck;
@@ -24,14 +21,16 @@ public class PlayerController : MonoBehaviour {
     public float firingIntervalInSeconds = 0.1f; // How often can we fire a bullet
     private float timeLastFired;
 
+    private Movement movement;
+
     void Awake() {
-        isFacingRight = true;
         timeLastFired = -firingIntervalInSeconds;
     }
 
     void Start() {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        movement = GetComponent<Movement>();
     }
 
     void FixedUpdate() {
@@ -40,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 
         float move = Input.GetAxis("Horizontal");//Gives us of one if we are moving via the arrow keys
                                                  //move our Players rigidbody
-        rigidBody.velocity = new Vector3(move * maxSpeed, rigidBody.velocity.y);
+        rigidBody.velocity = new Vector3(move * movement.speed, rigidBody.velocity.y);
     }
 
     void Update() {
@@ -70,9 +69,9 @@ public class PlayerController : MonoBehaviour {
         animator.SetBool("Run", isRunning);
 
         // Update animations to reflect which way the player is moving
-        bool changedDirection = move > 0 && !isFacingRight || move < 0 && isFacingRight;
+        bool changedDirection = move > 0 && !movement.isFacingRight || move < 0 && movement.isFacingRight;
         if (changedDirection)
-            Flip();
+            movement.Flip();
 
         // Only shoot a bullet if a sane amount of time has passed
         float secondsSinceLastFired = Time.time - timeLastFired;
@@ -87,17 +86,10 @@ public class PlayerController : MonoBehaviour {
             animator.SetBool("Shoot", false);
     }
 
-    private void Flip() {
-        isFacingRight = !isFacingRight;
-        Vector3 flippedScale = transform.localScale;
-        flippedScale.x *= -1;
-        transform.localScale = flippedScale;
-    }
-
     // This should probably be elsewhere. Enemies can reuse this too.
     private void FireBullet(Vector3 position) {
         // Bullet script in prefab should take care of actually moving the bullet once it's instantiated...
         GameObject bullet = (GameObject) Instantiate(bulletPrefab, position, Quaternion.identity);
-        bullet.GetComponent<Bullet>().Fire(isFacingRight); // ... but we need to tell it which way to move
+        bullet.GetComponent<Bullet>().Fire(movement.isFacingRight); // ... but we need to tell it which way to move
     }
 }
