@@ -7,7 +7,7 @@ public class TestPlayerController : MonoBehaviour {
 	
     private Animator animator;
     private bool isFacingRight;
-
+	public static bool activateDoor = false;
     //This will be our maximum speed as we will always be multiplying by 1
     public float maxSpeed;
     //to check ground and to have a jumpforce we can change in the editor
@@ -101,4 +101,10 @@ public class TestPlayerController : MonoBehaviour {
         bullet.GetComponent<Bullet>().Fire(isFacingRight); // ... but we need to tell it which way to move
     }
 
+	void OnCollisionEnter2D(Collision2D col){
+		if (col.gameObject.name == "red_button") {
+			print ("Switch On");
+			activateDoor = true;
+		}
+	}
 }
