@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerStatsUI : MonoBehaviour {
 
-	private TestPlayerController character;
+	private PlayerController character;
 	public float fallingThreshold;
 	
 	public Texture threeHp;
@@ -41,7 +41,7 @@ public class PlayerStatsUI : MonoBehaviour {
 
 	
 	void Awake() {
-		character = GetComponent<TestPlayerController>();
+		character = GetComponent<PlayerController>();
 		
 		//if (Agent7ControlUI.testingUsingUnityRemote) {
 		healthDisplay = new Rect ((Screen.width / 2) - (Screen.width / 5 / 2), 0, Screen.width / 5, 50);
