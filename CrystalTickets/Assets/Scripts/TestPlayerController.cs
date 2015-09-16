@@ -4,10 +4,10 @@ using System.Collections;
 // Replace this; it was just for testing the platforms.
 // See https://www.youtube.com/watch?v=Xnyb2f6Qqzg
 public class TestPlayerController : MonoBehaviour {
-
+	
     private Animator animator;
     private bool isFacingRight;
-
+	public static bool activateDoor = false;
     //This will be our maximum speed as we will always be multiplying by 1
     public float maxSpeed;
     //to check ground and to have a jumpforce we can change in the editor
@@ -18,7 +18,7 @@ public class TestPlayerController : MonoBehaviour {
     // Should be set to Ground layer - put anything that you want to treat as ground on this layer
     public LayerMask whatIsGround;
 
-    public float jumpForce = 700f;
+    public float jumpForce = -10.0f;
     private Rigidbody2D rigidBody;
 
     // Shooting stuff. gun = position of the gun; where bullets will start from.
@@ -50,7 +50,7 @@ public class TestPlayerController : MonoBehaviour {
 
     void Update() {
 
-        //if we are on the ground and the space bar was pressed, change our ground state and add an upward force
+		//if we are on the ground and the space bar was pressed, change our ground state and add an upward force
         if (grounded) {
 
             bool isMovingDown = rigidBody.velocity.y < 0;
@@ -106,9 +106,15 @@ public class TestPlayerController : MonoBehaviour {
         bullet.GetComponent<Bullet>().Fire(isFacingRight); // ... but we need to tell it which way to move
     }
 
-	public void LoseHealth() {
-			statsUI.setHp (statsUI.getHp() - 1);
-			//cooldownPeriod = 1f;
+    public void LoseHealth() {
+        statsUI.setHp(statsUI.getHp() - 1);
+        //cooldownPeriod = 1f;
+    }
 
+	void OnCollisionEnter2D(Collision2D col){
+		if (col.gameObject.name == "red_button") {
+			print ("Switch On");
+			activateDoor = true;
+		}
 	}
 }
