@@ -2,7 +2,13 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-	int speed = 1;
+
+    // Set initial values
+    public string name = "John";
+    public int score = 0;
+    public int health = 100;
+    public bool isHidden = false;
+
 	// Use this for initialization
 	void Start () {
 	
