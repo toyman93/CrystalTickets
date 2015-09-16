@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour {
     public float firingIntervalInSeconds = 0.1f; // How often can we fire a bullet
     private float timeLastFired;
 
+	PlayerStatsUI statsUI;
+
     private Movement movement;
 
     void Awake() {
@@ -34,7 +36,12 @@ public class PlayerController : MonoBehaviour {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         movement = GetComponent<Movement>();
+        isFacingRight = true;
+        timeLastFired = -firingIntervalInSeconds;
+        statsUI = GetComponent<PlayerStatsUI>();
     }
+
+
 
     void FixedUpdate() {
         //set our grounded bool
@@ -94,6 +101,11 @@ public class PlayerController : MonoBehaviour {
         // Bullet script in prefab should take care of actually moving the bullet once it's instantiated...
         GameObject bullet = (GameObject) Instantiate(bulletPrefab, position, Quaternion.identity);
         bullet.GetComponent<Bullet>().Fire(movement.isFacingRight); // ... but we need to tell it which way to move
+    }
+
+    public void LoseHealth() {
+        statsUI.setHp(statsUI.getHp() - 1);
+        //cooldownPeriod = 1f;
     }
 
 	void OnCollisionEnter2D(Collision2D col){
