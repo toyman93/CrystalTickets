@@ -8,7 +8,7 @@ public class doorEntrance : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col){
 		print ("hi");
-		if (col.gameObject.name == "playerCharacter" && TestPlayerController.activateDoor) {
+		if (col.gameObject.name == "playerCharacter" && PlayerController.activateDoor) {
 			print ("Collided");
 			print (exitDoor.transform.position);
 			Vector3 newPosition = exitDoor.transform.position;
