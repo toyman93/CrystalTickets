@@ -25,3 +25,6 @@ ProjectVersion.txt
 
 # Temporary merge files?
 *.meta~*
+
+# Build
+*.apk

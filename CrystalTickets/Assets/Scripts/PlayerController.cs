@@ -4,7 +4,10 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
     private Animator animator;
-
+    private bool isFacingRight;
+	public static bool activateDoor = false;
+    //This will be our maximum speed as we will always be multiplying by 1
+    public float maxSpeed;
     //to check ground and to have a jumpforce we can change in the editor
     bool grounded = false;
     public Transform groundCheck;
@@ -13,7 +16,7 @@ public class PlayerController : MonoBehaviour {
     // Should be set to Ground layer - put anything that you want to treat as ground on this layer
     public LayerMask whatIsGround;
 
-    public float jumpForce = 700f;
+    public float jumpForce = -10.0f;
     private Rigidbody2D rigidBody;
 
     // Shooting stuff. gun = position of the gun; where bullets will start from.
@@ -44,7 +47,7 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
 
-        //if we are on the ground and the space bar was pressed, change our ground state and add an upward force
+		//if we are on the ground and the space bar was pressed, change our ground state and add an upward force
         if (grounded) {
             // TODO Doesn't work with stairs
             bool isMovingDown = rigidBody.velocity.y <= 0; // Try with < 0 instead - seems less responsive
@@ -92,4 +95,11 @@ public class PlayerController : MonoBehaviour {
         GameObject bullet = (GameObject) Instantiate(bulletPrefab, position, Quaternion.identity);
         bullet.GetComponent<Bullet>().Fire(movement.isFacingRight); // ... but we need to tell it which way to move
     }
+
+	void OnCollisionEnter2D(Collision2D col){
+		if (col.gameObject.name == "red_button") {
+			print ("Switch On");
+			activateDoor = true;
+		}
+	}
 }
