@@ -41,14 +41,13 @@ public class PlayerController : MonoBehaviour {
         statsUI = GetComponent<PlayerStatsUI>();
     }
 
-
-
     void FixedUpdate() {
         //set our grounded bool
         grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 
         float move = Input.GetAxis("Horizontal");//Gives us of one if we are moving via the arrow keys
                                                  //move our Players rigidbody
+
         rigidBody.velocity = new Vector3(move * movement.speed, rigidBody.velocity.y);
     }
 
