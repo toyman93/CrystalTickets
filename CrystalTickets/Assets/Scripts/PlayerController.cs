@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour {
     public Transform groundCheck;
     public float groundRadius = 0.1f;
 
+	public ItemScript.ItemTypes currentItem = ItemScript.ItemTypes.Pistol;
+
     // Should be set to Ground layer - put anything that you want to treat as ground on this layer
     public LayerMask whatIsGround;
 
@@ -20,7 +22,7 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rigidBody;
 
     // Shooting stuff. gun = position of the gun; where bullets will start from.
-    public GameObject bulletPrefab, gun;
+    public GameObject bulletPrefab, gun, grenadePrefab;
     public float firingIntervalInSeconds = 0.1f; // How often can we fire a bullet
     private float timeLastFired;
 
@@ -98,8 +100,17 @@ public class PlayerController : MonoBehaviour {
     // This should probably be elsewhere. Enemies can reuse this too.
     private void FireBullet(Vector3 position) {
         // Bullet script in prefab should take care of actually moving the bullet once it's instantiated...
-        GameObject bullet = (GameObject) Instantiate(bulletPrefab, position, Quaternion.identity);
-        bullet.GetComponent<Bullet>().Fire(movement.isFacingRight); // ... but we need to tell it which way to move
+
+		GameObject prefab = bulletPrefab;
+
+		if (this.currentItem == ItemScript.ItemTypes.Grenade) {
+			prefab = grenadePrefab;
+			GameObject bullet = (GameObject)Instantiate (prefab, position, Quaternion.identity);
+			bullet.GetComponent<Grenade>().Fire(movement.isFacingRight); // ... but we need to tell it which way to move
+		} else {
+			GameObject bullet = (GameObject) Instantiate(prefab, position, Quaternion.identity);
+			bullet.GetComponent<Bullet>().Fire(movement.isFacingRight); // ... but we need to tell it which way to move
+		}
     }
 
     public void LoseHealth() {

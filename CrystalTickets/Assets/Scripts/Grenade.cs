@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Grendate : MonoBehaviour {
+public class Grenade : MonoBehaviour {
 
     public int speed = 5000;
 
