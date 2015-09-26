@@ -1,14 +1,13 @@
 fileFormatVersion: 2
-guid: af131ee779654064080c51b318caf4d8
-timeCreated: 1440632383
+guid: 5b4b6f63222d8d34eb125d45f0c2df20
+timeCreated: 1440389832
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Bullet_0
-    21300002: Bullet_1
-    21300004: Bullet_2
-    21300006: Bullet_3
-    21300008: Bullet_4
+    21300000: ShootSpriteSheet_0
+    21300002: ShootSpriteSheet_1
+    21300004: ShootSpriteSheet_2
+    21300006: ShootSpriteSheet_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,53 +53,43 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Bullet_0
+    - name: ShootSpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 170
-        height: 139
+        x: 108
+        y: 36
+        width: 332
+        height: 468
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Bullet_1
+    - name: ShootSpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 172
-        y: 0
-        width: 170
-        height: 139
+        x: 665
+        y: 36
+        width: 330
+        height: 467
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Bullet_2
+    - name: ShootSpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 355
-        y: 0
-        width: 161
-        height: 139
+        x: 1251
+        y: 35
+        width: 329
+        height: 469
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Bullet_3
+    - name: ShootSpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 527
-        y: 0
-        width: 161
-        height: 139
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Bullet_4
-      rect:
-        serializedVersion: 2
-        x: 701
-        y: 3
-        width: 159
-        height: 130
+        x: 1825
+        y: 35
+        width: 336
+        height: 469
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

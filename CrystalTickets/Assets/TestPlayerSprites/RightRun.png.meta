@@ -1,14 +1,17 @@
 fileFormatVersion: 2
-guid: af131ee779654064080c51b318caf4d8
-timeCreated: 1440632383
+guid: 715d2c4d6d102124aab5c1d062b4e484
+timeCreated: 1440389811
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Bullet_0
-    21300002: Bullet_1
-    21300004: Bullet_2
-    21300006: Bullet_3
-    21300008: Bullet_4
+    21300000: RunSpriteSheet_0
+    21300002: RunSpriteSheet_1
+    21300004: RunSpriteSheet_2
+    21300006: RunSpriteSheet_3
+    21300008: RunSpriteSheet_4
+    21300010: RunSpriteSheet_5
+    21300012: RunSpriteSheet_6
+    21300014: RunSpriteSheet_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,53 +57,83 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Bullet_0
+    - name: RunSpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 170
-        height: 139
+        x: 145
+        y: 17
+        width: 261
+        height: 487
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Bullet_1
+    - name: RunSpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 172
-        y: 0
-        width: 170
-        height: 139
+        x: 688
+        y: 8
+        width: 257
+        height: 496
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Bullet_2
+    - name: RunSpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 355
-        y: 0
-        width: 161
-        height: 139
+        x: 1245
+        y: 37
+        width: 329
+        height: 465
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Bullet_3
+    - name: RunSpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 527
-        y: 0
-        width: 161
-        height: 139
+        x: 1797
+        y: 26
+        width: 312
+        height: 478
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Bullet_4
+    - name: RunSpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 701
-        y: 3
-        width: 159
-        height: 130
+        x: 2400
+        y: 25
+        width: 299
+        height: 479
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RunSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 2942
+        y: 6
+        width: 339
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RunSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 3478
+        y: 30
+        width: 369
+        height: 472
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RunSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 4096
+        y: 23
+        width: 317
+        height: 481
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

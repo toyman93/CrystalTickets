@@ -1,25 +1,18 @@
 fileFormatVersion: 2
-guid: 28d54465709907749a77f1ed6bbd1134
-timeCreated: 1441097525
+guid: 79f2de8d6642f2b4486c55bf41a0a421
+timeCreated: 1440389794
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: RunSpriteSheet_0
-    21300002: RunSpriteSheet_1
-    21300004: RunSpriteSheet_2
-    21300006: RunSpriteSheet_3
-    21300008: RunSpriteSheet_4
-    21300010: RunSpriteSheet_5
-    21300012: RunSpriteSheet_6
-    21300014: RunSpriteSheet_7
-    21300016: RightRun_0
-    21300018: RightRun_1
-    21300020: RightRun_2
-    21300022: RightRun_3
-    21300024: RightRun_4
-    21300026: RightRun_5
-    21300028: RightRun_6
-    21300030: RightRun_7
+    21300000: RunShootSpriteSheet_0
+    21300002: RunShootSpriteSheet_1
+    21300004: RunShootSpriteSheet_2
+    21300006: RunShootSpriteSheet_3
+    21300008: RunShootSpriteSheet_4
+    21300010: RunShootSpriteSheet_5
+    21300012: RunShootSpriteSheet_6
+    21300014: RunShootSpriteSheet_7
+    21300016: RunShootSpriteSheet_8
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -65,85 +58,95 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: RightRun_0
+    - name: RunShootSpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 145
-        y: 17
-        width: 261
-        height: 487
-      alignment: 9
-      pivot: {x: .5, y: .0199999996}
+        x: 146
+        y: 16
+        width: 344
+        height: 489
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RightRun_1
+    - name: RunShootSpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 688
-        y: 8
-        width: 257
-        height: 496
-      alignment: 9
-      pivot: {x: .5, y: .0199999996}
+        x: 686
+        y: 9
+        width: 367
+        height: 493
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RightRun_2
+    - name: RunShootSpriteSheet_2
       rect:
         serializedVersion: 2
         x: 1245
-        y: 37
-        width: 329
-        height: 465
-      alignment: 9
-      pivot: {x: .5, y: .0199999996}
+        y: 36
+        width: 371
+        height: 466
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RightRun_3
+    - name: RunShootSpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 1797
+        x: 1795
         y: 26
-        width: 312
-        height: 478
-      alignment: 9
-      pivot: {x: .5, y: .0199999996}
+        width: 396
+        height: 479
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RightRun_4
+    - name: RunShootSpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 2400
-        y: 25
-        width: 299
+        x: 2401
+        y: 26
+        width: 356
         height: 479
-      alignment: 9
-      pivot: {x: .5, y: .0199999996}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RightRun_5
+    - name: RunShootSpriteSheet_5
       rect:
         serializedVersion: 2
         x: 2942
         y: 6
-        width: 339
-        height: 498
-      alignment: 9
-      pivot: {x: .5, y: .0199999996}
+        width: 376
+        height: 499
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RightRun_6
+    - name: RunShootSpriteSheet_6
       rect:
         serializedVersion: 2
         x: 3478
-        y: 30
-        width: 369
-        height: 472
-      alignment: 9
-      pivot: {x: .5, y: .0199999996}
+        y: 29
+        width: 403
+        height: 473
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RightRun_7
+    - name: RunShootSpriteSheet_7
       rect:
         serializedVersion: 2
-        x: 4096
-        y: 23
-        width: 317
+        x: 4095
+        y: 24
+        width: 361
         height: 481
-      alignment: 9
-      pivot: {x: .5, y: .0199999996}
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RunShootSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 4661
+        y: 34
+        width: 344
+        height: 471
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

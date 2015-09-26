@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 2b26177f952af6c4da4d0a9a11966176
-timeCreated: 1441097992
+guid: 89dd483d58d77ab4695890c641d94845
+timeCreated: 1440389746
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -14,16 +14,6 @@ TextureImporter:
     21300014: JumpSpriteSheet_7
     21300016: JumpSpriteSheet_8
     21300018: JumpSpriteSheet_9
-    21300020: Jump_0
-    21300022: Jump_1
-    21300024: Jump_2
-    21300026: Jump_3
-    21300028: Jump_4
-    21300030: Jump_5
-    21300032: Jump_6
-    21300034: Jump_7
-    21300036: Jump_8
-    21300038: Jump_9
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -69,105 +59,105 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Jump_0
+    - name: JumpSpriteSheet_0
       rect:
         serializedVersion: 2
         x: 159
         y: 26
         width: 288
         height: 465
-      alignment: 9
-      pivot: {x: .5, y: .0199999996}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jump_1
+    - name: JumpSpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 693
+        x: 696
         y: 15
         width: 330
         height: 484
-      alignment: 9
-      pivot: {x: .5, y: .0199999996}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jump_2
+    - name: JumpSpriteSheet_2
       rect:
         serializedVersion: 2
         x: 1228
         y: 48
         width: 343
         height: 454
-      alignment: 9
-      pivot: {x: .5, y: .0199999996}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jump_3
+    - name: JumpSpriteSheet_3
       rect:
         serializedVersion: 2
         x: 1790
         y: 54
         width: 343
         height: 445
-      alignment: 9
-      pivot: {x: .5, y: .0199999996}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jump_4
+    - name: JumpSpriteSheet_4
       rect:
         serializedVersion: 2
         x: 2349
         y: 68
         width: 354
         height: 431
-      alignment: 9
-      pivot: {x: .5, y: .0199999996}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jump_5
+    - name: JumpSpriteSheet_5
       rect:
         serializedVersion: 2
         x: 2911
         y: 87
         width: 382
         height: 412
-      alignment: 9
-      pivot: {x: .5, y: .0199999996}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jump_6
+    - name: JumpSpriteSheet_6
       rect:
         serializedVersion: 2
         x: 3470
         y: 24
         width: 388
         height: 475
-      alignment: 9
-      pivot: {x: .5, y: .0199999996}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jump_7
+    - name: JumpSpriteSheet_7
       rect:
         serializedVersion: 2
         x: 4030
         y: 26
         width: 387
         height: 473
-      alignment: 9
-      pivot: {x: .5, y: .0199999996}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jump_8
+    - name: JumpSpriteSheet_8
       rect:
         serializedVersion: 2
-        x: 4630
+        x: 4633
         y: 0
         width: 355
         height: 499
-      alignment: 9
-      pivot: {x: .5, y: .0199999996}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jump_9
+    - name: JumpSpriteSheet_9
       rect:
         serializedVersion: 2
         x: 5237
         y: 1
         width: 332
         height: 496
-      alignment: 9
-      pivot: {x: .5, y: .0199999996}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

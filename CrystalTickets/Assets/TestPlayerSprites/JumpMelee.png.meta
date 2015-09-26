@@ -1,14 +1,17 @@
 fileFormatVersion: 2
-guid: af131ee779654064080c51b318caf4d8
-timeCreated: 1440632383
+guid: 10b4513953cbe0342a4dae363fccb4ad
+timeCreated: 1440389708
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Bullet_0
-    21300002: Bullet_1
-    21300004: Bullet_2
-    21300006: Bullet_3
-    21300008: Bullet_4
+    21300000: JumpMeleeSpriteSheet_0
+    21300002: JumpMeleeSpriteSheet_1
+    21300004: JumpMeleeSpriteSheet_2
+    21300006: JumpMeleeSpriteSheet_3
+    21300008: JumpMeleeSpriteSheet_4
+    21300010: JumpMeleeSpriteSheet_5
+    21300012: JumpMeleeSpriteSheet_6
+    21300014: JumpMeleeSpriteSheet_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,53 +57,83 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Bullet_0
+    - name: JumpMeleeSpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 170
-        height: 139
+        x: 116
+        y: 51
+        width: 319
+        height: 435
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Bullet_1
+    - name: JumpMeleeSpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 172
-        y: 0
-        width: 170
-        height: 139
+        x: 683
+        y: 52
+        width: 332
+        height: 445
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Bullet_2
+    - name: JumpMeleeSpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 355
-        y: 0
-        width: 161
-        height: 139
+        x: 1226
+        y: 54
+        width: 419
+        height: 446
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Bullet_3
+    - name: JumpMeleeSpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 527
-        y: 0
-        width: 161
-        height: 139
+        x: 1773
+        y: 56
+        width: 469
+        height: 444
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Bullet_4
+    - name: JumpMeleeSpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 701
-        y: 3
-        width: 159
-        height: 130
+        x: 2338
+        y: 57
+        width: 438
+        height: 443
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: JumpMeleeSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 2900
+        y: 59
+        width: 410
+        height: 441
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: JumpMeleeSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 3505
+        y: 56
+        width: 365
+        height: 444
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: JumpMeleeSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 4083
+        y: 54
+        width: 363
+        height: 441
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 0dba79212eb4ce042b625e042d40a1fc
-timeCreated: 1440389849
+guid: f2b93708a4b3e02478a9153ee63e55de
+timeCreated: 1440389680
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: SlideSpriteSheet_0
-    21300002: SlideSpriteSheet_1
-    21300004: SlideSpriteSheet_2
-    21300006: SlideSpriteSheet_3
-    21300008: SlideSpriteSheet_4
-    21300010: SlideSpriteSheet_5
-    21300012: SlideSpriteSheet_6
-    21300014: SlideSpriteSheet_7
-    21300016: SlideSpriteSheet_8
-    21300018: SlideSpriteSheet_9
+    21300000: IdleSpriteSheet_0
+    21300002: IdleSpriteSheet_1
+    21300004: IdleSpriteSheet_2
+    21300006: IdleSpriteSheet_3
+    21300008: IdleSpriteSheet_4
+    21300010: IdleSpriteSheet_5
+    21300012: IdleSpriteSheet_6
+    21300014: IdleSpriteSheet_7
+    21300016: IdleSpriteSheet_8
+    21300018: IdleSpriteSheet_9
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -59,103 +59,103 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: SlideSpriteSheet_0
+    - name: IdleSpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 29
-        width: 411
-        height: 357
+        x: 126
+        y: 32
+        width: 277
+        height: 473
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: SlideSpriteSheet_1
+    - name: IdleSpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 600
-        y: 29
-        width: 406
-        height: 360
+        x: 692
+        y: 32
+        width: 276
+        height: 470
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: SlideSpriteSheet_2
+    - name: IdleSpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 1170
-        y: 29
-        width: 404
-        height: 362
+        x: 1258
+        y: 32
+        width: 277
+        height: 470
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: SlideSpriteSheet_3
+    - name: IdleSpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 1740
-        y: 29
-        width: 401
-        height: 362
+        x: 1826
+        y: 32
+        width: 277
+        height: 467
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: SlideSpriteSheet_4
+    - name: IdleSpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 2308
-        y: 29
-        width: 401
-        height: 362
+        x: 2393
+        y: 32
+        width: 277
+        height: 467
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: SlideSpriteSheet_5
+    - name: IdleSpriteSheet_5
       rect:
         serializedVersion: 2
-        x: 2875
-        y: 29
-        width: 400
-        height: 362
+        x: 2961
+        y: 32
+        width: 277
+        height: 467
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: SlideSpriteSheet_6
+    - name: IdleSpriteSheet_6
       rect:
         serializedVersion: 2
-        x: 3440
-        y: 29
-        width: 401
-        height: 362
+        x: 3527
+        y: 32
+        width: 276
+        height: 470
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: SlideSpriteSheet_7
+    - name: IdleSpriteSheet_7
       rect:
         serializedVersion: 2
-        x: 4007
-        y: 29
-        width: 402
-        height: 360
+        x: 4093
+        y: 32
+        width: 277
+        height: 470
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: SlideSpriteSheet_8
+    - name: IdleSpriteSheet_8
       rect:
         serializedVersion: 2
-        x: 4572
-        y: 29
-        width: 404
-        height: 360
+        x: 4661
+        y: 32
+        width: 277
+        height: 470
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: SlideSpriteSheet_9
+    - name: IdleSpriteSheet_9
       rect:
         serializedVersion: 2
-        x: 5135
-        y: 29
-        width: 409
-        height: 360
+        x: 5228
+        y: 32
+        width: 277
+        height: 473
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -1,14 +1,17 @@
 fileFormatVersion: 2
-guid: af131ee779654064080c51b318caf4d8
-timeCreated: 1440632383
+guid: 6433429037502354d810a9e81f768200
+timeCreated: 1440389771
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Bullet_0
-    21300002: Bullet_1
-    21300004: Bullet_2
-    21300006: Bullet_3
-    21300008: Bullet_4
+    21300000: MeleeSpriteSheet_0
+    21300002: MeleeSpriteSheet_1
+    21300004: MeleeSpriteSheet_2
+    21300006: MeleeSpriteSheet_3
+    21300008: MeleeSpriteSheet_4
+    21300010: MeleeSpriteSheet_5
+    21300012: MeleeSpriteSheet_6
+    21300014: MeleeSpriteSheet_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,53 +57,83 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Bullet_0
+    - name: MeleeSpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 170
-        height: 139
+        x: 112
+        y: 34
+        width: 290
+        height: 470
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Bullet_1
+    - name: MeleeSpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 172
-        y: 0
-        width: 170
-        height: 139
+        x: 692
+        y: 35
+        width: 352
+        height: 426
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Bullet_2
+    - name: MeleeSpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 355
-        y: 0
-        width: 161
-        height: 139
+        x: 1259
+        y: 35
+        width: 416
+        height: 447
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Bullet_3
+    - name: MeleeSpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 527
-        y: 0
-        width: 161
-        height: 139
+        x: 1784
+        y: 35
+        width: 474
+        height: 462
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Bullet_4
+    - name: MeleeSpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 701
-        y: 3
-        width: 159
-        height: 130
+        x: 2333
+        y: 35
+        width: 410
+        height: 466
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MeleeSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 2883
+        y: 35
+        width: 340
+        height: 513
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MeleeSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 3470
+        y: 35
+        width: 321
+        height: 462
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MeleeSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 4083
+        y: 30
+        width: 337
+        height: 472
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

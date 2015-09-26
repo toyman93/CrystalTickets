@@ -3,6 +3,7 @@ using System.Collections;
 
 public class DropThroughOnDown : MonoBehaviour {
 
+
 	private bool playerOnObject;
 
     void Awake () {
