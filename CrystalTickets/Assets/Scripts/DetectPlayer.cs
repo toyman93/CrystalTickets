@@ -16,7 +16,7 @@ public class DetectPlayer : MonoBehaviour {
     public bool playerDetected { get; private set; } // Player is in detection range (not necessarily in LoS)
     public bool playerInLineOfSight { get; private set; } // Player can be seen (and therefore shot at)
 
-    private Transform player;
+    private Renderer playerRenderer; // Use the renderer rather than transform to get the centre of the object
     public Vector2 directionToPlayer { get; private set; } // Direction from this object to the player
 
     private Movement movement; // Provides data about / control of this object's movement
@@ -27,7 +27,7 @@ public class DetectPlayer : MonoBehaviour {
 
     void Start () {
         movement = GetComponent<Movement>();
-        player = Player.GetPlayerGameObject().GetComponent<Transform>();
+        playerRenderer = Player.GetPlayerGameObject().GetComponent<Renderer>();
         directionToPlayer = movement.movementDirection; // Arbitrarily, whatever direction we are facing
     }
 
@@ -38,7 +38,10 @@ public class DetectPlayer : MonoBehaviour {
     }
 
     void Update() {
-        if (Vector2.Distance(player.position, transform.position) < detectionRange) {
+        // Refreshes the vector that points towards the player
+        SetDirectionToPlayer();
+
+        if (Vector2.Distance(playerRenderer.bounds.center, transform.position) < detectionRange) {
             TurnTowardsPlayer();
 
             // Play alert animation the first time the player is detected
@@ -53,12 +56,20 @@ public class DetectPlayer : MonoBehaviour {
         }
     }
 
+    private void SetDirectionToPlayer() {
+        // Get a direction vector from us to the target
+        directionToPlayer = playerRenderer.bounds.center - transform.position;
+
+        // Normalize it so that it's a unit direction vector
+        directionToPlayer.Normalize();
+    }
+
     // Hiding spaces will later be another factor in payer visibility. For now, just raycast.
-    public bool IsPlayerInLineOfSight(Vector3 origin) {
+    public bool IsPlayerInLineOfSight(Vector2 origin) {
         bool playerInLineOfSight = false;
 
         // Raycast towards the player - may be stuff in the way.
-        RaycastHit2D hit = Physics2D.Raycast(origin, directionToPlayer, float.PositiveInfinity, enemyLayerMask);
+        RaycastHit2D hit = Physics2D.Raycast(origin, directionToPlayer, detectionRange, enemyLayerMask);
 
         // Can we see the player?
         if (hit && hit.collider.CompareTag(GameConstants.PlayerTag))
@@ -68,12 +79,6 @@ public class DetectPlayer : MonoBehaviour {
     }
 
     private void TurnTowardsPlayer() {
-        // Get a direction vector from us to the target
-        directionToPlayer = player.position - transform.position;
-
-        // Normalize it so that it's a unit direction vector
-        directionToPlayer.Normalize();
-
         // Stop movement
         movement.Freeze();
 
