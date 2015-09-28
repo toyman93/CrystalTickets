@@ -1,17 +1,25 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class DetectPlayer : MonoBehaviour {
 
-    public Transform target;
     public float detectionRange = 5;
+
+    // Says what should be visible to this enemy. Easier to set in inspector than programmatically.
+    public LayerMask enemyLayerMask;
 
     // You need to add the prefab referenced here to the CFX_SpawnSystem too, which pools it.
     // Any effects like this should be on the Effects sorting layer (which is in front of everything)
     // (On the particle system, go to Renderer -> Sorting Layer)
     public GameObject alertAnimation;
 
-    private bool playerDetected;
-    private Movement movement;
+    public bool playerDetected { get; private set; } // Player is in detection range (not necessarily in LoS)
+    public bool playerInLineOfSight { get; private set; } // Player can be seen (and therefore shot at)
+
+    private Transform player;
+    public Vector2 directionToPlayer { get; private set; } // Direction from this object to the player
+
+    private Movement movement; // Provides data about / control of this object's movement
 
     void Awake () {
         playerDetected = false;
@@ -19,6 +27,8 @@ public class DetectPlayer : MonoBehaviour {
 
     void Start () {
         movement = GetComponent<Movement>();
+        player = Player.GetPlayerGameObject().GetComponent<Transform>();
+        directionToPlayer = movement.movementDirection; // Arbitrarily, whatever direction we are facing
     }
 
     // Displays detection range as gizmo (circle)
@@ -28,26 +38,12 @@ public class DetectPlayer : MonoBehaviour {
     }
 
     void Update() {
-        if (Vector2.Distance(target.position, transform.position) < detectionRange) {
-
-            // Get a direction vector from us to the target
-            Vector2 lineOfSight = target.position - transform.position;
-
-            // Normalize it so that it's a unit direction vector
-            lineOfSight.Normalize();
-
-            // Stop and turn towards the 
-            movement.Freeze();
-            bool isFacingRight = movement.isFacingRight;
-            if (lineOfSight.x < 0 && isFacingRight || lineOfSight.x > 0 && !isFacingRight)
-                movement.Flip();
+        if (Vector2.Distance(player.position, transform.position) < detectionRange) {
+            TurnTowardsPlayer();
 
             // Play alert animation the first time the player is detected
-            if (!playerDetected) {
-                GameObject alert = CFX_SpawnSystem.GetNextObject(alertAnimation); // More efficient than Instantiate() - pools objects.
-                alert.transform.position = transform.position;
-            }
-
+            if (!playerDetected)
+                PlayAlertAnimation();
             playerDetected = true;
 
         } else if (playerDetected) {
@@ -55,5 +51,40 @@ public class DetectPlayer : MonoBehaviour {
             playerDetected = false;
             movement.Unfreeze();
         }
+    }
+
+    // Hiding spaces will later be another factor in payer visibility. For now, just raycast.
+    public bool IsPlayerInLineOfSight(Vector3 origin) {
+        bool playerInLineOfSight = false;
+
+        // Raycast towards the player - may be stuff in the way.
+        RaycastHit2D hit = Physics2D.Raycast(origin, directionToPlayer, float.PositiveInfinity, enemyLayerMask);
+
+        // Can we see the player?
+        if (hit && hit.collider.CompareTag(GameConstants.PlayerTag))
+            playerInLineOfSight = true;
+
+        return playerInLineOfSight;
+    }
+
+    private void TurnTowardsPlayer() {
+        // Get a direction vector from us to the target
+        directionToPlayer = player.position - transform.position;
+
+        // Normalize it so that it's a unit direction vector
+        directionToPlayer.Normalize();
+
+        // Stop movement
+        movement.Freeze();
+
+        // Turn towards the player
+        bool isFacingRight = movement.isFacingRight;
+        if (directionToPlayer.x < 0 && isFacingRight || directionToPlayer.x > 0 && !isFacingRight)
+            movement.Flip();
+    }
+
+    private void PlayAlertAnimation() {
+        GameObject alert = CFX_SpawnSystem.GetNextObject(alertAnimation); // More efficient than Instantiate() - pools objects.
+        alert.transform.position = transform.position;
     }
 }

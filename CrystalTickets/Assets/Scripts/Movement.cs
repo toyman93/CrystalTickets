@@ -9,7 +9,13 @@ public class Movement : MonoBehaviour {
     private RigidbodyConstraints2D savedConstraints;
     private Vector2 savedVelocity;
 
+    // The moving thing is expected to be animated with idle and run states
+    private Animator animator;
+
     public bool isFacingRight { get; private set; }
+
+    // The horizontal direction this thing is moving in (left or right)
+    public Vector2 movementDirection { get { return isFacingRight ? Vector2.right : Vector2.left; } private set { } }
 
     void Awake () {
         isFacingRight = true;
@@ -17,6 +23,7 @@ public class Movement : MonoBehaviour {
 
     void Start () {
         rigidBody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     public void Flip() {
@@ -38,13 +45,16 @@ public class Movement : MonoBehaviour {
         // We need to mask the old constraints with the frozen X axis (want to keep rotation turned off)
         rigidBody.constraints = rigidBody.constraints | RigidbodyConstraints2D.FreezePositionX;
         isFrozen = true;
+
+        // Set animation state
+        animator.SetBool(GameConstants.RunState, false);
     }
 
     public void Unfreeze() {
         // Restore old movement
         rigidBody.velocity = savedVelocity;
         rigidBody.constraints = savedConstraints;
-
+        animator.SetBool(GameConstants.RunState, true);
         isFrozen = false;
     }
 }

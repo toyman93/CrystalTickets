@@ -30,13 +30,17 @@ public class Bullet : MonoBehaviour {
         GetComponent<Rigidbody2D>().AddForce(direction * speed);
     }
 
+    public void FireInDirection(Vector3 direction) {
+        transform.position += direction * speed * Time.deltaTime;
+    }
+
     void OnBecameInvisible() {
         // TODO It'd be better to pool projectiles rather than destroy/instantiate them all the time.
         Destroy(gameObject);
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.transform.CompareTag("Enemy"))
+        if (collision.transform.CompareTag(GameConstants.EnemyTag))
             Destroy(gameObject); // Destroys the bullet, not the enemy.
     }
 }

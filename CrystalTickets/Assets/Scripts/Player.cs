@@ -4,7 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
     // Set initial values
-    public string name = "John";
+    public string playerName = "John";
     public int score = 0;
     public int health = 100;
     public bool isHidden = false;
@@ -29,4 +29,10 @@ public class Player : MonoBehaviour {
 			print ("Right key is pressed");
 		}
 	}
+
+    // Returns the player GameObject based on the player tag.
+    public static GameObject GetPlayerGameObject() {
+        // This'll fail if there are no objects or multiple objects with the player tag
+        return GameObject.FindGameObjectWithTag(GameConstants.PlayerTag);
+    }
 }

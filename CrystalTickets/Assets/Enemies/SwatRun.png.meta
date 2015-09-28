@@ -1,0 +1,187 @@
+fileFormatVersion: 2
+guid: 5008e2eb8b5ab5c479e3de99c9b79f0c
+timeCreated: 1443148464
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: SwatRun_0
+    21300002: SwatRun_1
+    21300004: SwatRun_2
+    21300006: SwatRun_3
+    21300008: SwatRun_4
+    21300010: SwatRun_5
+    21300012: SwatRun_6
+    21300014: SwatRun_7
+    21300016: SwatRun_8
+    21300018: SwatRun_9
+    21300020: SwatRun_10
+    21300022: SwatRun_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: SwatRun_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 0
+        width: 72
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SwatRun_1
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 0
+        width: 69
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SwatRun_2
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 0
+        width: 64
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SwatRun_3
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 0
+        width: 65
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SwatRun_4
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 0
+        width: 64
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SwatRun_5
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 0
+        width: 68
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SwatRun_6
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 1
+        width: 71
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SwatRun_7
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 0
+        width: 68
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SwatRun_8
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 0
+        width: 64
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SwatRun_9
+      rect:
+        serializedVersion: 2
+        x: 1053
+        y: 0
+        width: 65
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SwatRun_10
+      rect:
+        serializedVersion: 2
+        x: 1167
+        y: 0
+        width: 65
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SwatRun_11
+      rect:
+        serializedVersion: 2
+        x: 1278
+        y: 0
+        width: 68
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

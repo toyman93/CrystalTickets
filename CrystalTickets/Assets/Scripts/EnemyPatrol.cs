@@ -4,6 +4,8 @@ using System;
 
 public class EnemyPatrol : MonoBehaviour {
 
+    private Animator animator;
+
     public bool startFacingRight = true; // Which way the enemy should face to begin with
     public int unitsToMove = 5; // How far the enemy can move, in whatever direction it faces at the start
 
@@ -23,6 +25,9 @@ public class EnemyPatrol : MonoBehaviour {
 
 	void Start () {
         movement = GetComponent<Movement>();
+        animator = GetComponent<Animator>();
+
+        animator.SetBool("Run", true);
 
         float startPosition = transform.position.x;
         float endPosition = startFacingRight ? startPosition + unitsToMove : startPosition - unitsToMove;
@@ -43,14 +48,19 @@ public class EnemyPatrol : MonoBehaviour {
             atPlatformEdge = false;
         }
 
-        if (!movement.isFrozen)
+        // TODO move animations to movement? Must be consistent between enemy and player, if so
+        if (!movement.isFrozen) {
+            animator.SetBool("Run", true);
             transform.Translate(distanceToWalk);
+        } else {
+            animator.SetBool("Run", false);
+        }
 	}
 
     // Note: I think it might be better to attach this to the platform edge GameObjects - called more than necessary.
     // Will look into this; it's just an efficiency thing
     void OnTriggerEnter2D (Collider2D collider) {
-        if (collider.tag == "PlatformEdge")
+        if (collider.tag == GameConstants.PlatformEdgeTag)
             atPlatformEdge = true;
     }
 
