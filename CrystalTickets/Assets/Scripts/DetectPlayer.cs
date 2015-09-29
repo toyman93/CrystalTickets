@@ -14,12 +14,13 @@ public class DetectPlayer : MonoBehaviour {
     public GameObject alertAnimation;
 
     public bool playerDetected { get; private set; } // Player is in detection range (not necessarily in LoS)
-    public bool playerInLineOfSight { get; private set; } // Player can be seen (and therefore shot at)
 
+    private Health playerHealth; // Alows us to check whether the player is dead (and celebrate!)
     private Renderer playerRenderer; // Use the renderer rather than transform to get the centre of the object
     public Vector2 directionToPlayer { get; private set; } // Direction from this object to the player
 
     private Movement movement; // Provides data about / control of this object's movement
+    private Animator animator;
 
     void Awake () {
         playerDetected = false;
@@ -27,6 +28,8 @@ public class DetectPlayer : MonoBehaviour {
 
     void Start () {
         movement = GetComponent<Movement>();
+        animator = GetComponent<Animator>();
+        playerHealth = Player.GetPlayerGameObject().GetComponent<Health>();
         playerRenderer = Player.GetPlayerGameObject().GetComponent<Renderer>();
         directionToPlayer = movement.movementDirection; // Arbitrarily, whatever direction we are facing
     }
@@ -38,6 +41,20 @@ public class DetectPlayer : MonoBehaviour {
     }
 
     void Update() {
+        if (playerHealth.isDead) {
+            playerDetected = false; // Turn off reactions to the player
+            StopAnimations();
+        } else {
+            CheckPlayerVisibility();
+        }
+    }
+
+    private void StopAnimations() {
+        animator.SetBool(GameConstants.RunState, false);
+        animator.SetBool(GameConstants.ShootState, false);
+    }
+
+    private void CheckPlayerVisibility() {
         // Refreshes the vector that points towards the player
         SetDirectionToPlayer();
 
@@ -65,16 +82,23 @@ public class DetectPlayer : MonoBehaviour {
     }
 
     // Hiding spaces will later be another factor in payer visibility. For now, just raycast.
-    public bool IsPlayerInLineOfSight(Vector2 origin) {
+    public bool PlayerInLineOfSight(Vector2 origin) {
         bool playerInLineOfSight = false;
 
+        if (playerDetected) // Other things will affect whether the player is visible - e.g. hiding spaces or the player being dead.
+            playerInLineOfSight = RaycastTowardsPlayer(origin);
+
+        return playerInLineOfSight;
+    }
+
+    private bool RaycastTowardsPlayer(Vector2 origin) {
         // Raycast towards the player - may be stuff in the way.
         RaycastHit2D hit = Physics2D.Raycast(origin, directionToPlayer, detectionRange, enemyLayerMask);
 
         // Can we see the player?
+        bool playerInLineOfSight = false;
         if (hit && hit.collider.CompareTag(GameConstants.PlayerTag))
             playerInLineOfSight = true;
-
         return playerInLineOfSight;
     }
 

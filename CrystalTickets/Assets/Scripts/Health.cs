@@ -5,9 +5,12 @@ public class Health : MonoBehaviour {
 
     public int startingHealth = 100;
 
+    public bool isDead { get; private set; }
+
     protected int currentHealth;
-    protected bool isDead;
     protected Animator animator;
+
+    private Movement movement;
 
     void Awake() {
         currentHealth = startingHealth;
@@ -17,6 +20,7 @@ public class Health : MonoBehaviour {
     // Use this for initialization
     protected virtual void Start() {
         animator = GetComponent<Animator>();
+        movement = GetComponent<Movement>();
     }
 
     // Update is called once per frame
@@ -37,6 +41,7 @@ public class Health : MonoBehaviour {
     public virtual void DestroyCharacter() {
         isDead = true;
         animator.SetBool(GameConstants.DeadState, true); // Play the death animation
+        movement.enabled = false;
     }
 
 }

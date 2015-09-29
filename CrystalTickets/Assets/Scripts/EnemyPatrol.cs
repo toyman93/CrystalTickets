@@ -27,7 +27,7 @@ public class EnemyPatrol : MonoBehaviour {
         movement = GetComponent<Movement>();
         animator = GetComponent<Animator>();
 
-        animator.SetBool("Run", true);
+        animator.SetBool(GameConstants.RunState, true);
 
         float startPosition = transform.position.x;
         float endPosition = startFacingRight ? startPosition + unitsToMove : startPosition - unitsToMove;
@@ -50,10 +50,10 @@ public class EnemyPatrol : MonoBehaviour {
 
         // TODO move animations to movement? Must be consistent between enemy and player, if so
         if (!movement.isFrozen) {
-            animator.SetBool("Run", true);
+            animator.SetBool(GameConstants.RunState, true);
             transform.Translate(distanceToWalk);
         } else {
-            animator.SetBool("Run", false);
+            animator.SetBool(GameConstants.RunState, false);
         }
 	}
 

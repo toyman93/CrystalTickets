@@ -6,18 +6,18 @@ public class EnemyHealth : Health {
     // Also note that some of these animation prefabs have components that need to be moved to the Effects sorting layer as well.
     public GameObject deathAnimation; // One of the cartoony ones
 
-    private Movement movement;
+    private DetectPlayer detectPlayer;
     private float deathAnimLength;
 
     protected override void Start() {
         base.Start();
-        movement = GetComponent<Movement>();
+        detectPlayer = GetComponent<DetectPlayer>();
         deathAnimLength = deathAnimation.GetComponent<ParticleSystem>().duration;
     }
 
     public override void DestroyCharacter() {
         base.DestroyCharacter();
-        movement.Freeze();
+        detectPlayer.enabled = false;
         PlayDeathAnimation();
         StartCoroutine(WaitAndDestroy());
     }

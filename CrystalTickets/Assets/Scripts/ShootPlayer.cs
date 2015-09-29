@@ -31,7 +31,7 @@ public class ShootPlayer : MonoBehaviour {
             timeLastFired = Time.time;
 
             // Can we actually hit the player if we shoot?
-            if (detectPlayer.IsPlayerInLineOfSight(gunPosition)) {
+            if (detectPlayer.PlayerInLineOfSight(gunPosition)) {
                 FireBullet(gunPosition, detectPlayer.directionToPlayer);
             } else {
                 StopFiring();
