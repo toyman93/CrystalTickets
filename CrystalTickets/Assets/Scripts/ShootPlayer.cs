@@ -3,7 +3,6 @@ using System.Collections;
 
 public class ShootPlayer : MonoBehaviour {
 
-    public int testHealth = 5;
     public double firingIntervalInSeconds = 0.2f;
     public GameObject enemyBulletPrefab;
 
@@ -51,11 +50,4 @@ public class ShootPlayer : MonoBehaviour {
         animator.SetBool(GameConstants.ShootState, false);
     }
 
-    // Super-basic health system for testing - remove and replace.
-    void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.transform.CompareTag("TestDamage")) {
-            if (testHealth-- == 0)
-                Destroy(gameObject);
-        }
-    }
 }

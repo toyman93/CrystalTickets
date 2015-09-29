@@ -4,6 +4,7 @@ using System.Collections;
 public class Bullet : MonoBehaviour {
 
     public int speed = 1000;
+    public int damageOnHit = 35;
 
     // Objects with this tag can be hit/damaged by the bullet
     public string hostileTag;
@@ -53,7 +54,11 @@ public class Bullet : MonoBehaviour {
 
     // Using OnTriggerEnter instead of OnCollisionEnter stops pushback (by preventing the physical collision)
     void OnTriggerEnter2D(Collider2D collider) {
-        if (collider.CompareTag(hostileTag))
+        if (collider.CompareTag(hostileTag)) {
             Destroy(gameObject); // Destroys the bullet, not the enemy.
+            Health health = collider.gameObject.GetComponent<Health>();
+            if (health != null)
+                health.Damage(damageOnHit); // Damage the enemy
+        }
     }
 }

@@ -31,8 +31,8 @@ public class PlayerHealth : Health {
             healthBar.value = Math.Min(currentHealth, startingHealth); // Health shouldn't exceed the max
     }
 
-    public override void Destroy() {
-        base.Destroy();
+    public override void DestroyCharacter() {
+        base.DestroyCharacter();
         movementController.enabled = false; // Turn off the controls
     }
 }

@@ -16,6 +16,7 @@ public static class GameConstants {
     public const String RunState = "Run"; // Set to false to go to idle state
     public const String JumpState = "Jump";
     public const String ShootState = "Shoot";
+    public const String DeadState = "Dead";
 
     /* -- LAYERS (Not sorting layers) -- */
     public const String EnemyLayer = "Enemy";

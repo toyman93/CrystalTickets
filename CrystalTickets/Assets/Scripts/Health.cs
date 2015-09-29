@@ -27,16 +27,16 @@ public class Health : MonoBehaviour {
     public virtual void Damage(int damage) {
         currentHealth -= damage;
         if (currentHealth <= 0 && !isDead)
-            Destroy(); // Kill the player/mob
+            DestroyCharacter(); // Kill the player/mob
     }
 
     public virtual void Heal(int health) {
         currentHealth += health;
     }
 
-    public virtual void Destroy() {
+    public virtual void DestroyCharacter() {
         isDead = true;
-        animator.SetBool("Dead", true); // Play the death animation
+        animator.SetBool(GameConstants.DeadState, true); // Play the death animation
     }
 
 }
