@@ -10,8 +10,8 @@ public class DetectPlayer : MonoBehaviour {
     // Any effects like this should be on the Effects sorting layer (which is in front of everything)
     // (On the particle system, go to Renderer -> Sorting Layer)
     public GameObject alertAnimation;
-    public bool playerDetected { get; private set; } // Player is in detection range (not necessarily in LoS)
 
+    private bool playerAlreadyDetected;
     private GameObject gunObject; // Used as origin for raycast towards player
     private Health playerHealth; // Alows us to check whether the player is dead (and celebrate!)
     private Movement movement; // Provides data about / control of this object's movement
@@ -20,7 +20,7 @@ public class DetectPlayer : MonoBehaviour {
     public Vector2 enemyPosition { get { return gunObject.transform.position; } private set { } }
 
     void Awake () {
-        playerDetected = false;
+        playerAlreadyDetected = false;
     }
 
     void Start () {
@@ -43,7 +43,7 @@ public class DetectPlayer : MonoBehaviour {
 
     void Update() {
         if (playerHealth.isDead) {
-            playerDetected = false; // Turn off reactions to the player
+            playerAlreadyDetected = false; // Turn off reactions to the player
             StopAnimations();
         } else {
             CheckPlayerVisibility();
@@ -56,30 +56,24 @@ public class DetectPlayer : MonoBehaviour {
     }
 
     private void CheckPlayerVisibility() {
-        if (Vector2.Distance(enemyPosition, Player.GetPlayerPosition()) < detectionRange) {
+        if (PlayerIsVisible()) {
             TurnTowardsPlayer();
 
             // Play alert animation the first time the player is detected
-            if (!playerDetected)
+            if (!playerAlreadyDetected)
                 PlayAlertAnimation();
-            playerDetected = true;
+            playerAlreadyDetected = true;
 
-        } else if (playerDetected) {
+        } else if (playerAlreadyDetected) {
             // Player was in range but has moved out of range
-            playerDetected = false;
+            playerAlreadyDetected = false;
             movement.Unfreeze();
         }
     }
     
-
-    // Hiding spaces will later be another factor in payer visibility. For now, just raycast.
-    public bool PlayerInLineOfSight(Vector2 origin) {
-        bool playerInLineOfSight = false;
-
-        if (playerDetected) // Other things will affect whether the player is visible - e.g. hiding spaces or the player being dead.
-            playerInLineOfSight = RaycastTowardsPlayer(origin);
-
-        return playerInLineOfSight;
+    // Added with the intention of factoring in whether the player is hiding in a hiding space later
+    public bool PlayerIsVisible() {
+        return RaycastTowardsPlayer(enemyPosition);
     }
 
     private bool RaycastTowardsPlayer(Vector2 origin) {
@@ -94,17 +88,6 @@ public class DetectPlayer : MonoBehaviour {
         return playerInLineOfSight;
     }
 
-    private void TurnTowardsPlayer() {
-        // Stop movement
-        movement.Freeze();
-
-        // Turn towards the player
-        bool isFacingRight = movement.isFacingRight;
-        Vector2 directionToPlayer = GetDirectionToPlayer();
-        if (directionToPlayer.x < 0 && isFacingRight || directionToPlayer.x > 0 && !isFacingRight)
-            movement.Flip();
-    }
-
     public Vector2 GetDirectionToPlayer() {
         // Get a direction vector from us to the target
         Vector2 directionToPlayer = Player.GetPlayerPosition() - enemyPosition;
@@ -115,6 +98,17 @@ public class DetectPlayer : MonoBehaviour {
         return directionToPlayer;
     }
 
+    private void TurnTowardsPlayer() {
+        // Stop movement
+        movement.Freeze();
+
+        // Turn towards the player
+        bool isFacingRight = movement.isFacingRight;
+        Vector2 directionToPlayer = GetDirectionToPlayer();
+        if (directionToPlayer.x < 0 && isFacingRight || directionToPlayer.x > 0 && !isFacingRight)
+            movement.Flip();
+    }
+    
     private void PlayAlertAnimation() {
         GameObject alert = CFX_SpawnSystem.GetNextObject(alertAnimation); // More efficient than Instantiate() - pools objects.
         alert.transform.position = enemyPosition;
