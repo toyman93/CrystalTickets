@@ -10,8 +10,8 @@ public class DetectPlayer : MonoBehaviour {
     // Any effects like this should be on the Effects sorting layer (which is in front of everything)
     // (On the particle system, go to Renderer -> Sorting Layer)
     public GameObject alertAnimation;
+    public bool playerDetected { get; private set; }
 
-    private bool playerAlreadyDetected;
     private GameObject gunObject; // Used as origin for raycast towards player
     private Health playerHealth; // Alows us to check whether the player is dead (and celebrate!)
     private Movement movement; // Provides data about / control of this object's movement
@@ -20,7 +20,7 @@ public class DetectPlayer : MonoBehaviour {
     public Vector2 enemyPosition { get { return gunObject.transform.position; } private set { } }
 
     void Awake () {
-        playerAlreadyDetected = false;
+        playerDetected = false;
     }
 
     void Start () {
@@ -43,7 +43,7 @@ public class DetectPlayer : MonoBehaviour {
 
     void Update() {
         if (playerHealth.isDead) {
-            playerAlreadyDetected = false; // Turn off reactions to the player
+            playerDetected = false; // Turn off reactions to the player
             StopAnimations();
         } else {
             CheckPlayerVisibility();
@@ -56,27 +56,23 @@ public class DetectPlayer : MonoBehaviour {
     }
 
     private void CheckPlayerVisibility() {
-        if (PlayerIsVisible()) {
+        if (PlayerVisibleFromPosition(enemyPosition)) {
             TurnTowardsPlayer();
 
             // Play alert animation the first time the player is detected
-            if (!playerAlreadyDetected)
+            if (!playerDetected)
                 PlayAlertAnimation();
-            playerAlreadyDetected = true;
+            playerDetected = true;
 
-        } else if (playerAlreadyDetected) {
+        } else if (playerDetected) {
             // Player was in range but has moved out of range
-            playerAlreadyDetected = false;
+            playerDetected = false;
             movement.Unfreeze();
         }
     }
-    
-    // Added with the intention of factoring in whether the player is hiding in a hiding space later
-    public bool PlayerIsVisible() {
-        return RaycastTowardsPlayer(enemyPosition);
-    }
 
-    private bool RaycastTowardsPlayer(Vector2 origin) {
+    // Should return whether the player is in the line and range of sight of the enemy
+    private bool PlayerVisibleFromPosition(Vector2 origin) {
         // Raycast towards the player - may be stuff in the way.
         Vector2 directionToPlayer = GetDirectionToPlayer();
         RaycastHit2D hit = Physics2D.Raycast(origin, directionToPlayer, detectionRange, enemyLayerMask);
