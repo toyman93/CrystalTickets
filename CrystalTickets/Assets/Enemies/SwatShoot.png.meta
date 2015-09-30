@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: bb41f6adaaf720547a14adb82f9d6f73
-timeCreated: 1443148713
+timeCreated: 1443516908
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -42,6 +42,7 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -61,8 +62,8 @@ TextureImporter:
         y: 0
         width: 68
         height: 106
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwatShoot_1
       rect:
@@ -71,8 +72,8 @@ TextureImporter:
         y: 0
         width: 67
         height: 106
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwatShoot_2
       rect:
@@ -81,8 +82,8 @@ TextureImporter:
         y: 0
         width: 67
         height: 106
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwatShoot_3
       rect:
@@ -91,8 +92,8 @@ TextureImporter:
         y: 0
         width: 67
         height: 106
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwatShoot_4
       rect:
@@ -101,8 +102,8 @@ TextureImporter:
         y: 0
         width: 68
         height: 106
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

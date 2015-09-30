@@ -11,8 +11,8 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -31,8 +31,13 @@ public class Player : MonoBehaviour {
 	}
 
     // Returns the player GameObject based on the player tag.
-    public static GameObject GetPlayerGameObject() {
-        // This'll fail if there are no objects or multiple objects with the player tag
+    public static GameObject GetPlayerGameObject() { 
         return GameObject.FindGameObjectWithTag(GameConstants.PlayerTag);
+    }
+
+    // Gives something for enemies to aim at. Used a child GameObject because it looked weird when the enemy
+    // was aiming upwards at the player when they are on the same horizontal surface
+    public static Vector2 GetPlayerPosition() {
+        return GameObject.FindGameObjectWithTag(GameConstants.PlayerTargetTag).transform.position;
     }
 }

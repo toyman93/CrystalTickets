@@ -22,7 +22,7 @@ public class ShootPlayer : MonoBehaviour {
     }
 
     void Update() {
-        Vector2 gunPosition = gameObject.transform.position;
+        Vector2 gunPosition = gunObject.transform.position;
 
         float secondsSinceLastFired = Time.time - timeLastFired;
 
@@ -32,7 +32,7 @@ public class ShootPlayer : MonoBehaviour {
 
             // Can we actually hit the player if we shoot?
             if (detectPlayer.PlayerInLineOfSight(gunPosition)) {
-                FireBullet(gunPosition, detectPlayer.directionToPlayer);
+                FireBullet(gunPosition, detectPlayer.GetDirectionToPlayer());
             } else {
                 StopFiring();
             }

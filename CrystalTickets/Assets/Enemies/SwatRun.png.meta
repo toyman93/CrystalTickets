@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 5008e2eb8b5ab5c479e3de99c9b79f0c
-timeCreated: 1443148464
+timeCreated: 1443516836
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -49,6 +49,7 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -68,8 +69,8 @@ TextureImporter:
         y: 0
         width: 72
         height: 99
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwatRun_1
       rect:
@@ -78,8 +79,8 @@ TextureImporter:
         y: 0
         width: 69
         height: 99
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwatRun_2
       rect:
@@ -88,8 +89,8 @@ TextureImporter:
         y: 0
         width: 64
         height: 99
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwatRun_3
       rect:
@@ -98,8 +99,8 @@ TextureImporter:
         y: 0
         width: 65
         height: 99
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwatRun_4
       rect:
@@ -108,8 +109,8 @@ TextureImporter:
         y: 0
         width: 64
         height: 99
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwatRun_5
       rect:
@@ -118,8 +119,8 @@ TextureImporter:
         y: 0
         width: 68
         height: 99
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwatRun_6
       rect:
@@ -128,8 +129,8 @@ TextureImporter:
         y: 1
         width: 71
         height: 98
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwatRun_7
       rect:
@@ -138,8 +139,8 @@ TextureImporter:
         y: 0
         width: 68
         height: 99
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwatRun_8
       rect:
@@ -148,8 +149,8 @@ TextureImporter:
         y: 0
         width: 64
         height: 99
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwatRun_9
       rect:
@@ -158,8 +159,8 @@ TextureImporter:
         y: 0
         width: 65
         height: 99
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwatRun_10
       rect:
@@ -168,8 +169,8 @@ TextureImporter:
         y: 0
         width: 65
         height: 99
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwatRun_11
       rect:
@@ -178,8 +179,8 @@ TextureImporter:
         y: 0
         width: 68
         height: 99
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

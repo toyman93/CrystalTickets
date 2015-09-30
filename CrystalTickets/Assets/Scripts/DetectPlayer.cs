@@ -4,23 +4,20 @@ using UnityEngine;
 public class DetectPlayer : MonoBehaviour {
 
     public float detectionRange = 5;
-
     // Says what should be visible to this enemy. Easier to set in inspector than programmatically.
     public LayerMask enemyLayerMask;
-
     // You need to add the prefab referenced here to the CFX_SpawnSystem too, which pools it.
     // Any effects like this should be on the Effects sorting layer (which is in front of everything)
     // (On the particle system, go to Renderer -> Sorting Layer)
     public GameObject alertAnimation;
-
     public bool playerDetected { get; private set; } // Player is in detection range (not necessarily in LoS)
 
+    private GameObject gunObject; // Used as origin for raycast towards player
     private Health playerHealth; // Alows us to check whether the player is dead (and celebrate!)
-    private Renderer playerRenderer; // Use the renderer rather than transform to get the centre of the object
-    public Vector2 directionToPlayer { get; private set; } // Direction from this object to the player
-
     private Movement movement; // Provides data about / control of this object's movement
     private Animator animator;
+
+    public Vector2 enemyPosition { get { return gunObject.transform.position; } private set { } }
 
     void Awake () {
         playerDetected = false;
@@ -30,14 +27,18 @@ public class DetectPlayer : MonoBehaviour {
         movement = GetComponent<Movement>();
         animator = GetComponent<Animator>();
         playerHealth = Player.GetPlayerGameObject().GetComponent<Health>();
-        playerRenderer = Player.GetPlayerGameObject().GetComponent<Renderer>();
-        directionToPlayer = movement.movementDirection; // Arbitrarily, whatever direction we are facing
+
+        // Gets the child GameObject that represents the gun's position
+        foreach (Transform child in transform)
+            if (child.CompareTag(GameConstants.GunTag))
+                gunObject = child.gameObject;
     }
 
     // Displays detection range as gizmo (circle)
     void OnDrawGizmos () {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
+        if (gunObject != null)
+            Gizmos.DrawWireSphere(gunObject.transform.position, detectionRange);
     }
 
     void Update() {
@@ -55,10 +56,7 @@ public class DetectPlayer : MonoBehaviour {
     }
 
     private void CheckPlayerVisibility() {
-        // Refreshes the vector that points towards the player
-        SetDirectionToPlayer();
-
-        if (Vector2.Distance(playerRenderer.bounds.center, transform.position) < detectionRange) {
+        if (Vector2.Distance(enemyPosition, Player.GetPlayerPosition()) < detectionRange) {
             TurnTowardsPlayer();
 
             // Play alert animation the first time the player is detected
@@ -72,14 +70,7 @@ public class DetectPlayer : MonoBehaviour {
             movement.Unfreeze();
         }
     }
-
-    private void SetDirectionToPlayer() {
-        // Get a direction vector from us to the target
-        directionToPlayer = playerRenderer.bounds.center - transform.position;
-
-        // Normalize it so that it's a unit direction vector
-        directionToPlayer.Normalize();
-    }
+    
 
     // Hiding spaces will later be another factor in payer visibility. For now, just raycast.
     public bool PlayerInLineOfSight(Vector2 origin) {
@@ -93,6 +84,7 @@ public class DetectPlayer : MonoBehaviour {
 
     private bool RaycastTowardsPlayer(Vector2 origin) {
         // Raycast towards the player - may be stuff in the way.
+        Vector2 directionToPlayer = GetDirectionToPlayer();
         RaycastHit2D hit = Physics2D.Raycast(origin, directionToPlayer, detectionRange, enemyLayerMask);
 
         // Can we see the player?
@@ -108,12 +100,23 @@ public class DetectPlayer : MonoBehaviour {
 
         // Turn towards the player
         bool isFacingRight = movement.isFacingRight;
+        Vector2 directionToPlayer = GetDirectionToPlayer();
         if (directionToPlayer.x < 0 && isFacingRight || directionToPlayer.x > 0 && !isFacingRight)
             movement.Flip();
     }
 
+    public Vector2 GetDirectionToPlayer() {
+        // Get a direction vector from us to the target
+        Vector2 directionToPlayer = Player.GetPlayerPosition() - enemyPosition;
+
+        // Normalize it so that it's a unit direction vector
+        directionToPlayer.Normalize();
+
+        return directionToPlayer;
+    }
+
     private void PlayAlertAnimation() {
         GameObject alert = CFX_SpawnSystem.GetNextObject(alertAnimation); // More efficient than Instantiate() - pools objects.
-        alert.transform.position = transform.position;
+        alert.transform.position = enemyPosition;
     }
 }

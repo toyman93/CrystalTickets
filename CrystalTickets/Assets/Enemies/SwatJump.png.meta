@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e8d4c931812eb6e44a707e8a54cb276e
-timeCreated: 1443148448
+timeCreated: 1443516877
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -40,6 +40,7 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -59,8 +60,8 @@ TextureImporter:
         y: 0
         width: 68
         height: 106
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwatJump_1
       rect:
@@ -69,8 +70,8 @@ TextureImporter:
         y: 2
         width: 68
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwatJump_2
       rect:
@@ -79,8 +80,8 @@ TextureImporter:
         y: 1
         width: 68
         height: 105
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
