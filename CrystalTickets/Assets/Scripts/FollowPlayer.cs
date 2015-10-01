@@ -8,11 +8,12 @@ public class FollowPlayer : MonoBehaviour {
     // interact with DetectPlayer as well. Consider design changes if coupling between AI scripts becomes too tight.
 
     private DetectPlayer detectPlayer; // Following is triggered when the player moves out of range (detected here)
-    private MoveAroundWorld moveAroundWorld; // Used to do the actual pathing/moving
+    private Pathing pathing; // Used to do the actual pathing/moving
 
 	// Use this for initialization
 	void Start () {
         detectPlayer = GetComponent<DetectPlayer>();
+        pathing = GetComponent<Pathing>();
 	}
 	
 	// Update is called once per frame

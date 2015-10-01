@@ -4,18 +4,8 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
     private Animator animator;
-	public static bool activateDoor = false;
-    //This will be our maximum speed as we will always be multiplying by 1
-    public float maxSpeed;
-    //to check ground and to have a jumpforce we can change in the editor
-    bool grounded = false;
-    public Transform groundCheck;
-    public float groundRadius = 0.1f;
+    public static bool activateDoor = false;
 
-    // Should be set to Ground layer - put anything that you want to treat as ground on this layer
-    public LayerMask whatIsGround;
-
-    public float jumpForce = -10.0f;
     private Rigidbody2D rigidBody;
 
     // Shooting stuff. gun = position of the gun; where bullets will start from.
@@ -36,9 +26,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        //set our grounded bool
-        grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
-
         float move = Input.GetAxis("Horizontal");//Gives us of one if we are moving via the arrow keys
                                                  //move our Players rigidbody
         rigidBody.velocity = new Vector3(move * movement.speed, rigidBody.velocity.y);
@@ -46,20 +33,8 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
 
-		//if we are on the ground and the space bar was pressed, change our ground state and add an upward force
-        if (grounded) {
-            // TODO Doesn't work with stairs
-            bool isMovingDown = rigidBody.velocity.y <= 0; // Try with < 0 instead - seems less responsive
-
-            if (Input.GetButtonDown(GameConstants.JumpState)) {
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
-                // Updates the animations to show jumping
-                animator.SetBool(GameConstants.JumpState, true);
-            } else if (isMovingDown) {
-                // Stop the 'jump' state if the player's about to hit the ground
-                animator.SetBool(GameConstants.JumpState, false);
-            }
-        }
+        if (Input.GetButtonDown("Jump")) 
+            movement.Jump();
 
         /* Putting the animation transitions here seems to make it more responsive than when it's in FixedUpdate(),
            but this could use a bit more testing. */

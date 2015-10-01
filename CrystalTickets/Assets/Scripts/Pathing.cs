@@ -3,7 +3,7 @@ using System.Collections;
 
 // Script that records starting position and allows the mob to move between points in the world
 // Give it a better name if you can think of one...
-public class MoveAroundWorld : MonoBehaviour {
+public class Pathing : MonoBehaviour {
 
     // How far away from the starting point the mob is allowed to move before being forced to return to its origin
     public float maxRange; 

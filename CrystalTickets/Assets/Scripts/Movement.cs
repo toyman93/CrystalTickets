@@ -3,6 +3,9 @@
 public class Movement : MonoBehaviour {
 
     public float speed;
+    public float jumpForce = 500f;
+    public Transform groundCheck;
+    public float groundRadius = 0.1f;
 
     public bool isFrozen { get; private set; }
     private Rigidbody2D rigidBody;
@@ -13,6 +16,7 @@ public class Movement : MonoBehaviour {
     private Animator animator;
 
     public bool isFacingRight { get; private set; }
+    bool grounded = false;
 
     // The horizontal direction this thing is moving in (left or right)
     public Vector2 movementDirection { get { return isFacingRight ? Vector2.right : Vector2.left; } private set { } }
@@ -24,6 +28,23 @@ public class Movement : MonoBehaviour {
     void Start () {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+    }
+
+    void Update () {
+        bool isMovingDown = rigidBody.velocity.y <= 0; // Try with < 0 instead - seems less responsive
+        grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius);
+
+        if (isMovingDown && grounded) {
+            // Stop the 'jump' state if the player's about to hit the ground
+            animator.SetBool(GameConstants.JumpState, false);
+        }
+    }
+
+    public void Jump() {
+        if (grounded) {
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
+            animator.SetBool(GameConstants.JumpState, true);
+        }
     }
 
     public void Flip() {
