@@ -3,24 +3,27 @@ using UnityEngine;
 
 public class DetectPlayer : MonoBehaviour {
 
-    public float detectionRange = 5;
+    public float detectionRange = 5; // Player must move into this range in order to be detected
+
     // Says what should be visible to this enemy. Easier to set in inspector than programmatically.
     public LayerMask enemyLayerMask;
     // You need to add the prefab referenced here to the CFX_SpawnSystem too, which pools it.
     // Any effects like this should be on the Effects sorting layer (which is in front of everything)
     // (On the particle system, go to Renderer -> Sorting Layer)
     public GameObject alertAnimation;
-    public bool playerDetected { get; private set; }
 
-    private GameObject gunObject; // Used as origin for raycast towards player
+    protected GameObject gunObject; // Used as origin for raycast towards player
     private Health playerHealth; // Alows us to check whether the player is dead (and celebrate!)
     private Movement movement; // Provides data about / control of this object's movement
     private Animator animator;
 
+    // Used to detect that the player was detected, but has since become hidden/invisible
+    protected bool playerWasDetectedBefore;
+
     public Vector2 enemyPosition { get { return gunObject.transform.position; } private set { } }
 
-    void Awake () {
-        playerDetected = false;
+    protected virtual void Awake () {
+        playerWasDetectedBefore = false;
     }
 
     void Start () {
@@ -35,19 +38,15 @@ public class DetectPlayer : MonoBehaviour {
     }
 
     // Displays detection range as gizmo (circle)
-    void OnDrawGizmos () {
+    protected virtual void OnDrawGizmos () {
         Gizmos.color = Color.yellow;
-        if (gunObject != null)
+        if (gunObject != null) {
             Gizmos.DrawWireSphere(gunObject.transform.position, detectionRange);
+        }
     }
 
     void Update() {
-        if (playerHealth.isDead) {
-            playerDetected = false; // Turn off reactions to the player
-            StopAnimations();
-        } else {
-            CheckPlayerVisibility();
-        }
+        CheckPlayerVisibility();
     }
 
     private void StopAnimations() {
@@ -56,26 +55,66 @@ public class DetectPlayer : MonoBehaviour {
     }
 
     private void CheckPlayerVisibility() {
-        if (PlayerVisibleFromPosition(enemyPosition)) {
-            TurnTowardsPlayer();
-
-            // Play alert animation the first time the player is detected
-            if (!playerDetected)
-                PlayAlertAnimation();
-            playerDetected = true;
-
-        } else if (playerDetected) {
-            // Player was in range but has moved out of range
-            playerDetected = false;
-            movement.Unfreeze();
+        if (PlayerVisible()) {
+            ReactToPlayer();
+        } else if (playerWasDetectedBefore) {
+            if (!PlayerInRange()) {
+                // Player was in range but has moved out of range
+                playerWasDetectedBefore = false;
+                movement.Unfreeze();
+            }
         }
     }
 
-    // Should return whether the player is in the line and range of sight of the enemy
-    private bool PlayerVisibleFromPosition(Vector2 origin) {
+    private void ReactToPlayer() {
+        TurnTowardsPlayer();
+
+        // Play alert animation the first time the player is detected
+        if (!playerWasDetectedBefore)
+            PlayAlertAnimation();
+        playerWasDetectedBefore = true;
+    }
+
+    private void TurnTowardsPlayer() {
+        // Stop movement
+        movement.Freeze();
+
+        // Turn towards the player
+        bool isFacingRight = movement.isFacingRight;
+        Vector2 directionToPlayer = GetDirectionToPlayer();
+        if (directionToPlayer.x < 0 && isFacingRight || directionToPlayer.x > 0 && !isFacingRight)
+            movement.Flip();
+    }
+
+    private void PlayAlertAnimation() {
+        GameObject alert = CFX_SpawnSystem.GetNextObject(alertAnimation); // More efficient than Instantiate() - pools objects.
+        alert.transform.position = enemyPosition;
+    }
+
+    // Different from PlayerVisible() in that it returns whether the player is in the detection range without 
+    // considering whether the player is actually visible
+    public bool PlayerInRange() {
+        float distanceToPlayer = Vector2.Distance(enemyPosition, Player.GetPlayerPosition());
+        return distanceToPlayer <= detectionRange;
+    }
+
+    // Returns whether the player is visible (in line of sight, not dead, not hiding, etc.)
+    public bool PlayerVisible() {
+        bool playerVisible = false;
+
+        if (playerHealth.isDead) {
+            StopAnimations();
+        } else {
+            playerVisible = PlayerInLineOfSight();
+        }
+
+        return playerVisible;
+    }
+
+    private bool PlayerInLineOfSight() {
         // Raycast towards the player - may be stuff in the way.
         Vector2 directionToPlayer = GetDirectionToPlayer();
-        RaycastHit2D hit = Physics2D.Raycast(origin, directionToPlayer, detectionRange, enemyLayerMask);
+        RaycastHit2D hit = Physics2D.Raycast(enemyPosition, directionToPlayer, detectionRange, enemyLayerMask);
 
         // Can we see the player?
         bool playerInLineOfSight = false;
@@ -94,19 +133,4 @@ public class DetectPlayer : MonoBehaviour {
         return directionToPlayer;
     }
 
-    private void TurnTowardsPlayer() {
-        // Stop movement
-        movement.Freeze();
-
-        // Turn towards the player
-        bool isFacingRight = movement.isFacingRight;
-        Vector2 directionToPlayer = GetDirectionToPlayer();
-        if (directionToPlayer.x < 0 && isFacingRight || directionToPlayer.x > 0 && !isFacingRight)
-            movement.Flip();
-    }
-    
-    private void PlayAlertAnimation() {
-        GameObject alert = CFX_SpawnSystem.GetNextObject(alertAnimation); // More efficient than Instantiate() - pools objects.
-        alert.transform.position = enemyPosition;
-    }
 }
