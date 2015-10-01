@@ -58,7 +58,7 @@ public class Bullet : MonoBehaviour {
             Destroy(gameObject); // Destroys the bullet, not the enemy.
             Health health = collider.gameObject.GetComponent<Health>();
             if (health != null)
-                health.Damage(damageOnHit); // Damage the enemy
+                health.RemoveHealth(damageOnHit); // Damage the enemy
         }
     }
 }

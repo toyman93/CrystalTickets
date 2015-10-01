@@ -23,18 +23,13 @@ public class Health : MonoBehaviour {
         movement = GetComponent<Movement>();
     }
 
-    // Update is called once per frame
-    void Update() {
-
-    }
-
-    public virtual void Damage(int damage) {
+    public virtual void RemoveHealth(int damage) {
         currentHealth -= damage;
         if (currentHealth <= 0 && !isDead)
             DestroyCharacter(); // Kill the player/mob
     }
 
-    public virtual void Heal(int health) {
+    public virtual void AddHealth(int health) {
         currentHealth += health;
     }
 

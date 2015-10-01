@@ -19,14 +19,14 @@ public class PlayerHealth : Health {
 	
 	}
 
-    public override void Damage(int damage) {
-        base.Damage(damage);
+    public override void RemoveHealth(int damage) {
+        base.RemoveHealth(damage);
         if (healthBar != null)
             healthBar.value = Math.Max(currentHealth, 0); // Don't let the health bar drop below 
     }
 
-    public override void Heal(int health) {
-        base.Heal(health);
+    public override void AddHealth(int health) {
+        base.AddHealth(health);
         if (healthBar != null)
             healthBar.value = Math.Min(currentHealth, startingHealth); // Health shouldn't exceed the max
     }
