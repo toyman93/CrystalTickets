@@ -116,8 +116,8 @@ public class TestPlayerController : MonoBehaviour {
         Debug.Log("IT WORKS");
         while( knockDur > timer){
             timer+=Time.deltaTime;
-            rigidBody.velocity = new Vector2 (0, 0); 
-            rigidBody.AddForce(new Vector3(300, 300, transform.position.z));
+            rigidBody.velocity = new Vector2 (0, 0);
+            rigidBody.AddForce(new Vector3(1000,100, transform.position.z));    
         }
         yield return 0;
     }
