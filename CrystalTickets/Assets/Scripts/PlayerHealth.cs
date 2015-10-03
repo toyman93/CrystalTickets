@@ -19,16 +19,18 @@ public class PlayerHealth : Health {
 	
 	}
 
-    public override void RemoveHealth(int damage) {
-        base.RemoveHealth(damage);
+    public override bool RemoveHealth(int damage) {
+        bool damaged = base.RemoveHealth(damage);
         if (healthBar != null)
             healthBar.value = Math.Max(currentHealth, 0); // Don't let the health bar drop below 
+        return damaged;
     }
 
-    public override void AddHealth(int health) {
-        base.AddHealth(health);
+    public override bool AddHealth(int health) {
+        bool healed = base.AddHealth(health);
         if (healthBar != null)
             healthBar.value = Math.Min(currentHealth, startingHealth); // Health shouldn't exceed the max
+        return healed;
     }
 
     public override void DestroyCharacter() {

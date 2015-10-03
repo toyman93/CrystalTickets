@@ -22,10 +22,6 @@ public class DetectPlayer : MonoBehaviour {
 
     public Vector2 enemyPosition { get { return gunObject.transform.position; } private set { } }
 
-    protected virtual void Awake () {
-        playerWasDetectedBefore = false;
-    }
-
     void Start () {
         movement = GetComponent<Movement>();
         animator = GetComponent<Animator>();

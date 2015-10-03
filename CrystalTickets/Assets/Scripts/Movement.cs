@@ -21,7 +21,7 @@ public class Movement : MonoBehaviour {
     // The horizontal direction this thing is moving in (left or right)
     public Vector2 movementDirection { get { return isFacingRight ? Vector2.right : Vector2.left; } private set { } }
 
-    void Awake () {
+    void Awake() {
         isFacingRight = true;
     }
 

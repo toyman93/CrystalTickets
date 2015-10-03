@@ -10,7 +10,7 @@ public class DetectPlayerWithFollowBuffer : DetectPlayer {
 
     private float followRange;
 
-    protected override void Awake() {
+    void Awake() {
         followRange = detectionRange + followBuffer;
     }
 

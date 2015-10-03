@@ -10,11 +10,13 @@ public class Health : MonoBehaviour {
     protected int currentHealth;
     protected Animator animator;
 
+    public bool healingEnabled = true;
+    public bool damageEnabled = true;
+
     private Movement movement;
 
     void Awake() {
         currentHealth = startingHealth;
-        isDead = false;
     }
 
     // Use this for initialization
@@ -23,14 +25,31 @@ public class Health : MonoBehaviour {
         movement = GetComponent<Movement>();
     }
 
-    public virtual void RemoveHealth(int damage) {
-        currentHealth -= damage;
-        if (currentHealth <= 0 && !isDead)
-            DestroyCharacter(); // Kill the player/mob
+    // Returns whether removing health was successful
+    public virtual bool RemoveHealth(int damage) {
+        bool healthRemoved = false;
+
+        if (damageEnabled && currentHealth > 0) {
+            currentHealth -= damage;
+            if (currentHealth <= 0 && !isDead)
+                DestroyCharacter(); // Kill the player/mob
+            healthRemoved = true;
+        }
+
+        return healthRemoved;
     }
 
-    public virtual void AddHealth(int health) {
-        currentHealth += health;
+    // Returns whether adding health was successful
+    public virtual bool AddHealth(int health) {
+        bool healthAdded = false;
+
+        // Checking whether health is at max is useful for medpacs, so that they're not consumed when unnecessary
+        if (healingEnabled && !(currentHealth == startingHealth)) {
+            currentHealth += health;
+            healthAdded = true;
+        }
+
+        return healthAdded;
     }
 
     public virtual void DestroyCharacter() {

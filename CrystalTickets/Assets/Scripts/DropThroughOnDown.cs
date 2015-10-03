@@ -3,11 +3,7 @@ using System.Collections;
 
 public class DropThroughOnDown : MonoBehaviour {
 
-	private bool playerOnObject;
-
-    void Awake () {
-        playerOnObject = true; // Platform should initially be 'solid'
-    }
+    private bool playerOnObject = true; // Platform should initially be 'solid'
 
 	void Update () {
 		if (playerOnObject)

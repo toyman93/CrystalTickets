@@ -19,10 +19,6 @@ public class EnemyPatrol : MonoBehaviour {
         get { return movement.isFacingRight ? 1.0f : -1.0f; }
     }
 
-    void Awake () {
-        atPlatformEdge = false;
-    }
-
 	void Start () {
         movement = GetComponent<Movement>();
         animator = GetComponent<Animator>();
