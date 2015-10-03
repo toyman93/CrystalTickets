@@ -113,7 +113,7 @@ public class TestPlayerController : MonoBehaviour {
 
     public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir){
         float timer = 0;
-        Debug.Log("IT WORKS");
+        Debug.Log("knockback");
         while( knockDur > timer){
             timer+=Time.deltaTime;
             rigidBody.velocity = new Vector2 (0, 0);
