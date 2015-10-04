@@ -1,0 +1,165 @@
+fileFormatVersion: 2
+guid: 35d3f6ef370df804fb07838c443d38d7
+timeCreated: 1440389849
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: SlideSpriteSheet_0
+    21300002: SlideSpriteSheet_1
+    21300004: SlideSpriteSheet_2
+    21300006: SlideSpriteSheet_3
+    21300008: SlideSpriteSheet_4
+    21300010: SlideSpriteSheet_5
+    21300012: SlideSpriteSheet_6
+    21300014: SlideSpriteSheet_7
+    21300016: SlideSpriteSheet_8
+    21300018: SlideSpriteSheet_9
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: SlideSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 29
+        width: 411
+        height: 357
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SlideSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 29
+        width: 406
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SlideSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 29
+        width: 404
+        height: 362
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SlideSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 29
+        width: 401
+        height: 362
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SlideSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 2308
+        y: 29
+        width: 401
+        height: 362
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SlideSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 2875
+        y: 29
+        width: 400
+        height: 362
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SlideSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 3440
+        y: 29
+        width: 401
+        height: 362
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SlideSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 4007
+        y: 29
+        width: 402
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SlideSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 4572
+        y: 29
+        width: 404
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SlideSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 5135
+        y: 29
+        width: 409
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

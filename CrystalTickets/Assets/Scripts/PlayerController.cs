@@ -113,4 +113,15 @@ public class PlayerController : MonoBehaviour {
 			activateDoor = true;
 		}
 	}
+
+
+    public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir){
+        float timer = 0;
+        while( knockDur > timer){
+            timer+=Time.deltaTime;
+            rigidBody.AddForce(new Vector3(knockbackDir.x * -100, knockbackDir.y * knockbackPwr, transform.position.z));
+        }
+        yield return 0;
+    }
+
 }
