@@ -22,9 +22,13 @@ public class TestPlayerController : MonoBehaviour {
     private Rigidbody2D rigidBody;
 
     // Shooting stuff. gun = position of the gun; where bullets will start from.
-    public GameObject bulletPrefab, gun;
+	public GameObject bulletPrefab, gun;
     public float firingIntervalInSeconds = 0.1f; // How often can we fire a bullet
     private float timeLastFired;
+
+	// Controls lever conditions
+	public GameObject lever;
+	private Sprite leverOn, leverOff;
 
     // Use this for initialization
     void Start() {
@@ -32,6 +36,9 @@ public class TestPlayerController : MonoBehaviour {
         animator = GetComponent<Animator>();
         isFacingRight = true;
         timeLastFired = -firingIntervalInSeconds;
+
+		leverOn = Resources.Load ("LeverOn", typeof(Sprite)) as Sprite;
+		leverOff = Resources.Load ("LeverOff", typeof(Sprite)) as Sprite;
     }
 
     void FixedUpdate() {
@@ -102,9 +109,17 @@ public class TestPlayerController : MonoBehaviour {
     }
 
 	void OnCollisionEnter2D(Collision2D col){
-		if (col.gameObject.name == "red_button") {
-			print ("Switch On");
-			activateDoor = true;
+		if (col.gameObject.name == "lever") {
+			if (activateDoor == false){
+				print ("Switch On");
+				activateDoor = true;
+				lever.GetComponent<SpriteRenderer>().sprite = leverOn;
+			}else{
+				print ("Switch Off");
+				activateDoor = false;
+				lever.GetComponent<SpriteRenderer>().sprite = leverOff;
+			}
+
 		}
 	}
 }
