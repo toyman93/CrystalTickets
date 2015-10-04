@@ -17,10 +17,18 @@ public class DetectPlayer : MonoBehaviour {
     private Movement movement; // Provides data about / control of this object's movement
     private Animator animator;
 
-    // Used to detect that the player was detected, but has since become hidden/invisible
-    protected bool playerWasDetectedBefore;
+    // Indicates whether the player has bee
+    public bool playerWasDetectedBefore { get; private set; }
 
     public Vector2 enemyPosition { get { return gunObject.transform.position; } private set { } }
+
+    public Vector2 playerPosition {
+        get {
+            // GetPlayerGameObject() has to look for all the gameobjects with the right tag, so we avoid using it if possible
+            GameObject player = playerHealth == null ? Player.GetPlayerGameObject() : playerHealth.gameObject;
+            return player.transform.position;
+        }
+    }
 
     void Start () {
         movement = GetComponent<Movement>();
@@ -54,7 +62,7 @@ public class DetectPlayer : MonoBehaviour {
         if (PlayerVisible()) {
             ReactToPlayer();
         } else if (playerWasDetectedBefore) {
-            if (!PlayerInRange()) {
+            if (!PlayerInVisibilityRange()) {
                 // Player was in range but has moved out of range
                 playerWasDetectedBefore = false;
                 movement.Unfreeze();
@@ -89,7 +97,7 @@ public class DetectPlayer : MonoBehaviour {
 
     // Different from PlayerVisible() in that it returns whether the player is in the detection range without 
     // considering whether the player is actually visible
-    public bool PlayerInRange() {
+    public bool PlayerInVisibilityRange() {
         float distanceToPlayer = Vector2.Distance(enemyPosition, Player.GetPlayerPosition());
         return distanceToPlayer <= detectionRange;
     }
@@ -128,5 +136,4 @@ public class DetectPlayer : MonoBehaviour {
 
         return directionToPlayer;
     }
-
 }

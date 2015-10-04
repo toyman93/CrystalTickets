@@ -78,4 +78,20 @@ public class Movement : MonoBehaviour {
         animator.SetBool(GameConstants.RunState, true);
         isFrozen = false;
     }
+
+    public void Move() {
+        Move(movementDirection);
+    }
+
+    public void Move(Vector2 direction) {
+        Vector2 distanceToMove = direction * speed * Time.deltaTime;
+        transform.Translate(distanceToMove);
+    }
+
+    // Only allows the mob to move left/right to get to the point (else you end up with this odd bouncing)
+    public void MoveTowardsPoint(Vector2 point) {
+        Vector2 directionToPoint = (Vector2) transform.position - point;
+        Vector2 directionToMove = directionToPoint.x < 0 ? Vector2.left : Vector2.right;
+        Move(directionToMove);
+    }
 }

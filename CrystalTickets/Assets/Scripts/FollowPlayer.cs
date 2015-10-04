@@ -7,17 +7,35 @@ public class FollowPlayer : MonoBehaviour {
     // not too bad - DetectPlayer turns off EnemyPatrol, is used by ShootPlayer, and this one should only need to 
     // interact with DetectPlayer as well. Consider design changes if coupling between AI scripts becomes too tight.
 
-    private DetectPlayer detectPlayer; // Following is triggered when the player moves out of range (detected here)
-    private Pathing pathing; // Used to do the actual pathing/moving
+    public bool isFollowing { get; private set; }
 
-	// Use this for initialization
+    private DetectPlayerWithFollowBuffer detectPlayer; // Following is triggered when the player moves out of range (detected here)
+    private Vector2 playerPosition { get { return detectPlayer.playerPosition; } } // Player location
+    private Tether tether; // Allows the enemy to return to its starting position
+    private Movement movement;
+
+    void Awake () {
+        isFollowing = false;
+    }
+
 	void Start () {
-        detectPlayer = GetComponent<DetectPlayer>();
-        pathing = GetComponent<Pathing>();
-	}
+        detectPlayer = GetComponent<DetectPlayerWithFollowBuffer>();
+        tether = GetComponent<Tether>();
+        movement = GetComponent<Movement>();
+    }
 	
-	// Update is called once per frame
 	void Update () {
-	
+        isFollowing = ShouldFollowPlayer ();
+
+        if (isFollowing) {
+            tether.enabled = true; // Stops the enemy from getting too far from its starting position
+            movement.MoveTowardsPoint(playerPosition);
+        } 
 	}
+
+    // If the player isn't in the range to be shot but is in the range to be followed, follow the player
+    private bool ShouldFollowPlayer () {
+        bool playerInRange = detectPlayer.PlayerInFollowRange() && !detectPlayer.PlayerInVisibilityRange();
+        return playerInRange && !tether.TooFarFromHome() && detectPlayer.playerWasDetectedBefore;
+    }
 }
