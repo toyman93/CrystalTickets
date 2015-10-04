@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Movement : MonoBehaviour {
 
@@ -93,5 +94,14 @@ public class Movement : MonoBehaviour {
         Vector2 directionToPoint = (Vector2) transform.position - point;
         Vector2 directionToMove = directionToPoint.x < 0 ? Vector2.left : Vector2.right;
         Move(directionToMove);
+    }
+
+    public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir) {
+        float timer = 0;
+        while (knockDur > timer) {
+            timer += Time.deltaTime;
+            rigidBody.AddForce(new Vector3(knockbackDir.x * -100, knockbackDir.y * knockbackPwr, transform.position.z));
+        }
+        yield return 0;
     }
 }

@@ -9,8 +9,6 @@ public class PlayerController : MonoBehaviour {
 
 	public ItemScript.ItemTypes currentItem = ItemScript.ItemTypes.Pistol;
 
-    public static bool activateDoor = false;
-
     private Rigidbody2D rigidBody;
 
     // Shooting stuff. gun = position of the gun; where bullets will start from.
@@ -89,26 +87,11 @@ public class PlayerController : MonoBehaviour {
 		}
     }
 
-    public void LoseHealth() {
-        statsUI.setHp(statsUI.getHp() - 1);
-        //cooldownPeriod = 1f;
-    }
-
+    // TODO: Move to a different script
 	void OnCollisionEnter2D(Collision2D col){
 		if (col.gameObject.name == "red_button") {
 			print ("Switch On");
 			activateDoor = true;
 		}
 	}
-
-
-    public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir){
-        float timer = 0;
-        while( knockDur > timer){
-            timer+=Time.deltaTime;
-            rigidBody.AddForce(new Vector3(knockbackDir.x * -100, knockbackDir.y * knockbackPwr, transform.position.z));
-        }
-        yield return 0;
-    }
-
 }

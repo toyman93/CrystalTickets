@@ -2,22 +2,20 @@
 using System.Collections;
 
 public class TrapDamage : MonoBehaviour {
-	private TestPlayerController character;
-	Collider2D agent7;
-	// Use this for initialization
+
+    private GameObject player;
+    private Movement playerMovement;
+    private Health playerHealth;
+
 	void Awake () {
-		GameObject thePlayer = GameObject.Find("playerCharacter");
-		character = thePlayer.GetComponent<TestPlayerController>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+        player = Player.GetPlayerGameObject();
+        playerMovement = player.GetComponent<Movement>();
+        playerHealth = player.GetComponent<Health>();
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
-		//character.LoseHealth();
-		StartCoroutine(character.Knockback(0.02f, 350, character.transform.position));
-		//Destroy (gameObject);
+		StartCoroutine(playerMovement.Knockback(0.02f, 350, player.transform.position));
+        // Uncomment to damage player (set to whatever - out of 100)
+        //playerHealth.RemoveHealth(30);
 	}
 }
