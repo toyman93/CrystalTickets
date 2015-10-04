@@ -2,12 +2,12 @@
 using System.Collections;
 
 public class TrapDamage : MonoBehaviour {
-	private PlayerController character;
+	private TestPlayerController character;
 	Collider2D agent7;
 	// Use this for initialization
 	void Awake () {
 		GameObject thePlayer = GameObject.Find("playerCharacter");
-		character = thePlayer.GetComponent<PlayerController>();
+		character = thePlayer.GetComponent<TestPlayerController>();
 	}
 	
 	// Update is called once per frame
@@ -16,8 +16,8 @@ public class TrapDamage : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
-		//agent7 = other; //obtain reference to agent7
-		character.LoseHealth();
+		//character.LoseHealth();
+		StartCoroutine(character.Knockback(0.02f, 350, character.transform.position));
 		//Destroy (gameObject);
 	}
 }
