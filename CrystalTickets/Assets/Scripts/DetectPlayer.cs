@@ -16,6 +16,7 @@ public class DetectPlayer : MonoBehaviour {
     private Health playerHealth; // Alows us to check whether the player is dead (and celebrate!)
     private Movement movement; // Provides data about / control of this object's movement
     private Animator animator;
+    private Health health;
 
     // Indicates whether the player has bee
     public bool playerWasDetectedBefore { get; private set; }
@@ -34,6 +35,7 @@ public class DetectPlayer : MonoBehaviour {
         movement = GetComponent<Movement>();
         animator = GetComponent<Animator>();
         playerHealth = Player.GetPlayerGameObject().GetComponent<Health>();
+        health = GetComponent<Health>();
 
         // Gets the child GameObject that represents the gun's position
         foreach (Transform child in transform)
@@ -106,7 +108,7 @@ public class DetectPlayer : MonoBehaviour {
     public bool PlayerVisible() {
         bool playerVisible = false;
 
-        if (playerHealth.isDead) {
+        if (playerHealth.isDead || health.isDead) {
             StopAnimations();
         } else {
             playerVisible = PlayerInLineOfSight();

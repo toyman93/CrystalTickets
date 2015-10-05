@@ -45,7 +45,7 @@ public class Health : MonoBehaviour {
 
         // Checking whether health is at max is useful for medpacs, so that they're not consumed when unnecessary
         if (healingEnabled && !(currentHealth == startingHealth)) {
-            currentHealth += health;
+            currentHealth = Mathf.Min(startingHealth, currentHealth + health);
             healthAdded = true;
         }
 
