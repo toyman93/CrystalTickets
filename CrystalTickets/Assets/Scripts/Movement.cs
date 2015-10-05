@@ -79,19 +79,36 @@ public class Movement : MonoBehaviour {
         isFrozen = false;
     }
 
+    // Only allows the mob to move left/right to get to the point (else you end up with this odd bouncing)
+    public void MoveTowardsPoint(Vector2 point) {
+        Vector2 directionToPoint = (Vector2)transform.position - point;
+        if (directionToPoint.x < 0) {
+            MoveLeft();
+        } else {
+            MoveRight();
+        }
+    }
+
     public void Move() {
         Move(movementDirection);
     }
 
-    public void Move(Vector2 direction) {
-        Vector2 distanceToMove = direction * speed * Time.deltaTime;
-        transform.Translate(distanceToMove);
+    public void MoveLeft() {
+        if (isFacingRight)
+            Flip();
+
+        Move(Vector2.left);
     }
 
-    // Only allows the mob to move left/right to get to the point (else you end up with this odd bouncing)
-    public void MoveTowardsPoint(Vector2 point) {
-        Vector2 directionToPoint = (Vector2) transform.position - point;
-        Vector2 directionToMove = directionToPoint.x < 0 ? Vector2.left : Vector2.right;
-        Move(directionToMove);
+    public void MoveRight() {
+        if (!isFacingRight)
+            Flip();
+
+        Move(Vector2.right);
+    }
+
+    private void Move(Vector2 direction) {
+        Vector2 distanceToMove = direction * speed * Time.deltaTime;
+        transform.Translate(distanceToMove);
     }
 }
