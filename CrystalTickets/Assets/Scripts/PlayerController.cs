@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
         float move = Input.GetAxis("Horizontal");//Gives us of one if we are moving via the arrow keys
                                                  //move our Players rigidbody
 
-        rigidBody.velocity = new Vector3(move * movement.speed, rigidBody.velocity.y);
+        //rigidBody.velocity = new Vector3(move * movement.speed, rigidBody.velocity.y);
 
 		if (this.currentmovement == joystick.ItemTypes.left && this.currentmouse == 1) {
 			Debug.Log ("left");
@@ -60,6 +60,9 @@ public class PlayerController : MonoBehaviour {
 		}
 		if (this.currentmovement == joystick.ItemTypes.right && this.currentmouse == 1) {
 			rigidBody.velocity = new Vector3(1 * movement.speed, rigidBody.velocity.y);;
+		}
+		if (this.currentmouse == 0) {
+			rigidBody.velocity = new Vector3(0, rigidBody.velocity.y);;
 		}
     }
 
