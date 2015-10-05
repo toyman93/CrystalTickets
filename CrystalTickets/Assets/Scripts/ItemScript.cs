@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class ItemScript : MonoBehaviour {
 
@@ -8,6 +9,9 @@ public class ItemScript : MonoBehaviour {
 	public ItemTypes typeOfItem;
 
 	public PlayerController playerController;
+
+	private Image currentWeaponImage;
+	private GameObject currentWeapon;
 
 	// Use this for initialization
 	void Start () {

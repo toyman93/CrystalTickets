@@ -4,7 +4,7 @@ using System.Collections;
 public class Movement : MonoBehaviour {
 
     public float speed;
-    public float jumpForce = 150f;
+    public float jumpForce;
     [Tooltip("Empty GameObject representing the player's feet - used for detecting the ground")]
     public Transform groundCheck;
     [Tooltip("Radius of the overlap circle used to detect whether the player is in contact with the ground")]
@@ -31,22 +31,23 @@ public class Movement : MonoBehaviour {
     void Start () {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
     }
 
-    void Update () {
-        bool isMovingDown = rigidBody.velocity.y <= 0; // Try with < 0 instead - seems less responsive
-        grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius);
-
-        if (isMovingDown && grounded) {
-            // Stop the 'jump' state if the player's about to hit the ground
-            animator.SetBool(GameConstants.JumpState, false);
-        }
-    }
+	void OnTriggerEnter2D(Collider2D collider) {
+		bool isMovingDown = rigidBody.velocity.y <= 0;
+		if (isMovingDown) {
+			animator.SetBool(GameConstants.JumpState, false);
+			grounded = true;
+		}
+	}
 
     public void Jump() {
+
         if (grounded) {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
             animator.SetBool(GameConstants.JumpState, true);
+			grounded = false;
         }
     }
 

@@ -39,29 +39,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        float move = Input.GetAxis("Horizontal");//Gives us of one if we are moving via the arrow keys
-                                                 //move our Players rigidbody
 
-        rigidBody.velocity = new Vector3(move * movement.speed, rigidBody.velocity.y);
 
-		if (this.currentmovement == Joystick.ItemTypes.left && this.currentmouse == 1) {
-			Debug.Log ("left");
-			rigidBody.velocity = new Vector3(-1 * movement.speed, rigidBody.velocity.y);
-			bool isRunning = move == 0 ? false : true;
-			animator.SetBool("Run", isRunning);
-			
-			// Update animations to reflect which way the player is moving
-			bool changedDirection = move > 0 && !movement.isFacingRight || move < 0 && movement.isFacingRight;
-			if (changedDirection)
-				movement.Flip();
-			
-		}
-		if (this.currentmovement == Joystick.ItemTypes.right && this.currentmouse == 1) {
-			rigidBody.velocity = new Vector3(1 * movement.speed, rigidBody.velocity.y);;
-		}
-		if (this.currentmouse == 0) {
-			rigidBody.velocity = new Vector3(0, rigidBody.velocity.y);;
-		}
+
     }
 
     void Update() {
@@ -72,39 +52,31 @@ public class PlayerController : MonoBehaviour {
 			Debug.Log ("jump");
 			movement.Jump();
 		}
-		if (this.currentmovement == Joystick.ItemTypes.shoot && this.currentmouse == 1) {
+
+		if (this.currentmovement == Joystick.ItemTypes.shoot && this.currentmouse == 1 && secondsSinceLastFired > firingIntervalInSeconds) {
 			Debug.Log ("shoot");
 			timeLastFired = Time.time;
 			animator.SetBool("Shoot", true);
 			FireBullet(gun.transform.position);
 		}
 
-
-        if (Input.GetButtonDown("Jump")) 
-            movement.Jump();
-
-        /* Putting the animation transitions here seems to make it more responsive than when it's in FixedUpdate(),
-           but this could use a bit more testing. */
-
-        float move = Input.GetAxis("Horizontal");
-
-        // Update the animations to show running if the player is moving
-        bool isRunning = move == 0 ? false : true;
-        animator.SetBool(GameConstants.RunState, isRunning);
-
-        // Update animations to reflect which way the player is moving
-        bool changedDirection = move > 0 && !movement.isFacingRight || move < 0 && movement.isFacingRight;
-        if (changedDirection)
-            movement.Flip();
-
-//        // Shooting - doesn't work if you just set 'Shoot' to the value of Input.GetKeyDown(KeyCode.Q) (hence second condition)
-//        if (Input.GetButton("Fire") && secondsSinceLastFired > firingIntervalInSeconds) {
-//            timeLastFired = Time.time;
-//            animator.SetBool(GameConstants.ShootState, true);
-//            FireBullet(gun.transform.position);
-//        }
-//        if (Input.GetButtonUp("Fire"))
-//            animator.SetBool(GameConstants.ShootState, false);
+		if (this.currentmovement == Joystick.ItemTypes.left && this.currentmouse == 1) {
+			Debug.Log ("MoveLeft");
+			movement.MoveLeft ();
+			animator.SetBool(GameConstants.RunState, true);
+			
+		}
+		
+		if (this.currentmovement == Joystick.ItemTypes.right && this.currentmouse == 1) {
+			Debug.Log ("MoveRight");
+			movement.MoveRight ();
+			animator.SetBool (GameConstants.RunState, true);
+		}
+		
+		if (this.currentmouse == 0) {
+			//Debug.Log ("Idle");
+			animator.SetBool (GameConstants.RunState, false);
+		}
     }
 
     // This should probably be elsewhere. Enemies can reuse this too.
