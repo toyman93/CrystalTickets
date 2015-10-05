@@ -94,13 +94,13 @@ public class PlayerController : MonoBehaviour {
             movement.Flip();
 
         // Shooting - doesn't work if you just set 'Shoot' to the value of Input.GetKeyDown(KeyCode.Q) (hence second condition)
-        if (Input.GetButton("Fire") && secondsSinceLastFired > firingIntervalInSeconds) {
-            timeLastFired = Time.time;
-            animator.SetBool(GameConstants.ShootState, true);
-            FireBullet(gun.transform.position);
-        }
-        if (Input.GetButtonUp("Fire"))
-            animator.SetBool(GameConstants.ShootState, false);
+//        if (Input.GetButton("Fire") && secondsSinceLastFired > firingIntervalInSeconds) {
+//            timeLastFired = Time.time;
+//            animator.SetBool(GameConstants.ShootState, true);
+//            FireBullet(gun.transform.position);
+//        }
+//        if (Input.GetButtonUp("Fire"))
+//            animator.SetBool(GameConstants.ShootState, false);
     }
 
     // This should probably be elsewhere. Enemies can reuse this too.
