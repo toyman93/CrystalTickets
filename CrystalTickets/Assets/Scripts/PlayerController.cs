@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour {
     public float groundRadius = 0.1f;
 
 	public ItemScript.ItemTypes currentItem = ItemScript.ItemTypes.Pistol;
+	public joystick.ItemTypes currentmovement = joystick.ItemTypes.empty;
+	public int currentmouse = 0;
 
     // Should be set to Ground layer - put anything that you want to treat as ground on this layer
     public LayerMask whatIsGround;
@@ -51,9 +53,32 @@ public class PlayerController : MonoBehaviour {
                                                  //move our Players rigidbody
 
         rigidBody.velocity = new Vector3(move * movement.speed, rigidBody.velocity.y);
+
+		if (this.currentmovement == joystick.ItemTypes.left && this.currentmouse == 1) {
+			Debug.Log ("left");
+			rigidBody.velocity = new Vector3(-1 * movement.speed, rigidBody.velocity.y);
+		}
+		if (this.currentmovement == joystick.ItemTypes.right && this.currentmouse == 1) {
+			rigidBody.velocity = new Vector3(1 * movement.speed, rigidBody.velocity.y);;
+		}
     }
 
     void Update() {
+		float secondsSinceLastFired = Time.time - timeLastFired;
+
+
+		if (this.currentmovement == joystick.ItemTypes.jump && this.currentmouse == 1) {
+			Debug.Log ("jump");
+			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 100f));
+			// Updates the animations to show jumping
+			animator.SetBool("Jump", true);
+		}
+		if (this.currentmovement == joystick.ItemTypes.shoot && this.currentmouse == 1) {
+			Debug.Log ("shoot");
+			timeLastFired = Time.time;
+			            animator.SetBool("Shoot", true);
+			            FireBullet(gun.transform.position);
+		}
 
 		//if we are on the ground and the space bar was pressed, change our ground state and add an upward force
         if (grounded) {
@@ -85,16 +110,17 @@ public class PlayerController : MonoBehaviour {
             movement.Flip();
 
         // Only shoot a bullet if a sane amount of time has passed
-        float secondsSinceLastFired = Time.time - timeLastFired;
+        
 
         // Shooting - doesn't work if you just set 'Shoot' to the value of Input.GetKeyDown(KeyCode.Q) (hence second condition)
-        if (Input.GetButton("Fire") && secondsSinceLastFired > firingIntervalInSeconds) {
-            timeLastFired = Time.time;
-            animator.SetBool("Shoot", true);
-            FireBullet(gun.transform.position);
-        }
-        if (Input.GetButtonUp("Fire"))
-            animator.SetBool("Shoot", false);
+//        if (Input.GetButton("Fire") && secondsSinceLastFired > firingIntervalInSeconds) {
+//            timeLastFired = Time.time;
+//            animator.SetBool("Shoot", true);
+//            FireBullet(gun.transform.position);
+//        }
+//        if (Input.GetButtonUp("Fire"))
+//            animator.SetBool("Shoot", false);
+
     }
 
     // This should probably be elsewhere. Enemies can reuse this too.
