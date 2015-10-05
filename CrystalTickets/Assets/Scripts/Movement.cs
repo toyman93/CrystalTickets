@@ -4,7 +4,7 @@ using System.Collections;
 public class Movement : MonoBehaviour {
 
     public float speed;
-    public float jumpForce = 500f;
+    public float jumpForce = 150f;
     [Tooltip("Empty GameObject representing the player's feet - used for detecting the ground")]
     public Transform groundCheck;
     [Tooltip("Radius of the overlap circle used to detect whether the player is in contact with the ground")]
