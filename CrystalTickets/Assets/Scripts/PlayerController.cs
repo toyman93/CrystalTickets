@@ -54,9 +54,18 @@ public class PlayerController : MonoBehaviour {
 
         //rigidBody.velocity = new Vector3(move * movement.speed, rigidBody.velocity.y);
 
+
 		if (this.currentmovement == joystick.ItemTypes.left && this.currentmouse == 1) {
 			Debug.Log ("left");
 			rigidBody.velocity = new Vector3(-1 * movement.speed, rigidBody.velocity.y);
+			bool isRunning = move == 0 ? false : true;
+			animator.SetBool("Run", isRunning);
+			
+			// Update animations to reflect which way the player is moving
+			bool changedDirection = move > 0 && !movement.isFacingRight || move < 0 && movement.isFacingRight;
+			if (changedDirection)
+				movement.Flip();
+
 		}
 		if (this.currentmovement == joystick.ItemTypes.right && this.currentmouse == 1) {
 			rigidBody.velocity = new Vector3(1 * movement.speed, rigidBody.velocity.y);;
