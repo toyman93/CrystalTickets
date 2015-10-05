@@ -79,6 +79,10 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		// Input key for testing purpose
+		float move = Input.GetAxis("Horizontal");//Gives us of one if we are moving via the arrow keys
+		//move our Players rigidbody
+		
+		rigidBody.velocity = new Vector3(move * movement.speed, rigidBody.velocity.y);
 
     }
 
