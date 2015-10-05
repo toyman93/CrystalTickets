@@ -20,6 +20,10 @@ public class PlayerController : MonoBehaviour {
 
     private Movement movement;
 
+    // Controls lever conditions
+    public GameObject lever;
+    public Sprite leverOn, leverOff;
+
     void Awake() {
         timeLastFired = -firingIntervalInSeconds;
     }
@@ -87,11 +91,18 @@ public class PlayerController : MonoBehaviour {
 		}
     }
 
-    // TODO: Move to a different script
-	void OnCollisionEnter2D(Collision2D col){
-		if (col.gameObject.name == "red_button") {
-			print ("Switch On");
-			activateDoor = true;
-		}
-	}
+    // TODO: Move this. Should be in own script, not in player controller
+    void OnCollisionEnter2D(Collision2D col) {
+        if (col.gameObject.name == "lever") {
+            if (activateDoor == false) {
+                print("Switch On");
+                activateDoor = true;
+                lever.GetComponent<SpriteRenderer>().sprite = leverOn;
+            } else {
+                print("Switch Off");
+                activateDoor = false;
+                lever.GetComponent<SpriteRenderer>().sprite = leverOff;
+            }
+        }
+    }
 }
