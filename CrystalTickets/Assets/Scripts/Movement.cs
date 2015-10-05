@@ -99,14 +99,12 @@ public class Movement : MonoBehaviour {
     public void MoveLeft() {
         if (isFacingRight)
             Flip();
-
         Move(Vector2.left);
     }
 
     public void MoveRight() {
         if (!isFacingRight)
             Flip();
-
         Move(Vector2.right);
     }
 
