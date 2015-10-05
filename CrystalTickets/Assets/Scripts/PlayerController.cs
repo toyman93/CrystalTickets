@@ -46,18 +46,12 @@ public class PlayerController : MonoBehaviour {
 
 		if (this.currentmovement == Joystick.ItemTypes.left && this.currentmouse == 1) {
 			Debug.Log ("left");
-			rigidBody.velocity = new Vector3(-1 * movement.speed, rigidBody.velocity.y);
-			bool isRunning = move == 0 ? false : true;
-			animator.SetBool("Run", isRunning);
-			
-			// Update animations to reflect which way the player is moving
-			bool changedDirection = move > 0 && !movement.isFacingRight || move < 0 && movement.isFacingRight;
-			if (changedDirection)
-				movement.Flip();
+			movement.MoveLeft();
 			
 		}
 		if (this.currentmovement == Joystick.ItemTypes.right && this.currentmouse == 1) {
-			rigidBody.velocity = new Vector3(1 * movement.speed, rigidBody.velocity.y);;
+			Debug.Log ("right");
+			movement.MoveRight();
 		}
 		if (this.currentmouse == 0) {
 			rigidBody.velocity = new Vector3(0, rigidBody.velocity.y);;
@@ -65,12 +59,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
+
 		// Only shoot a bullet if a sane amount of time has passed
 		float secondsSinceLastFired = Time.time - timeLastFired;
 
 		if (this.currentmovement == Joystick.ItemTypes.jump && this.currentmouse == 1) {
 			Debug.Log ("jump");
 			movement.Jump();
+
 		}
 		if (this.currentmovement == Joystick.ItemTypes.shoot && this.currentmouse == 1) {
 			Debug.Log ("shoot");
