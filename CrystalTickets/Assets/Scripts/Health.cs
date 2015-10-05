@@ -55,6 +55,7 @@ public class Health : MonoBehaviour {
     public virtual void DestroyCharacter() {
         isDead = true;
         animator.SetBool(GameConstants.DeadState, true); // Play the death animation
+        movement.Freeze();
         movement.enabled = false;
     }
 
