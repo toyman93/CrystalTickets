@@ -9,8 +9,6 @@ public class Joystick : MonoBehaviour {
 	
 	public PlayerController playerController;
 
-	public GUIElement ca = GameObject.Find("left").GetComponent<GUIElement>();
-
 	// Use this for initialization
 	void Start () {
 		playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController> ();
@@ -21,31 +19,45 @@ public class Joystick : MonoBehaviour {
 	
 	}
 	
-		public void OnMouseDown(){
-			// this object was clicked - do something
-			Debug.Log ("Item: " + this.typeOfItem);
-	
-			if (this.typeOfItem == ItemTypes.left) {
-				playerController.currentmovement = this.typeOfItem;
-		} else if (this.typeOfItem == ItemTypes.right) {
-			playerController.currentmovement2 = this.typeOfItem;
-		} else if (this.typeOfItem == ItemTypes.jump) {
-			playerController.currentmovement3 = this.typeOfItem;
-		} else if (this.typeOfItem == ItemTypes.shoot) {
-			playerController.currentmovement4 = this.typeOfItem;
-		}
+//		public void OnMouseDown(){
+//			// this object was clicked - do something
+//			Debug.Log ("Item: " + this.typeOfItem);
+//	
+//		if (this.typeOfItem == ItemTypes.left) {
+//			playerController.currentmovement = this.typeOfItem;
+//		} else if (this.typeOfItem == ItemTypes.right) {
+//			playerController.currentmovement2 = this.typeOfItem;
+//		} else if (this.typeOfItem == ItemTypes.jump) {
+//			playerController.currentmovement3 = this.typeOfItem;
+//		} else if (this.typeOfItem == ItemTypes.shoot) {
+//			playerController.currentmovement4 = this.typeOfItem;
+//		}
+//	}
+//	
+//	public void OnMouseUp(){
+//		Debug.Log ("Mouse up");
+//		if (this.typeOfItem == ItemTypes.left) {
+//			playerController.currentmovement = ItemTypes.empty;
+//		} else if (this.typeOfItem == ItemTypes.right) {
+//			playerController.currentmovement2 = ItemTypes.empty;
+//		} else if (this.typeOfItem == ItemTypes.jump) {
+//			playerController.currentmovement3 = ItemTypes.empty;
+//		} else if (this.typeOfItem == ItemTypes.shoot) {
+//			playerController.currentmovement4 = ItemTypes.empty;
+//		}
+//	}
+
+	public void OnMouseDown(){
+		// this object was clicked - do something
+		Debug.Log ("Item: " + this.typeOfItem);
+
+			playerController.currentmovement = this.typeOfItem;
+
 	}
 	
 	public void OnMouseUp(){
 		Debug.Log ("Mouse up");
-		if (this.typeOfItem == ItemTypes.left) {
 			playerController.currentmovement = ItemTypes.empty;
-		} else if (this.typeOfItem == ItemTypes.right) {
-			playerController.currentmovement2 = ItemTypes.empty;
-		} else if (this.typeOfItem == ItemTypes.jump) {
-			playerController.currentmovement3 = ItemTypes.empty;
-		} else if (this.typeOfItem == ItemTypes.shoot) {
-			playerController.currentmovement4 = ItemTypes.empty;
-		}
+
 	}
 }
