@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Pause : MonoBehaviour {
 
-	bool paused = false;
+	public bool paused = false;
+	public PlayerController playercontroller;
 	
 	void Update()
 	{
@@ -17,8 +18,10 @@ public class Pause : MonoBehaviour {
 			GUILayout.Label("Game is paused!");
 			if(GUILayout.Button("Click me to unpause"))
 				paused = togglePause();
+			playercontroller.isPause = this.paused;
 			if(GUILayout.Button("Back to main menu"))
 				paused = togglePause();
+			playercontroller.isPause = this.paused;
 		}
 	}
 
@@ -31,11 +34,13 @@ public class Pause : MonoBehaviour {
 		if(Time.timeScale == 0f)
 		{
 			Time.timeScale = 1f;
+
 			return(false);
 		}
 		else
 		{
 			Time.timeScale = 0f;
+
 			return(true);    
 		}
 	}

@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
 	public MoveRight.ItemTypes currentmovement2 = MoveRight.ItemTypes.empty;
 	public MoveJump.ItemTypes currentmovement3 = MoveJump.ItemTypes.empty;
 	public MoveShoot.ItemTypes currentmovement4 = MoveShoot.ItemTypes.empty;
+	public bool isPause = false;
 
     private Rigidbody2D rigidBody;
 
@@ -89,7 +90,7 @@ public class PlayerController : MonoBehaviour {
 			movement.Jump();
 			
 		}
-		if (this.currentmovement4 == MoveShoot.ItemTypes.shoot) {
+		if (this.currentmovement4 == MoveShoot.ItemTypes.shoot && isPause == false) {
 			Debug.Log ("shoot");
 			timeLastFired = Time.time;
 			animator.SetBool("Shoot", true);
