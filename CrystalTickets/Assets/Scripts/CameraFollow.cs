@@ -35,10 +35,13 @@ public class CameraFollow : MonoBehaviour {
 		
 		Vector3 aheadTargetPos = target.position + lookAheadPos + Vector3.forward * offsetZ;
 		Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref currentVelocity, damping);
+		// Prevent camera from moving more than specified position in the y-axis
+		if (newPos.y > 2.5f) {
+			newPos.y = 2.5f;
+		}
 		newPos.y += 0.25f;
 		transform.position = newPos;
 		newPos.y -= 0.25f;
-
 		lastTargetPosition = target.position;
 	}
 }

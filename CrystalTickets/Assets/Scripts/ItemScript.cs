@@ -7,12 +7,12 @@ public class ItemScript : MonoBehaviour {
 
 	public ItemTypes typeOfItem;
 
-	public TestPlayerController playerController;
+	public PlayerController playerController;
 
 	// Use this for initialization
 	void Start () {
 		Debug.Log ("created");
-		playerController = GameObject.FindWithTag("Player").GetComponent<TestPlayerController> ();
+		playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController> ();
 	}
 	
 	// Update is called once per frame

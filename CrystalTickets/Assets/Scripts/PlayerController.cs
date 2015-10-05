@@ -4,21 +4,11 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
     private Animator animator;
-    private bool isFacingRight;
+
 	public static bool activateDoor = false;
-    //This will be our maximum speed as we will always be multiplying by 1
-    public float maxSpeed;
-    //to check ground and to have a jumpforce we can change in the editor
-    bool grounded = false;
-    public Transform groundCheck;
-    public float groundRadius = 0.1f;
 
 	public ItemScript.ItemTypes currentItem = ItemScript.ItemTypes.Pistol;
 
-    // Should be set to Ground layer - put anything that you want to treat as ground on this layer
-    public LayerMask whatIsGround;
-
-    public float jumpForce = -10.0f;
     private Rigidbody2D rigidBody;
 
     // Shooting stuff. gun = position of the gun; where bullets will start from.
@@ -30,6 +20,10 @@ public class PlayerController : MonoBehaviour {
 
     private Movement movement;
 
+    // Controls lever conditions
+    public GameObject lever;
+    public Sprite leverOn, leverOff;
+
     void Awake() {
         timeLastFired = -firingIntervalInSeconds;
     }
@@ -38,15 +32,11 @@ public class PlayerController : MonoBehaviour {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         movement = GetComponent<Movement>();
-        isFacingRight = true;
         timeLastFired = -firingIntervalInSeconds;
         statsUI = GetComponent<PlayerStatsUI>();
     }
 
     void FixedUpdate() {
-        //set our grounded bool
-        grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
-
         float move = Input.GetAxis("Horizontal");//Gives us of one if we are moving via the arrow keys
                                                  //move our Players rigidbody
 
@@ -55,20 +45,8 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
 
-		//if we are on the ground and the space bar was pressed, change our ground state and add an upward force
-        if (grounded) {
-            // TODO Doesn't work with stairs
-            bool isMovingDown = rigidBody.velocity.y <= 0; // Try with < 0 instead - seems less responsive
-
-            if (Input.GetButtonDown("Jump")) {
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
-                // Updates the animations to show jumping
-                animator.SetBool("Jump", true);
-            } else if (isMovingDown) {
-                // Stop the 'jump' state if the player's about to hit the ground
-                animator.SetBool("Jump", false);
-            }
-        }
+        if (Input.GetButtonDown("Jump")) 
+            movement.Jump();
 
         /* Putting the animation transitions here seems to make it more responsive than when it's in FixedUpdate(),
            but this could use a bit more testing. */
@@ -77,7 +55,7 @@ public class PlayerController : MonoBehaviour {
 
         // Update the animations to show running if the player is moving
         bool isRunning = move == 0 ? false : true;
-        animator.SetBool("Run", isRunning);
+        animator.SetBool(GameConstants.RunState, isRunning);
 
         // Update animations to reflect which way the player is moving
         bool changedDirection = move > 0 && !movement.isFacingRight || move < 0 && movement.isFacingRight;
@@ -90,11 +68,11 @@ public class PlayerController : MonoBehaviour {
         // Shooting - doesn't work if you just set 'Shoot' to the value of Input.GetKeyDown(KeyCode.Q) (hence second condition)
         if (Input.GetButton("Fire") && secondsSinceLastFired > firingIntervalInSeconds) {
             timeLastFired = Time.time;
-            animator.SetBool("Shoot", true);
+            animator.SetBool(GameConstants.ShootState, true);
             FireBullet(gun.transform.position);
         }
         if (Input.GetButtonUp("Fire"))
-            animator.SetBool("Shoot", false);
+            animator.SetBool(GameConstants.ShootState, false);
     }
 
     // This should probably be elsewhere. Enemies can reuse this too.
@@ -113,26 +91,18 @@ public class PlayerController : MonoBehaviour {
 		}
     }
 
-    public void LoseHealth() {
-        statsUI.setHp(statsUI.getHp() - 1);
-        //cooldownPeriod = 1f;
-    }
-
-	void OnCollisionEnter2D(Collision2D col){
-		if (col.gameObject.name == "red_button") {
-			print ("Switch On");
-			activateDoor = true;
-		}
-	}
-
-
-    public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir){
-        float timer = 0;
-        while( knockDur > timer){
-            timer+=Time.deltaTime;
-            rigidBody.AddForce(new Vector3(knockbackDir.x * -100, knockbackDir.y * knockbackPwr, transform.position.z));
+    // TODO: Move this. Should be in own script, not in player controller
+    void OnCollisionEnter2D(Collision2D col) {
+        if (col.gameObject.name == "lever") {
+            if (activateDoor == false) {
+                print("Switch On");
+                activateDoor = true;
+                lever.GetComponent<SpriteRenderer>().sprite = leverOn;
+            } else {
+                print("Switch Off");
+                activateDoor = false;
+                lever.GetComponent<SpriteRenderer>().sprite = leverOff;
+            }
         }
-        yield return 0;
     }
-
 }

@@ -1,56 +1,34 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour, IDamageable {
-
-    public int startingHealth = 100;
-    private int currentHealth;
-    private bool isDead;
+public class PlayerHealth : Health {
 
     public Slider healthBar;
 
     // Required when the player dies (change state / disable)
     private PlayerController movementController;
-    private Animator animator;
 
-    void Awake() {
-        currentHealth = startingHealth;
-        isDead = false;
-    }
-
-	void Start () {
+	protected override void Start () {
+        base.Start();
         movementController = GetComponent<PlayerController>();
-        animator = GetComponent<Animator>();
-	}
-	
-	void Update () {
-	
 	}
 
-    public void damage(int damage) {
-        currentHealth -= damage;
-        
-        // Update the UI
+    public override bool RemoveHealth(int damage) {
+        bool damaged = base.RemoveHealth(damage);
         if (healthBar != null)
-            healthBar.value = Math.Max(currentHealth, 0); // Don't let the health bar drop below 0
-
-        // Kill the player
-        if (currentHealth <= 0 && !isDead)
-            destroy();
+            healthBar.value = Mathf.Max(currentHealth, 0); // Don't let the health bar drop below 
+        return damaged;
     }
 
-    public void heal(int health) {
-        currentHealth += health;
-
+    public override bool AddHealth(int health) {
+        bool healed = base.AddHealth(health);
         if (healthBar != null)
-            healthBar.value = Math.Min(currentHealth, startingHealth); // Health shouldn't exceed the max
+            healthBar.value = Mathf.Min(currentHealth, startingHealth); // Health shouldn't exceed the max
+        return healed;
     }
 
-    public void destroy() {
-        isDead = true;
-        animator.SetBool("Dead", true); // Play the death animation
+    public override void DestroyCharacter() {
+        base.DestroyCharacter();
         movementController.enabled = false; // Turn off the controls
     }
 }
