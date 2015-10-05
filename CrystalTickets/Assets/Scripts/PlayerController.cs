@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
 	public Joystick.ItemTypes currentmovement = Joystick.ItemTypes.empty;
 	public Joystick.ItemTypes currentmovement2 = Joystick.ItemTypes.empty;
 	public Joystick.ItemTypes currentmovement3 = Joystick.ItemTypes.empty;
+	public Joystick.ItemTypes currentmovement4 = Joystick.ItemTypes.empty;
 
     private Rigidbody2D rigidBody;
 
@@ -45,12 +46,12 @@ public class PlayerController : MonoBehaviour {
 
         rigidBody.velocity = new Vector3(move * movement.speed, rigidBody.velocity.y);
 
-		if (this.currentmovement == Joystick.ItemTypes.left || this.currentmovement2 == Joystick.ItemTypes.left || this.currentmovement3 == Joystick.ItemTypes.left ) {
+		if (this.currentmovement == Joystick.ItemTypes.left || this.currentmovement2 == Joystick.ItemTypes.left || this.currentmovement3 == Joystick.ItemTypes.left || this.currentmovement4 == Joystick.ItemTypes.left) {
 			Debug.Log ("left");
 			movement.MoveLeft();
 			
 		}
-		if (this.currentmovement == Joystick.ItemTypes.right || this.currentmovement2 == Joystick.ItemTypes.right|| this.currentmovement3 == Joystick.ItemTypes.right) {
+		if (this.currentmovement == Joystick.ItemTypes.right || this.currentmovement2 == Joystick.ItemTypes.right|| this.currentmovement3 == Joystick.ItemTypes.right|| this.currentmovement4 == Joystick.ItemTypes.right) {
 			Debug.Log ("right");
 			movement.MoveRight();
 		}
@@ -61,12 +62,12 @@ public class PlayerController : MonoBehaviour {
 		// Only shoot a bullet if a sane amount of time has passed
 		float secondsSinceLastFired = Time.time - timeLastFired;
 
-		if (this.currentmovement == Joystick.ItemTypes.jump || this.currentmovement2 == Joystick.ItemTypes.jump|| this.currentmovement3 == Joystick.ItemTypes.jump) {
+		if (this.currentmovement == Joystick.ItemTypes.jump || this.currentmovement2 == Joystick.ItemTypes.jump|| this.currentmovement3 == Joystick.ItemTypes.jump|| this.currentmovement4 == Joystick.ItemTypes.jump) {
 			Debug.Log ("jump");
 			movement.Jump();
 
 		}
-		if (this.currentmovement == Joystick.ItemTypes.shoot || this.currentmovement2 == Joystick.ItemTypes.shoot || this.currentmovement3 == Joystick.ItemTypes.shoot) {
+		if (this.currentmovement == Joystick.ItemTypes.shoot || this.currentmovement2 == Joystick.ItemTypes.shoot || this.currentmovement3 == Joystick.ItemTypes.shoot|| this.currentmovement4 == Joystick.ItemTypes.shoot) {
 			Debug.Log ("shoot");
 			timeLastFired = Time.time;
 			animator.SetBool("Shoot", true);
