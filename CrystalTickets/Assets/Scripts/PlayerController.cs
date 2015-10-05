@@ -39,18 +39,17 @@ public class PlayerController : MonoBehaviour {
     }
 
     void FixedUpdate() {
-
-
-
     }
 
     void Update() {
+
 		// Only shoot a bullet if a sane amount of time has passed
 		float secondsSinceLastFired = Time.time - timeLastFired;
 
 		if (this.currentmovement == Joystick.ItemTypes.jump && this.currentmouse == 1) {
 			Debug.Log ("jump");
 			movement.Jump();
+
 		}
 
 		if (this.currentmovement == Joystick.ItemTypes.shoot && this.currentmouse == 1 && secondsSinceLastFired > firingIntervalInSeconds) {
@@ -77,6 +76,7 @@ public class PlayerController : MonoBehaviour {
 			//Debug.Log ("Idle");
 			animator.SetBool (GameConstants.RunState, false);
 		}
+
     }
 
     // This should probably be elsewhere. Enemies can reuse this too.
