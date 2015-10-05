@@ -23,13 +23,20 @@ public class Joystick : MonoBehaviour {
 	public void OnMouseDown(){
 		// this object was clicked - do something
 		Debug.Log ("Item: " + this.typeOfItem);
-		
-		playerController.currentmovement = this.typeOfItem;
-		playerController.currentmouse = 1;
+
+		if (playerController.currentmovement == ItemTypes.empty) {
+			playerController.currentmovement = this.typeOfItem;
+		} else if (playerController.currentmovement2 == ItemTypes.empty) {
+			playerController.currentmovement2 = this.typeOfItem;
+		} else if (playerController.currentmovement3 == ItemTypes.empty) {
+			playerController.currentmovement3 = this.typeOfItem;
+		}
 	}
 	
 	public void OnMouseUp(){
 		Debug.Log ("Mouse up");
-		playerController.currentmouse = 0;
+		playerController.currentmovement = ItemTypes.empty;
+		playerController.currentmovement2 = ItemTypes.empty;
+		playerController.currentmovement3 = ItemTypes.empty;
 	}
 }
