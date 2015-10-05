@@ -9,29 +9,9 @@ public class Bullet : MonoBehaviour {
     // Objects with this tag can be hit/damaged by the bullet
     public string hostileTag;
 
-    void Start () {
-
-    }
-
-    void Update() {
-
-    }
-
     // Fires horizontally. Used by player.
     public void Fire(bool isFacingRight) {
-        Vector2 direction;
-
-        if (isFacingRight) {
-            direction = Vector2.right;
-        } else {
-            direction = Vector2.left;
-
-            // Flip the sprite/animation to face left
-            Vector3 flippedScale = transform.localScale;
-            flippedScale.x *= -1;
-            transform.localScale = flippedScale;
-        }
-
+        Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
         FireInDirection(direction);
     }
 

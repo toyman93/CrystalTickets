@@ -5,8 +5,9 @@ using System.Collections;
 [RequireComponent (typeof (Movement))]
 public class Tether : MonoBehaviour {
 
-    // How far away from the starting point the mob is allowed to move before being forced to return to its origin
+    [Tooltip("How far away from the starting point the mob is allowed to move before being forced to return to its origin")]
     public float maxRange;
+
     // Whether or not the mob is in the process of going to its starting position
     public bool returningHome { get; private set; } 
 

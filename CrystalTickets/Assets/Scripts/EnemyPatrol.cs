@@ -9,12 +9,13 @@ public class EnemyPatrol : MonoBehaviour {
 
     private float rightWall; // Enemy walks to and from here.
     private float leftWall; // 'Units To Move' units away from other wall
-
+    private Health health;
     private Movement movement;
 
 	void Start () {
         movement = GetComponent<Movement>();
         animator = GetComponent<Animator>();
+        health = GetComponent<Health>();
 
         animator.SetBool(GameConstants.RunState, true);
 
@@ -30,8 +31,11 @@ public class EnemyPatrol : MonoBehaviour {
     }
 	
 	void Update () {
-        if (ShouldTurnAround())
+        if (health.isDead) {
+            movement.Freeze();
+        } else if (ShouldTurnAround()) {
             movement.Flip();
+        }
 
         if (!movement.isFrozen) {
             animator.SetBool(GameConstants.RunState, true);
