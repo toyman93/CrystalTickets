@@ -115,13 +115,13 @@ public class PlayerController : MonoBehaviour {
         if (changedDirection)
             movement.Flip();
 
-        if (Input.GetButton("Fire") && secondsSinceLastFired > firingIntervalInSeconds) {
-            timeLastFired = Time.time;
-            animator.SetBool(GameConstants.ShootState, true);
-            FireBullet(gun.transform.position);
-        }
-        if (Input.GetButtonUp("Fire"))
-            animator.SetBool(GameConstants.ShootState, false);
+//        if (Input.GetButton("Fire") && secondsSinceLastFired > firingIntervalInSeconds) {
+//            timeLastFired = Time.time;
+//            animator.SetBool(GameConstants.ShootState, true);
+//            FireBullet(gun.transform.position);
+//        }
+//        if (Input.GetButtonUp("Fire"))
+//            animator.SetBool(GameConstants.ShootState, false);
     }
 
     // This should probably be elsewhere. Enemies can reuse this too.

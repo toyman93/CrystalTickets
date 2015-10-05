@@ -16,12 +16,12 @@ public class Pause : MonoBehaviour {
 		if(paused)
 		{
 			GUILayout.Label("Game is paused!");
-			if(GUILayout.Button("Click me to unpause"))
-				paused = togglePause();
-			playercontroller.isPause = this.paused;
-			if(GUILayout.Button("Back to main menu"))
-				paused = togglePause();
-			playercontroller.isPause = this.paused;
+			if(GUILayout.Button("Click me to unpause")){
+
+			paused = togglePause();
+			}
+			if(GUILayout.Button("Back to main menu")){
+			}
 		}
 	}
 
@@ -34,13 +34,13 @@ public class Pause : MonoBehaviour {
 		if(Time.timeScale == 0f)
 		{
 			Time.timeScale = 1f;
-
+			playercontroller.isPause = false;
 			return(false);
 		}
 		else
 		{
 			Time.timeScale = 0f;
-
+			playercontroller.isPause = true;
 			return(true);    
 		}
 	}
