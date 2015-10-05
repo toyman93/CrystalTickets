@@ -78,6 +78,8 @@ public class PlayerController : MonoBehaviour {
 			animator.SetBool (GameConstants.RunState, false);
 		}
 
+		// Input key for testing purpose
+
     }
 
     // This should probably be elsewhere. Enemies can reuse this too.
