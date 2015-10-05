@@ -45,9 +45,11 @@ public class DetectPlayer : MonoBehaviour {
 
     // Displays detection range as gizmo (circle)
     protected virtual void OnDrawGizmos () {
-        Gizmos.color = Color.yellow;
-        if (gunObject != null) {
-            Gizmos.DrawWireSphere(gunObject.transform.position, detectionRange);
+        if (enabled) {
+            Gizmos.color = Color.yellow;
+            if (gunObject != null) {
+                Gizmos.DrawWireSphere(gunObject.transform.position, detectionRange);
+            }
         }
     }
 
@@ -64,12 +66,17 @@ public class DetectPlayer : MonoBehaviour {
         if (PlayerVisible()) {
             ReactToPlayer();
         } else if (playerWasDetectedBefore) {
-            if (!PlayerInVisibilityRange()) {
+            if (!IsPlayerDetectable()) {
                 // Player was in range but has moved out of range
                 playerWasDetectedBefore = false;
                 movement.Unfreeze();
             }
         }
+    }
+
+    // Whether to count the player as detectable. Can be overridden - e.g. to extend range for following
+    protected virtual bool IsPlayerDetectable () {
+        return PlayerInVisibilityRange();
     }
 
     private void ReactToPlayer() {

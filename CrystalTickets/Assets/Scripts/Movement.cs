@@ -21,6 +21,10 @@ public class Movement : MonoBehaviour {
     // The horizontal direction this thing is moving in (left or right)
     public Vector2 movementDirection { get { return isFacingRight ? Vector2.right : Vector2.left; } private set { } }
 
+    // Toggle this on to prevent movement while jumping
+    [HideInInspector]
+    public bool movementControlOff = false;
+
     void Awake() {
         isFacingRight = true;
     }
@@ -30,24 +34,28 @@ public class Movement : MonoBehaviour {
         animator = GetComponent<Animator>();
     }
 
-    void Update () {
-        bool isMovingDown = rigidBody.velocity.y <= 0; // Try with < 0 instead - seems less responsive
-        grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius);
-
-        if (isMovingDown && grounded) {
-            // Stop the 'jump' state if the player's about to hit the ground
+    void OnTriggerEnter2D(Collider2D collider) {
+        bool isMovingDown = rigidBody.velocity.y <= 0;
+        if (isMovingDown) {
             animator.SetBool(GameConstants.JumpState, false);
+            movementControlOff = false;
+            grounded = true;
         }
     }
 
     public void Jump() {
         if (grounded) {
+            movementControlOff = true;
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
             animator.SetBool(GameConstants.JumpState, true);
+            grounded = false;
         }
     }
 
     public void Flip() {
+        if (movementControlOff)
+            return;
+
         isFacingRight = !isFacingRight;
         Vector3 flippedScale = transform.localScale;
         flippedScale.x *= -1;
@@ -81,7 +89,7 @@ public class Movement : MonoBehaviour {
 
     // Only allows the mob to move left/right to get to the point (else you end up with this odd bouncing)
     public void MoveTowardsPoint(Vector2 point) {
-        Vector2 directionToPoint = (Vector2)transform.position - point;
+        Vector2 directionToPoint = point - (Vector2) transform.position;
         if (directionToPoint.x < 0) {
             MoveLeft();
         } else {
@@ -108,6 +116,10 @@ public class Movement : MonoBehaviour {
     }
 
     private void Move(Vector2 direction) {
+        if (movementControlOff)
+            return;
+
+        animator.SetBool(GameConstants.RunState, true);
         Vector2 distanceToMove = direction * speed * Time.deltaTime;
         transform.Translate(distanceToMove);
     }

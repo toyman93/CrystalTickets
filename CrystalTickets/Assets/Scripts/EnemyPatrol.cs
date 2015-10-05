@@ -2,8 +2,6 @@
 
 public class EnemyPatrol : MonoBehaviour {
 
-    private Animator animator;
-
     public bool startFacingRight = true; // Which way the enemy should face to begin with
     public int unitsToMove = 5; // How far the enemy can move, in whatever direction it faces at the start
 
@@ -11,10 +9,13 @@ public class EnemyPatrol : MonoBehaviour {
     private float leftWall; // 'Units To Move' units away from other wall
 
     private Movement movement;
+    private FollowPlayer follow;
+    private Animator animator;
 
-	void Start () {
+    void Start () {
         movement = GetComponent<Movement>();
         animator = GetComponent<Animator>();
+        follow = GetComponent<FollowPlayer>();
 
         animator.SetBool(GameConstants.RunState, true);
 
@@ -30,14 +31,16 @@ public class EnemyPatrol : MonoBehaviour {
     }
 	
 	void Update () {
-        if (ShouldTurnAround())
-            movement.Flip();
+        if (!follow.isFollowing) {
+            if (ShouldTurnAround())
+                movement.Flip();
 
-        if (!movement.isFrozen) {
-            animator.SetBool(GameConstants.RunState, true);
-            movement.Move();
-        } else {
-            animator.SetBool(GameConstants.RunState, false);
+            if (!movement.isFrozen) {
+                animator.SetBool(GameConstants.RunState, true);
+                movement.Move();
+            } else {
+                animator.SetBool(GameConstants.RunState, false);
+            }
         }
 	}
 

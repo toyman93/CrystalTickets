@@ -5,10 +5,12 @@ using System.Collections;
 [RequireComponent (typeof (Movement))]
 public class Tether : MonoBehaviour {
 
-    // How far away from the starting point the mob is allowed to move before being forced to return to its origin
+    [Tooltip("How far away from the starting point the mob is allowed to move before being forced to return to its origin")]
     public float maxRange;
     // Whether or not the mob is in the process of going to its starting position
-    public bool returningHome { get; private set; } 
+    public bool returningHome { get; private set; }
+    [Tooltip("Freaks out if we tell it to stand on an EXACT spot, so introduce a margin of error")]
+    public float buffer = 0.2f;
 
     private Vector3 startingPosition;
     private Movement movement;
@@ -28,13 +30,21 @@ public class Tether : MonoBehaviour {
             MoveToStartingPosition();
     }
 
+    void OnDrawGizmos() {
+        if (enabled) {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(startingPosition, maxRange);
+        }
+    }
+
     public bool TooFarFromHome() {
         float distanceFromStartingPoint = Vector3.Distance(transform.position, startingPosition);
-        return distanceFromStartingPoint > maxRange;
+        return distanceFromStartingPoint > maxRange || returningHome;
     }
 
     public void MoveToStartingPosition() {
-        if (transform.position != startingPosition) {
+        movement.Unfreeze();
+        if (transform.position.x > startingPosition.x + buffer || transform.position.x < startingPosition.x - buffer) { // Need to check y
             movement.MoveTowardsPoint(startingPosition);
         } else {
             returningHome = false;
