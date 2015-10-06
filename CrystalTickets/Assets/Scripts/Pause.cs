@@ -16,12 +16,22 @@ public class Pause : MonoBehaviour {
 		if(paused)
 		{
 			GUILayout.Label("Game is paused!");
-			if(GUILayout.Button("Click me to unpause")){
+			if(GUILayout.Button("Resume")){
 
 			paused = togglePause();
 			}
-			if(GUILayout.Button("Back to main menu")){
+
+			if(GUILayout.Button("Restart")){
+				Application.LoadLevel("LevelOne");
+				paused = togglePause();
 			}
+
+			if(GUILayout.Button("Back to main menu")){
+				Application.LoadLevel("GameStartScene");
+				paused = togglePause();
+			}
+
+
 		}
 	}
 
