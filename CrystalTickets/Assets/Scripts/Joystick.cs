@@ -25,11 +25,11 @@ public class Joystick : MonoBehaviour {
 		Debug.Log ("Item: " + this.typeOfItem);
 		
 		playerController.currentmovement = this.typeOfItem;
-		playerController.currentmouse = 1;
+
 	}
 	
 	public void OnMouseUp(){
 		Debug.Log ("Mouse up");
-		playerController.currentmouse = 0;
+		playerController.currentmovement = Joystick.ItemTypes.empty;
 	}
 }

@@ -41,13 +41,8 @@ public class Grenade : MonoBehaviour {
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
-
 		GameObject explosionAnimation = CFX_SpawnSystem.GetNextObject (this.explosionAnimation);
 		Destroy(gameObject);
-
 		explosionAnimation.transform.position = transform.position;
-
-        if (collision.transform.CompareTag("Enemy"))
-            Destroy(gameObject); // Destroys the bullet, not the enemy.
     }
 }
