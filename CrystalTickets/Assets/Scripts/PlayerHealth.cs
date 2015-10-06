@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class PlayerHealth : Health {
 
     public Slider healthBar;
+	
 
     // Required when the player dies (change state / disable)
     private PlayerController movementController;
@@ -17,6 +18,7 @@ public class PlayerHealth : Health {
         bool damaged = base.RemoveHealth(damage);
         if (healthBar != null)
             healthBar.value = Mathf.Max(currentHealth, 0); // Don't let the health bar drop below 
+			// Change health sprite
         return damaged;
     }
 

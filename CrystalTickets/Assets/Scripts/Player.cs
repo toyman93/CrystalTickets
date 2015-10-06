@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-    // Set initial values
+    // Set initial values.
     public string playerName = "John";
     public int score = 0;
     public bool isHidden = false;
