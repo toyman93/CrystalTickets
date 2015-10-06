@@ -20,6 +20,7 @@ public class Tether : MonoBehaviour {
 	void Start () {
         startingPosition = transform.position;
         movement = GetComponent<Movement>();
+        enabled = false;
 	}
 
     void Update () {
@@ -32,10 +33,8 @@ public class Tether : MonoBehaviour {
     }
 
     void OnDrawGizmos() {
-        if (enabled) {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(startingPosition, maxRange);
-        }
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(startingPosition, maxRange);
     }
 
     public bool TooFarFromHome() {
