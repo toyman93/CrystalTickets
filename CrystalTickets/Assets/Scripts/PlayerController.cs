@@ -9,8 +9,7 @@ public class PlayerController : MonoBehaviour {
 	
 	public ItemScript.ItemTypes currentItem = ItemScript.ItemTypes.Pistol;
 	public Joystick.ItemTypes currentmovement = Joystick.ItemTypes.empty;
-	public int currentmouse = 0;
-	public bool isPause;
+	public bool isPause = false;
 	
 	private Rigidbody2D rigidBody;
 	
@@ -44,11 +43,11 @@ public class PlayerController : MonoBehaviour {
 		// Only shoot a bullet if a sane amount of time has passed
 		float secondsSinceLastFired = Time.time - timeLastFired;
 		
-		if (this.currentmovement == Joystick.ItemTypes.jump && this.currentmouse == 1) {
+		if (this.currentmovement == Joystick.ItemTypes.jump) {
 			movement.Jump();
 		}
 		
-		if (this.currentmovement == Joystick.ItemTypes.shoot && this.currentmouse == 1 && secondsSinceLastFired > firingIntervalInSeconds) {
+		if (this.currentmovement == Joystick.ItemTypes.shoot && secondsSinceLastFired > firingIntervalInSeconds) {
 			Debug.Log ("shoot");
 			timeLastFired = Time.time;
 			animator.SetBool(GameConstants.ShootState, true);
@@ -57,17 +56,17 @@ public class PlayerController : MonoBehaviour {
 			animator.SetBool(GameConstants.ShootState, false);
 		}
 		
-		if (this.currentmovement == Joystick.ItemTypes.left && this.currentmouse == 1) {
+		if (this.currentmovement == Joystick.ItemTypes.left) {
 			movement.MoveLeft ();
 			animator.SetBool(GameConstants.RunState, true);
 		}
 		
-		if (this.currentmovement == Joystick.ItemTypes.right && this.currentmouse == 1) {
+		if (this.currentmovement == Joystick.ItemTypes.right) {
 			movement.MoveRight ();
 			animator.SetBool (GameConstants.RunState, true);
 		}
 		
-		if (this.currentmouse == 0) {
+		if (this.currentmovement == Joystick.ItemTypes.empty) {
 			animator.SetBool (GameConstants.RunState, false);
 		}
 	}
