@@ -44,9 +44,7 @@ public class PlayerController : MonoBehaviour {
 		float secondsSinceLastFired = Time.time - timeLastFired;
 
 		if (this.currentmovement == Joystick.ItemTypes.jump && this.currentmouse == 1) {
-			Debug.Log ("jump");
 			movement.Jump();
-
 		}
 
 		if (this.currentmovement == Joystick.ItemTypes.shoot && this.currentmouse == 1 && secondsSinceLastFired > firingIntervalInSeconds) {
@@ -59,29 +57,18 @@ public class PlayerController : MonoBehaviour {
         }
 
 		if (this.currentmovement == Joystick.ItemTypes.left && this.currentmouse == 1) {
-			Debug.Log ("MoveLeft");
 			movement.MoveLeft ();
 			animator.SetBool(GameConstants.RunState, true);
-			
 		}
 		
 		if (this.currentmovement == Joystick.ItemTypes.right && this.currentmouse == 1) {
-			Debug.Log ("MoveRight");
 			movement.MoveRight ();
 			animator.SetBool (GameConstants.RunState, true);
 		}
 		
 		if (this.currentmouse == 0) {
-			//Debug.Log ("Idle");
 			animator.SetBool (GameConstants.RunState, false);
 		}
-
-		// Input key for testing purpose
-		float move = Input.GetAxis("Horizontal");//Gives us of one if we are moving via the arrow keys
-		//move our Players rigidbody
-		
-		rigidBody.velocity = new Vector3(move * movement.speed, rigidBody.velocity.y);
-
     }
 
     // This should probably be elsewhere. Enemies can reuse this too.
