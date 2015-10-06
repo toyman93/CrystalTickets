@@ -15,18 +15,18 @@ public class Pause : MonoBehaviour {
 	{
 		if(paused)
 		{
-			GUILayout.Label("Game is paused!");
-			if(GUILayout.Button("Resume")){
+			if (GUI.Button ((new Rect (Screen.width*0.4f, Screen.height*0.1f, Screen.width*0.2f,Screen.height*0.2f)), "Resume")) {
 
 			paused = togglePause();
+			
 			}
 
-			if(GUILayout.Button("Restart")){
+			if (GUI.Button ((new Rect (Screen.width * 0.4f, Screen.height * 0.35f, Screen.width * 0.2f, Screen.height * 0.2f)), "Restart")){
 				Application.LoadLevel("LevelOne");
 				paused = togglePause();
 			}
 
-			if(GUILayout.Button("Back to main menu")){
+			if (GUI.Button ((new Rect (Screen.width*0.4f, Screen.height*0.6f, Screen.width*0.2f,Screen.height*0.2f)), "Back to Main Menu")) {
 				Application.LoadLevel("GameStartScene");
 				paused = togglePause();
 			}

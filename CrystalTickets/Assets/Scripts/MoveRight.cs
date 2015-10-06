@@ -51,14 +51,12 @@ public class MoveRight : MonoBehaviour {
 
 	public void OnMouseDown(){
 		// this object was clicked - do something
-		Debug.Log ("Item: " + this.typeOfItem);
 		Debug.Log ("right");
 		playerController.currentmovement2 = this.typeOfItem;
 		
 	}
 	
 	public void OnMouseUp(){
-		Debug.Log ("Mouse up");
 		playerController.currentmovement2 = ItemTypes.empty;
 		
 	}

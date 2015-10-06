@@ -9,8 +9,6 @@ public class Joystick : MonoBehaviour {
 	
 	public PlayerController playerController;
 
-	public GameObject left;
-
 	// Use this for initialization
 	void Start () {
 		playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController> ();
@@ -19,6 +17,10 @@ public class Joystick : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		for (var i = 0; i < Input.touchCount; ++i) {
+			if (Input.GetTouch(i).phase == TouchPhase.Began)
+				Debug.Log ("Item: "+this.typeOfItem);
+		}
 	}
 
 //		public void OnMouseDown(){
@@ -51,16 +53,16 @@ public class Joystick : MonoBehaviour {
 
 
 
-	public void OnMouseDown(){
-		Debug.Log ("left");
-		// this object was clicked - do something
-			playerController.currentmovement = this.typeOfItem;
-
-	}
-	
-	public void OnMouseUp(){
-		Debug.Log ("Mouse up");
-			playerController.currentmovement = ItemTypes.empty;
-
-	}
+//	public void OnMouseDown(){
+//		Debug.Log ("Left");
+//		// this object was clicked - do something
+//			playerController.currentmovement = this.typeOfItem;
+//		Debug.Log(this.typeOfItem);
+//
+//	}
+//	
+//	public void OnMouseUp(){
+//			playerController.currentmovement = ItemTypes.empty;
+//
+//	}
 }
