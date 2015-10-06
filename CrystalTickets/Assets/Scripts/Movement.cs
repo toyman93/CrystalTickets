@@ -18,6 +18,11 @@ public class Movement : MonoBehaviour {
     // The moving thing is expected to be animated with idle and run states
     private Animator animator;
 
+	// The damage from traps
+	private bool beingDamaged = false;
+	private float damageInterval = 1.0f;
+	private float lastTimeDamaged;
+
     public bool isFacingRight { get; private set; }
     bool grounded = false;
 
@@ -25,6 +30,7 @@ public class Movement : MonoBehaviour {
     public Vector2 movementDirection { get { return isFacingRight ? Vector2.right : Vector2.left; } private set { } }
 
     void Awake() {
+
         isFacingRight = true;
     }
 
@@ -33,6 +39,15 @@ public class Movement : MonoBehaviour {
         animator = GetComponent<Animator>();
 
     }
+
+	void Update() {
+
+		// Only apply damage when its past a certain time
+		float secondsSinceLastDamaged = Time.time - lastTimeDamaged;
+		if (secondsSinceLastDamaged > damageInterval) {
+			beingDamaged = false;
+		}
+	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
 		bool isMovingDown = rigidBody.velocity.y <= 0;
@@ -114,12 +129,22 @@ public class Movement : MonoBehaviour {
         transform.Translate(distanceToMove);
     }
 
+	void OnCollisionEnter2D(Collision2D collision) {
+
+		if (collision.gameObject.name.Contains("trap") && !beingDamaged) {
+			lastTimeDamaged = Time.time;
+			beingDamaged = true;
+			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 350));
+		}
+	}
+
     public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir) {
-        float timer = 0;
+        
+		float timer = 0;
         while (knockDur > timer) {
             timer += Time.deltaTime;
-            rigidBody.AddForce(new Vector3(knockbackDir.x * -100, knockbackDir.y * knockbackPwr, transform.position.z));
-        }
-        yield return 0;
+            rigidBody.AddForce(new Vector3(knockbackDir.x * -100, knockbackDir.y * knockbackPwr, 0));
+		}
+		yield return 0;
     }
 }
