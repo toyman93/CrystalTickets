@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 89dd483d58d77ab4695890c641d94845
-timeCreated: 1440389746
+timeCreated: 1444106150
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -47,6 +47,7 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -66,8 +67,8 @@ TextureImporter:
         y: 26
         width: 288
         height: 465
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: JumpSpriteSheet_1
       rect:
@@ -76,8 +77,8 @@ TextureImporter:
         y: 15
         width: 330
         height: 484
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: JumpSpriteSheet_2
       rect:
@@ -86,8 +87,8 @@ TextureImporter:
         y: 48
         width: 343
         height: 454
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: JumpSpriteSheet_3
       rect:
@@ -96,8 +97,8 @@ TextureImporter:
         y: 54
         width: 343
         height: 445
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: JumpSpriteSheet_4
       rect:
@@ -106,18 +107,18 @@ TextureImporter:
         y: 68
         width: 354
         height: 431
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: JumpSpriteSheet_5
       rect:
         serializedVersion: 2
-        x: 2911
+        x: 2908
         y: 87
         width: 382
         height: 412
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: JumpSpriteSheet_6
       rect:
@@ -126,8 +127,8 @@ TextureImporter:
         y: 24
         width: 388
         height: 475
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: JumpSpriteSheet_7
       rect:
@@ -136,8 +137,8 @@ TextureImporter:
         y: 26
         width: 387
         height: 473
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: JumpSpriteSheet_8
       rect:
@@ -146,8 +147,8 @@ TextureImporter:
         y: 0
         width: 355
         height: 499
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: JumpSpriteSheet_9
       rect:
@@ -156,8 +157,8 @@ TextureImporter:
         y: 1
         width: 332
         height: 496
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

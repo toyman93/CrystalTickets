@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: de0b515ab6c95df4dabf6c4111486f32
-timeCreated: 1440389026
+timeCreated: 1444105991
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -47,6 +47,7 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -66,8 +67,8 @@ TextureImporter:
         y: 26
         width: 286
         height: 464
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DeadSpriteSheet_1
       rect:
@@ -76,8 +77,8 @@ TextureImporter:
         y: 0
         width: 332
         height: 465
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DeadSpriteSheet_2
       rect:
@@ -86,8 +87,8 @@ TextureImporter:
         y: 32
         width: 371
         height: 400
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DeadSpriteSheet_3
       rect:
@@ -96,8 +97,8 @@ TextureImporter:
         y: 29
         width: 422
         height: 360
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DeadSpriteSheet_4
       rect:
@@ -106,8 +107,8 @@ TextureImporter:
         y: 32
         width: 469
         height: 315
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DeadSpriteSheet_5
       rect:
@@ -116,18 +117,18 @@ TextureImporter:
         y: 23
         width: 502
         height: 283
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DeadSpriteSheet_6
       rect:
         serializedVersion: 2
-        x: 3390
+        x: 3383
         y: 21
         width: 509
         height: 244
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DeadSpriteSheet_7
       rect:
@@ -136,18 +137,18 @@ TextureImporter:
         y: 21
         width: 513
         height: 230
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DeadSpriteSheet_8
       rect:
         serializedVersion: 2
-        x: 4518
+        x: 4515
         y: 21
         width: 513
         height: 230
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DeadSpriteSheet_9
       rect:
@@ -156,8 +157,8 @@ TextureImporter:
         y: 21
         width: 513
         height: 230
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
