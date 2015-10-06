@@ -5,7 +5,7 @@ public class Grenade : MonoBehaviour {
 
     public int speed = 1000;
 	public GameObject explosionAnimation;
-
+    public int damage = 100; // OP!
 
     void Start () {
         
@@ -44,5 +44,9 @@ public class Grenade : MonoBehaviour {
 		GameObject explosionAnimation = CFX_SpawnSystem.GetNextObject (this.explosionAnimation);
 		Destroy(gameObject);
 		explosionAnimation.transform.position = transform.position;
+
+        Health health = collision.gameObject.GetComponent<Health>();
+        if (health != null)
+            health.RemoveHealth(damage);
     }
 }

@@ -21,8 +21,10 @@ public abstract class Node : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collider) {
         // Enemy movement script (allows this node to control enemy movement)
         GameObject enemy = collider.gameObject;
-        if (ShouldTrigger(enemy.GetComponent<FollowPlayer>()))
-            Trigger(enemy.GetComponent<Movement>());
+        FollowPlayer follow = enemy.GetComponent<FollowPlayer>();
+        if (follow != null)
+            if (ShouldTrigger(follow))
+                Trigger(enemy.GetComponent<Movement>());
     }
 
     // Check conditions for triggering here. Should be overridden in subclasses.
