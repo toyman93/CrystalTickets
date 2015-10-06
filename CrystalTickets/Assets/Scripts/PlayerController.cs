@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour {
 	
@@ -8,6 +9,9 @@ public class PlayerController : MonoBehaviour {
 	public static bool activateDoor = false;
 	
 	public ItemScript.ItemTypes currentItem = ItemScript.ItemTypes.Pistol;
+	
+	public List<Joystick.ItemTypes> movementPressed; // Array to allow concurrent input
+
 	public Joystick.ItemTypes currentmovement = Joystick.ItemTypes.empty;
 	public bool isPause = false;
 	
@@ -22,10 +26,6 @@ public class PlayerController : MonoBehaviour {
 	
 	private Movement movement;
 	
-	// Controls lever conditions
-	public GameObject lever;
-	public Sprite leverOn, leverOff;
-	
 	void Awake() {
 		timeLastFired = -firingIntervalInSeconds;
 	}
@@ -36,18 +36,17 @@ public class PlayerController : MonoBehaviour {
 		movement = GetComponent<Movement>();
 		timeLastFired = -firingIntervalInSeconds;
 		statsUI = GetComponent<PlayerStatsUI>();
-
 	}
 	
 	void Update() {
 		
 		// Only shoot a bullet if a sane amount of time has passed
 		float secondsSinceLastFired = Time.time - timeLastFired;
-		
+
+		// Handle item click with actions
 		if (this.currentmovement == Joystick.ItemTypes.jump) {
 			movement.Jump();
 		}
-		
 		if (this.currentmovement == Joystick.ItemTypes.shoot && secondsSinceLastFired > firingIntervalInSeconds) {
 			Debug.Log ("shoot");
 			timeLastFired = Time.time;
@@ -56,17 +55,14 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			animator.SetBool(GameConstants.ShootState, false);
 		}
-		
 		if (this.currentmovement == Joystick.ItemTypes.left) {
 			movement.MoveLeft ();
 			animator.SetBool(GameConstants.RunState, true);
 		}
-		
 		if (this.currentmovement == Joystick.ItemTypes.right) {
 			movement.MoveRight ();
 			animator.SetBool (GameConstants.RunState, true);
 		}
-		
 		if (this.currentmovement == Joystick.ItemTypes.empty) {
 			animator.SetBool (GameConstants.RunState, false);
 		}
@@ -93,19 +89,5 @@ public class PlayerController : MonoBehaviour {
 			bullet.GetComponent<Bullet>().Fire(movement.isFacingRight); // ... but we need to tell it which way to move
 		}
 	}
-	
-	// TODO: Move this. Should be in own script, not in player controller
-	void OnCollisionEnter2D(Collision2D col) {
-		if (col.gameObject.name == "lever") {
-			if (activateDoor == false) {
-				print("Switch On");
-				activateDoor = true;
-				lever.GetComponent<SpriteRenderer>().sprite = leverOn;
-			} else {
-				print("Switch Off");
-				activateDoor = false;
-				lever.GetComponent<SpriteRenderer>().sprite = leverOff;
-			}
-		}
-	}
+
 }

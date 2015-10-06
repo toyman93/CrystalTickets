@@ -20,11 +20,11 @@ public class GameEnd : MonoBehaviour {
 	// Stop time if character touches game ending scroll
 	void OnCollisionEnter2D(Collision2D col) {
 
+		// If the scroll touches the player, end the scene
 		if (col.gameObject.name == "playerCharacter") {
 			Time.timeScale = 0.0f;
 			gameEndScreen.enabled = true;
 			nextButton.SetActive(true);
 		}
 	}
-	
 }

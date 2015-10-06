@@ -18,6 +18,7 @@ public class Resume : MonoBehaviour {
 		// At start of scene, set timescale to 1.0
 		Time.timeScale = 1.0f;
 
+		// Hide the components upon resuming
 		midScroll.enabled = false;
 		this.gameObject.SetActive (false);
 

@@ -14,6 +14,7 @@ public class ToNextLevel : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
+		// Load level on click
 		Application.LoadLevel ("LevelTwo");
 	
 		// At start of scene, set timescale to 1.0

@@ -4,9 +4,7 @@ using System.Collections;
 public class Joystick : MonoBehaviour {
 	
 	public enum ItemTypes {left, right, jump, shoot, empty};
-	
 	public ItemTypes typeOfItem;
-	
 	public PlayerController playerController;
 	
 	// Use this for initialization
@@ -17,19 +15,19 @@ public class Joystick : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		
 	}
 	
 	public void OnMouseDown(){
-		// this object was clicked - do something
-		Debug.Log ("Item: " + this.typeOfItem);
-		
+
+		// set current movement item to the one clicked
 		playerController.currentmovement = this.typeOfItem;
 
 	}
 	
 	public void OnMouseUp(){
-		Debug.Log ("Mouse up");
+
+		// set current movement item to empty if unclicked
 		playerController.currentmovement = Joystick.ItemTypes.empty;
+
 	}
 }

@@ -20,11 +20,14 @@ public class DoorController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		// Keep updating seconds after teleport to avoid multiple teleportations
 		secondsAfterTeleport = Time.time - teleportedTime;
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
 		Debug.Log ("collision door");
+
+		// If the door is enabled, teleport to the target door
 		if (this.enabled && collision.gameObject == player && (secondsAfterTeleport>teleportInterval)) {
 			Debug.Log ("collision door with player");
 			Vector3 newPosition = targetDoor.transform.position;

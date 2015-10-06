@@ -30,6 +30,7 @@ public class ItemScript : MonoBehaviour {
 		Debug.Log ("Item: " + this.typeOfItem);
 
 		playerController.currentItem = this.typeOfItem;
+	
 	}   
 
 }
