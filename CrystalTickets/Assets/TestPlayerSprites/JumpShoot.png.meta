@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a9cad1809c5e9764ba68d1da8d8b5544
-timeCreated: 1440389725
+timeCreated: 1444106189
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -42,6 +42,7 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -61,8 +62,8 @@ TextureImporter:
         y: 51
         width: 369
         height: 448
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: JumpShootSpriteSheet_1
       rect:
@@ -71,8 +72,8 @@ TextureImporter:
         y: 57
         width: 360
         height: 442
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: JumpShootSpriteSheet_2
       rect:
@@ -81,8 +82,8 @@ TextureImporter:
         y: 56
         width: 368
         height: 443
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: JumpShootSpriteSheet_3
       rect:
@@ -91,8 +92,8 @@ TextureImporter:
         y: 55
         width: 361
         height: 444
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: JumpShootSpriteSheet_4
       rect:
@@ -101,8 +102,8 @@ TextureImporter:
         y: 53
         width: 367
         height: 446
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

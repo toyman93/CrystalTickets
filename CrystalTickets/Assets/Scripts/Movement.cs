@@ -29,6 +29,10 @@ public class Movement : MonoBehaviour {
     // The horizontal direction this thing is moving in (left or right)
     public Vector2 movementDirection { get { return isFacingRight ? Vector2.right : Vector2.left; } private set { } }
 
+    // Toggle this on to prevent movement while jumping
+    [HideInInspector]
+    public bool movementControlOff = false;
+
     void Awake() {
 
         isFacingRight = true;
@@ -37,9 +41,8 @@ public class Movement : MonoBehaviour {
     void Start () {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-
     }
-
+	
 	void Update() {
 
 		// Only apply damage when its past a certain time
@@ -48,18 +51,20 @@ public class Movement : MonoBehaviour {
 			beingDamaged = false;
 		}
 	}
-
-	void OnTriggerEnter2D(Collider2D collider) {
-		bool isMovingDown = rigidBody.velocity.y <= 0;
-		if (isMovingDown) {
-			animator.SetBool(GameConstants.JumpState, false);
-			grounded = true;
-		}
-	}
+	
+    void OnTriggerEnter2D(Collider2D collider) {
+        bool isMovingDown = rigidBody.velocity.y <= 0;
+        if (isMovingDown) {
+            animator.SetBool(GameConstants.JumpState, false);
+            movementControlOff = false;
+            grounded = true;
+        }
+    }
 
     public void Jump() {
 
         if (grounded) {
+            movementControlOff = true;
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
             animator.SetBool(GameConstants.JumpState, true);
 			grounded = false;
@@ -67,6 +72,9 @@ public class Movement : MonoBehaviour {
     }
 
     public void Flip() {
+        if (movementControlOff)
+            return;
+
         isFacingRight = !isFacingRight;
         Vector3 flippedScale = transform.localScale;
         flippedScale.x *= -1;
@@ -100,7 +108,7 @@ public class Movement : MonoBehaviour {
 
     // Only allows the mob to move left/right to get to the point (else you end up with this odd bouncing)
     public void MoveTowardsPoint(Vector2 point) {
-        Vector2 directionToPoint = (Vector2)transform.position - point;
+        Vector2 directionToPoint = point - (Vector2) transform.position;
         if (directionToPoint.x < 0) {
             MoveLeft();
         } else {
@@ -123,11 +131,11 @@ public class Movement : MonoBehaviour {
             Flip();
         Move(Vector2.right);
     }
-
-    public void Move(Vector2 direction) {
-        Vector2 distanceToMove = direction * speed * Time.deltaTime;
-        transform.Translate(distanceToMove);
-    }
+	
+//    public void Move(Vector2 direction) {
+//        Vector2 distanceToMove = direction * speed * Time.deltaTime;
+//        transform.Translate(distanceToMove);
+//    }
 
 	void OnCollisionEnter2D(Collision2D collision) {
 
@@ -137,14 +145,24 @@ public class Movement : MonoBehaviour {
 			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 350));
 		}
 	}
-
+	
     public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir) {
         
 		float timer = 0;
         while (knockDur > timer) {
             timer += Time.deltaTime;
-            rigidBody.AddForce(new Vector3(knockbackDir.x * -100, knockbackDir.y * knockbackPwr, 0));
-		}
-		yield return 0;
+            rigidBody.AddForce(new Vector3(knockbackDir.x * -100, knockbackDir.y * knockbackPwr, transform.position.z));
+        }
+        yield return 0;
+        Move(Vector2.left);
+    }
+
+    private void Move(Vector2 direction) {
+        if (movementControlOff)
+            return;
+
+        animator.SetBool(GameConstants.RunState, true);
+        Vector2 distanceToMove = direction * speed * Time.deltaTime;
+        transform.Translate(distanceToMove);
     }
 }

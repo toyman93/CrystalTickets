@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f2b93708a4b3e02478a9153ee63e55de
-timeCreated: 1440389680
+timeCreated: 1444106110
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -47,6 +47,7 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -66,8 +67,8 @@ TextureImporter:
         y: 32
         width: 277
         height: 473
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: IdleSpriteSheet_1
       rect:
@@ -76,8 +77,8 @@ TextureImporter:
         y: 32
         width: 276
         height: 470
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: IdleSpriteSheet_2
       rect:
@@ -86,8 +87,8 @@ TextureImporter:
         y: 32
         width: 277
         height: 470
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: IdleSpriteSheet_3
       rect:
@@ -96,8 +97,8 @@ TextureImporter:
         y: 32
         width: 277
         height: 467
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: IdleSpriteSheet_4
       rect:
@@ -106,8 +107,8 @@ TextureImporter:
         y: 32
         width: 277
         height: 467
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: IdleSpriteSheet_5
       rect:
@@ -116,8 +117,8 @@ TextureImporter:
         y: 32
         width: 277
         height: 467
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: IdleSpriteSheet_6
       rect:
@@ -126,8 +127,8 @@ TextureImporter:
         y: 32
         width: 276
         height: 470
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: IdleSpriteSheet_7
       rect:
@@ -136,18 +137,18 @@ TextureImporter:
         y: 32
         width: 277
         height: 470
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: IdleSpriteSheet_8
       rect:
         serializedVersion: 2
         x: 4661
-        y: 32
+        y: 35
         width: 277
         height: 470
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: IdleSpriteSheet_9
       rect:
@@ -156,8 +157,8 @@ TextureImporter:
         y: 32
         width: 277
         height: 473
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

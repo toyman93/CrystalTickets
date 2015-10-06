@@ -3,34 +3,75 @@ using UnityEngine.UI;
 
 public class PlayerHealth : Health {
 
-    public Slider healthBar;
-	
+    public Sprite fullHeart;
+    public Sprite halfHeart;
+    public Sprite emptyHeart;
 
     // Required when the player dies (change state / disable)
     private PlayerController movementController;
+    private SpriteRenderer firstHeart;
+    private SpriteRenderer secondHeart;
+    private SpriteRenderer thirdHeart;
 
 	protected override void Start () {
         base.Start();
         movementController = GetComponent<PlayerController>();
+        SetHeartReferences();
 	}
+
+    void Update () {
+        // Set the hearts in the health panel
+        SetHeartsFromHealth();
+    }
+
+    // Gets references to the sprite renderers for the health hearts in the UI so that we can change the sprites
+    private void SetHeartReferences () {
+        GameObject healthPanel = GameObject.FindGameObjectWithTag(GameConstants.HealthPanelTag);
+        firstHeart = healthPanel.transform.GetChild(0).GetComponent<SpriteRenderer>();
+        secondHeart = healthPanel.transform.GetChild(1).GetComponent<SpriteRenderer>();
+        thirdHeart = healthPanel.transform.GetChild(2).GetComponent<SpriteRenderer>();
+    }
 
     public override bool RemoveHealth(int damage) {
         bool damaged = base.RemoveHealth(damage);
-        if (healthBar != null)
-            healthBar.value = Mathf.Max(currentHealth, 0); // Don't let the health bar drop below 
-			// Change health sprite
         return damaged;
     }
 
     public override bool AddHealth(int health) {
         bool healed = base.AddHealth(health);
-        if (healthBar != null)
-            healthBar.value = Mathf.Min(currentHealth, startingHealth); // Health shouldn't exceed the max
         return healed;
     }
 
     public override void DestroyCharacter() {
         base.DestroyCharacter();
         movementController.enabled = false; // Turn off the controls
+    }
+
+    // Ugly! 
+    private void SetHeartsFromHealth () {
+        // Amount of health equal to half a heart (there are 3 hearts)
+        float halfHeartValue = startingHealth / 6;
+
+        if (currentHealth <= 0) {
+            SetHearts(emptyHeart, emptyHeart, emptyHeart);
+        } else if (currentHealth > 0 && currentHealth <= halfHeartValue) {
+            SetHearts(halfHeart, emptyHeart, emptyHeart);
+        } else if (currentHealth <= halfHeartValue * 2) {
+            SetHearts(fullHeart, emptyHeart, emptyHeart);
+        } else if (currentHealth <= halfHeartValue * 3) {
+            SetHearts(fullHeart, halfHeart, emptyHeart);
+        } else if (currentHealth <= halfHeartValue * 4) {
+            SetHearts(fullHeart, fullHeart, emptyHeart);
+        } else if (currentHealth <= halfHeartValue * 5) {
+            SetHearts(fullHeart, fullHeart, halfHeart);
+        } else if (currentHealth <= halfHeartValue * 6) {
+            SetHearts(fullHeart, fullHeart, fullHeart);
+        } 
+    }
+
+    private void SetHearts(Sprite first, Sprite second, Sprite third) {
+        firstHeart.sprite = first;
+        secondHeart.sprite = second;
+        thirdHeart.sprite = third;
     }
 }

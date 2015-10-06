@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 79f2de8d6642f2b4486c55bf41a0a421
-timeCreated: 1440389794
+timeCreated: 1444106259
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -46,6 +46,7 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -65,8 +66,8 @@ TextureImporter:
         y: 16
         width: 344
         height: 489
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RunShootSpriteSheet_1
       rect:
@@ -75,18 +76,18 @@ TextureImporter:
         y: 9
         width: 367
         height: 493
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RunShootSpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 1245
+        x: 1242
         y: 36
         width: 371
         height: 466
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RunShootSpriteSheet_3
       rect:
@@ -95,8 +96,8 @@ TextureImporter:
         y: 26
         width: 396
         height: 479
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RunShootSpriteSheet_4
       rect:
@@ -105,8 +106,8 @@ TextureImporter:
         y: 26
         width: 356
         height: 479
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RunShootSpriteSheet_5
       rect:
@@ -115,8 +116,8 @@ TextureImporter:
         y: 6
         width: 376
         height: 499
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RunShootSpriteSheet_6
       rect:
@@ -125,8 +126,8 @@ TextureImporter:
         y: 29
         width: 403
         height: 473
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RunShootSpriteSheet_7
       rect:
@@ -135,8 +136,8 @@ TextureImporter:
         y: 24
         width: 361
         height: 481
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RunShootSpriteSheet_8
       rect:
@@ -145,8 +146,8 @@ TextureImporter:
         y: 34
         width: 344
         height: 471
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

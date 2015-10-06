@@ -16,14 +16,18 @@ public class DetectPlayerWithFollowBuffer : DetectPlayer {
 
     protected override void OnDrawGizmos() {
         base.OnDrawGizmos();
-        if (gunObject != null) {
+        if (gunObject != null && enabled) {
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(gunObject.transform.position, followRange);
         }
     }
 
+    protected override bool IsPlayerDetectable () {
+        return PlayerInFollowRange();
+    }
+
     public bool PlayerInFollowRange() {
         float distanceToPlayer = Vector2.Distance(enemyPosition, Player.GetPlayerPosition());
-        return playerWasDetectedBefore && (distanceToPlayer <= followRange);
+        return distanceToPlayer <= followRange;
     }
 }

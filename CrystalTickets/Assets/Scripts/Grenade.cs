@@ -4,6 +4,7 @@ using System.Collections;
 public class Grenade : MonoBehaviour {
 
     public int speed = 1000;
+	public GameObject explosionAnimation;
 
 
     void Start () {
@@ -40,6 +41,12 @@ public class Grenade : MonoBehaviour {
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
+
+		GameObject explosionAnimation = CFX_SpawnSystem.GetNextObject (this.explosionAnimation);
+		Destroy(gameObject);
+
+		explosionAnimation.transform.position = transform.position;
+
         if (collision.transform.CompareTag("Enemy"))
             Destroy(gameObject); // Destroys the bullet, not the enemy.
     }

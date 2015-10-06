@@ -38,10 +38,6 @@ public class PlayerController : MonoBehaviour {
         statsUI = GetComponent<PlayerStatsUI>();
     }
 
-    void FixedUpdate() {
-
-    }
-
     void Update() {
 
 		// Only shoot a bullet if a sane amount of time has passed
@@ -56,9 +52,11 @@ public class PlayerController : MonoBehaviour {
 		if (this.currentmovement == Joystick.ItemTypes.shoot && this.currentmouse == 1 && secondsSinceLastFired > firingIntervalInSeconds) {
 			Debug.Log ("shoot");
 			timeLastFired = Time.time;
-			animator.SetBool("Shoot", true);
+			animator.SetBool(GameConstants.ShootState, true);
 			FireBullet(gun.transform.position);
-		}
+		} else {
+            animator.SetBool(GameConstants.ShootState, false);
+        }
 
 		if (this.currentmovement == Joystick.ItemTypes.left && this.currentmouse == 1) {
 			Debug.Log ("MoveLeft");

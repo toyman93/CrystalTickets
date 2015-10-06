@@ -30,7 +30,7 @@ public class Health : MonoBehaviour {
         bool healthRemoved = false;
 
         if (damageEnabled && currentHealth > 0) {
-            currentHealth -= damage;
+            currentHealth = Mathf.Max(0, currentHealth - damage);
             if (currentHealth <= 0 && !isDead)
                 DestroyCharacter(); // Kill the player/mob
             healthRemoved = true;
@@ -45,7 +45,7 @@ public class Health : MonoBehaviour {
 
         // Checking whether health is at max is useful for medpacs, so that they're not consumed when unnecessary
         if (healingEnabled && !(currentHealth == startingHealth)) {
-            currentHealth += health;
+            currentHealth = Mathf.Min(startingHealth, currentHealth + health);
             healthAdded = true;
         }
 
@@ -55,6 +55,7 @@ public class Health : MonoBehaviour {
     public virtual void DestroyCharacter() {
         isDead = true;
         animator.SetBool(GameConstants.DeadState, true); // Play the death animation
+        movement.Freeze();
         movement.enabled = false;
     }
 
