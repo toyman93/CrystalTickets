@@ -30,7 +30,7 @@ public class FollowPlayer : MonoBehaviour {
         isFollowing = ShouldFollowPlayer ();
 
         if (isFollowing) {
-            tether.enabled = true; // Stops the enemy from getting too far from its starting position
+            tether.turnedOn = true; // Stops the enemy from getting too far from its starting position
             movement.MoveTowardsPoint(playerPosition);
         } 
 	}
