@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class PlayerHealth : Health {
 
     public Sprite fullHeart;
     public Sprite halfHeart;
     public Sprite emptyHeart;
+
+    [Tooltip("Time in seconds to wait after the player dies before returning to the main menu.")]
+    public float delayAfterDeath = 4f;
 
     // Required when the player dies (change state / disable)
     private PlayerController movementController;
@@ -22,6 +26,14 @@ public class PlayerHealth : Health {
     void Update () {
         // Set the hearts in the health panel
         SetHeartsFromHealth();
+
+        if (isDead)
+            StartCoroutine(ReturnToMainMenu());
+    }
+
+    private IEnumerator ReturnToMainMenu() {
+        yield return new WaitForSeconds(delayAfterDeath);
+        Application.LoadLevel("GameStartScene");
     }
 
     // Gets references to the sprite renderers for the health hearts in the UI so that we can change the sprites
