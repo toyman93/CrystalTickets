@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour {
 		movement = GetComponent<Movement>();
 		timeLastFired = -firingIntervalInSeconds;
 		statsUI = GetComponent<PlayerStatsUI>();
+
 	}
 	
 	void Update() {
@@ -69,6 +70,12 @@ public class PlayerController : MonoBehaviour {
 		if (this.currentmovement == Joystick.ItemTypes.empty) {
 			animator.SetBool (GameConstants.RunState, false);
 		}
+
+		// Input key for testing purpose
+		float move = Input.GetAxis("Horizontal");//Gives us of one if we are moving via the arrow keys
+		//move our Players rigidbody
+		
+		rigidBody.velocity = new Vector3(move * movement.speed, rigidBody.velocity.y);
 	}
 	
 	// This should probably be elsewhere. Enemies can reuse this too.

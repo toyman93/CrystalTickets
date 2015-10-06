@@ -4,10 +4,12 @@ using System.Collections;
 public class GameEnd : MonoBehaviour {
 
 	public SpriteRenderer gameEndScreen;
+	public GameObject nextButton;
 
 	// Use this for initialization
 	void Start () {
 		gameEndScreen.enabled = false;
+		nextButton.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -21,6 +23,7 @@ public class GameEnd : MonoBehaviour {
 		if (col.gameObject.name == "playerCharacter") {
 			Time.timeScale = 0.0f;
 			gameEndScreen.enabled = true;
+			nextButton.SetActive(true);
 		}
 	}
 	
