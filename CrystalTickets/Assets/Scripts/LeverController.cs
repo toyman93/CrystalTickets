@@ -28,6 +28,13 @@ public class LeverController : MonoBehaviour {
 			enabled = true;
 			entranceDoorController.enabled = true;
 			exitDoorController.enabled = true;
+
+			// Change the sprite of the doors to open
+			entranceDoor.GetComponent<SpriteRenderer>().sprite = Resources.Load ("doorOpen_top", typeof(Sprite)) as Sprite;
+			exitDoor.GetComponent<SpriteRenderer>().sprite = Resources.Load ("doorOpen_top", typeof(Sprite)) as Sprite;
+
+			// Change the sprite of the lever to on
+			GetComponent<SpriteRenderer>().sprite = Resources.Load ("LeverOn", typeof(Sprite)) as Sprite;
 		} 
 //		if (collision.gameObject == player && enabled == true){
 //			Debug.Log("lever: disabling doors");

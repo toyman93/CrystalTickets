@@ -31,6 +31,7 @@ public class DoorController : MonoBehaviour {
 			newPosition.x += teleportOffset;
 			player.transform.position = newPosition;
 			teleportedTime = Time.time;
+
 		}
 	}
 }
