@@ -14,23 +14,10 @@ public class Joystick : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController> ();
-		left = GameObject.FindGameObjectWithTag ("left");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if ((Input.touchCount > 0) && Input.GetTouch (0).phase == TouchPhase.Began) {
-			playerController.currentmovement = this.typeOfItem;
-		}
-		if ((Input.touchCount > 0) && Input.GetTouch (1).phase == TouchPhase.Began) {
-			playerController.currentmovement4 = MoveShoot.ItemTypes.shoot;
-		}
-		if ((Input.touchCount > 0) && Input.GetTouch (0).phase == TouchPhase.Ended) {
-			playerController.currentmovement = ItemTypes.empty;
-		}
-		if ((Input.touchCount > 0) && Input.GetTouch (0).phase == TouchPhase.Ended) {
-			playerController.currentmovement = ItemTypes.empty;
-		}
 
 	}
 
@@ -64,15 +51,16 @@ public class Joystick : MonoBehaviour {
 
 
 
-//	public void OnMouseDown(){
-//		// this object was clicked - do something
-//			playerController.currentmovement = this.typeOfItem;
-//
-//	}
-//	
-//	public void OnMouseUp(){
-//		Debug.Log ("Mouse up");
-//			playerController.currentmovement = ItemTypes.empty;
-//
-//	}
+	public void OnMouseDown(){
+		Debug.Log ("left");
+		// this object was clicked - do something
+			playerController.currentmovement = this.typeOfItem;
+
+	}
+	
+	public void OnMouseUp(){
+		Debug.Log ("Mouse up");
+			playerController.currentmovement = ItemTypes.empty;
+
+	}
 }

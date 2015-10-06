@@ -50,7 +50,7 @@ public class MoveShoot : MonoBehaviour {
 	public void OnMouseDown(){
 		// this object was clicked - do something
 		Debug.Log ("Item: " + this.typeOfItem);
-		
+		Debug.Log ("shoot");
 		playerController.currentmovement4 = this.typeOfItem;
 		
 	}

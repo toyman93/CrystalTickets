@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour {
 //		}
 
 		if (this.currentmovement3 == MoveJump.ItemTypes.jump) {
+
 			movement.Jump();
 			
 		}

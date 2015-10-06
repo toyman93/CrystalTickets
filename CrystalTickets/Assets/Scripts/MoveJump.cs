@@ -50,7 +50,7 @@ public class MoveJump : MonoBehaviour {
 	public void OnMouseDown(){
 		// this object was clicked - do something
 		Debug.Log ("Item: " + this.typeOfItem);
-		
+		Debug.Log ("jump");
 		playerController.currentmovement3 = this.typeOfItem;
 		
 	}

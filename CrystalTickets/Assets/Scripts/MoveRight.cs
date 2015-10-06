@@ -16,6 +16,8 @@ public class MoveRight : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+
 		
 	}
 	
@@ -46,11 +48,11 @@ public class MoveRight : MonoBehaviour {
 	//			playerController.currentmovement4 = ItemTypes.empty;
 	//		}
 	//	}
-	
+
 	public void OnMouseDown(){
 		// this object was clicked - do something
 		Debug.Log ("Item: " + this.typeOfItem);
-		
+		Debug.Log ("right");
 		playerController.currentmovement2 = this.typeOfItem;
 		
 	}
