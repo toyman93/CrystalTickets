@@ -9,8 +9,10 @@ public class FollowPlayer : MonoBehaviour {
 
     public bool isFollowing { get; private set; }
 
+    public Vector2 playerPosition { get { return detectPlayer.playerPosition; } } // Player location
+    public Vector2 enemyPosition { get { return transform.position; } }
+
     private DetectPlayerWithFollowBuffer detectPlayer; // Following is triggered when the player moves out of range (detected here)
-    private Vector2 playerPosition { get { return detectPlayer.playerPosition; } } // Player location
     private Tether tether; // Allows the enemy to return to its starting position
     private Movement movement;
 
@@ -36,6 +38,8 @@ public class FollowPlayer : MonoBehaviour {
     // If the player isn't in the range to be shot but is in the range to be followed, follow the player
     private bool ShouldFollowPlayer () {
         bool playerInRange = detectPlayer.PlayerInFollowRange() && !detectPlayer.PlayerInVisibilityRange();
-        return playerInRange && !tether.TooFarFromHome() && detectPlayer.playerWasDetectedBefore;
+        bool tooFarFromHome = tether.TooFarFromHome();
+        bool playerHasBeenDetected = detectPlayer.playerWasDetectedBefore;
+        return playerInRange && !tooFarFromHome && playerHasBeenDetected;
     }
 }
