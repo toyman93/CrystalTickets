@@ -9,9 +9,12 @@ public class Joystick : MonoBehaviour {
 	
 	public PlayerController playerController;
 
+	public GameObject left;
+
 	// Use this for initialization
 	void Start () {
 		playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController> ();
+
 	}
 	
 	// Update is called once per frame
