@@ -16,6 +16,11 @@ public class Joystick : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(Input.touchCount>0)
+			for(int i=0; i<Input.touchCount; i++)
+		{
+			Debug.Log(Input.GetTouch(0).position.x);
+		}
 	
 	}
 	
@@ -47,10 +52,10 @@ public class Joystick : MonoBehaviour {
 //		}
 //	}
 
+
+
 	public void OnMouseDown(){
 		// this object was clicked - do something
-		Debug.Log ("Item: " + this.typeOfItem);
-
 			playerController.currentmovement = this.typeOfItem;
 
 	}

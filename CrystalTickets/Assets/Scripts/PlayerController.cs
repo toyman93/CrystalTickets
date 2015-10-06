@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void FixedUpdate() {
+
         float move = Input.GetAxis("Horizontal");//Gives us of one if we are moving via the arrow keys
                                                  //move our Players rigidbody
 
@@ -58,13 +59,12 @@ public class PlayerController : MonoBehaviour {
 //		}
 
 		if (this.currentmovement == Joystick.ItemTypes.left) {
-			Debug.Log ("left");
 			movement.MoveLeft();
-			
+			animator.SetBool (GameConstants.RunState, true);
 		}
 		if (this.currentmovement2 == MoveRight.ItemTypes.right) {
-			Debug.Log ("right");
 			movement.MoveRight();
+			animator.SetBool (GameConstants.RunState, true);
 		}
     }
 
@@ -86,12 +86,10 @@ public class PlayerController : MonoBehaviour {
 //		}
 
 		if (this.currentmovement3 == MoveJump.ItemTypes.jump) {
-			Debug.Log ("jump");
 			movement.Jump();
 			
 		}
 		if (this.currentmovement4 == MoveShoot.ItemTypes.shoot && isPause == false && secondsSinceLastFired > firingIntervalInSeconds) {
-			Debug.Log ("shoot");
 			timeLastFired = Time.time;
 			animator.SetBool("Shoot", true);
 			FireBullet(gun.transform.position);

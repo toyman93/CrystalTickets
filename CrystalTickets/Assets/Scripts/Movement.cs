@@ -93,6 +93,7 @@ public class Movement : MonoBehaviour {
     }
 
     public void Move() {
+		animator.SetBool(GameConstants.RunState, true);
         Move(movementDirection);
     }
 
@@ -106,9 +107,11 @@ public class Movement : MonoBehaviour {
         if (!isFacingRight)
             Flip();
         Move(Vector2.right);
+
     }
 
     public void Move(Vector2 direction) {
+		animator.SetBool(GameConstants.RunState, true);
         Vector2 distanceToMove = direction * speed * Time.deltaTime;
         transform.Translate(distanceToMove);
     }
