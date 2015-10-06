@@ -30,7 +30,7 @@ public class Health : MonoBehaviour {
         bool healthRemoved = false;
 
         if (damageEnabled && currentHealth > 0) {
-            currentHealth -= damage;
+            currentHealth = Mathf.Max(0, currentHealth - damage);
             if (currentHealth <= 0 && !isDead)
                 DestroyCharacter(); // Kill the player/mob
             healthRemoved = true;

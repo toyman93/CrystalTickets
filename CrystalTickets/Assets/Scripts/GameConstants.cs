@@ -12,6 +12,7 @@ public static class GameConstants {
     public const String PlayerTag = "Player"; // Anything with this tag should be treated as part of the player
     public const String PlatformEdgeTag = "PlatformEdge"; // When an enemy collides with an object with this tag, it'll treat it like a platform edge and turn around.
     public const String PlayerTargetTag = "PlayerTarget"; // Which part of the player the enemies should shoot at. Here for convenience when getting a reference to this GameObject
+    public const String HealthPanelTag = "HealthPanel"; // Three hearts that represent the player's health
 
     /* --- ANIMATION PARAMETERS --- */
     public const String RunState = "Run"; // Set to false to go to idle state
