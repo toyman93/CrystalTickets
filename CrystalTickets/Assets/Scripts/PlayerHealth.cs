@@ -33,7 +33,7 @@ public class PlayerHealth : Health {
 
     private IEnumerator ReturnToMainMenu() {
         yield return new WaitForSeconds(delayAfterDeath);
-        Application.LoadLevel("GameStartScene");
+        Application.LoadLevel(Application.loadedLevelName);
     }
 
     // Gets references to the sprite renderers for the health hearts in the UI so that we can change the sprites
