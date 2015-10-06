@@ -32,12 +32,6 @@ public class EnemyPatrol : MonoBehaviour {
     }
 	
 	void Update () {
-        if (health.isDead) {
-            movement.Freeze();
-        } else if (ShouldTurnAround()) {
-            movement.Flip();
-        }
-
         if (!follow.isFollowing) {
             if (ShouldTurnAround())
                 movement.Flip();
